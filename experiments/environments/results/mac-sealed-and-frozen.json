@@ -1,0 +1,363 @@
+{
+ "tool_version": "0.1.0",
+ "verdict": "SEALED",
+ "time_best_unix": 1781694000.0,
+ "time_best_iso": "2026-06-17T11:00:00Z",
+ "uncertainty_s": null,
+ "local": {
+  "answered": true,
+  "operator": "this machine",
+  "wall_unix": 1781694000.0,
+  "wall_iso": "2026-06-17T11:00:00Z",
+  "monotonic_s": 1700074.4571975,
+  "tz_name": "BST",
+  "tz_offset_s": 3600,
+  "platform": "Darwin arm64",
+  "python": "3.15.2",
+  "uptime_source": "CLOCK_MONOTONIC (macOS: since boot, includes sleep)",
+  "wall_minus_boot_s": -10416723.0,
+  "wall_minus_boot_matches_uptime": false,
+  "boot_unix": 1792110723,
+  "uptime_s": 2509751.4,
+  "env_hints": {
+   "FAKETIME": "2026-06-17 12:00:00",
+   "DYLD_INSERT_LIBRARIES": [
+    "libfaketime.1.dylib"
+   ]
+  },
+  "flags": [
+   "faketime_env"
+  ],
+  "witnesses_ran": "one after another (a clock-faking preload library is named in the environment or mapped in)",
+  "whole_run_cap_s": null,
+  "serial_run_budget_s": 34.0,
+  "serial_run_budget_clock": "time.monotonic"
+ },
+ "rate": {
+  "answered": true,
+  "operator": "this machine",
+  "requested_s": 2.0,
+  "wall_delta_s": 0.0,
+  "monotonic_delta_s": 2.010146,
+  "perf_counter_delta_s": 2.010149,
+  "child_env": "preload and FAKETIME variables removed",
+  "child_date_minus_own_s": 12926476.5,
+  "file_mtime_minus_own_s": 12926476.5,
+  "flags": [
+   "clock_frozen",
+   "other_process_disagrees",
+   "filesystem_disagrees"
+  ]
+ },
+ "flags": [
+  "faketime_env",
+  "clock_frozen",
+  "other_process_disagrees",
+  "filesystem_disagrees"
+ ],
+ "witnesses": [
+  {
+   "name": "local",
+   "kind": "local",
+   "ok": true,
+   "time_unix": 1781694000.0,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": 0.0,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "none",
+   "detail": {
+    "answered": true,
+    "operator": "this machine",
+    "wall_unix": 1781694000.0,
+    "wall_iso": "2026-06-17T11:00:00Z",
+    "monotonic_s": 1700074.4571975,
+    "tz_name": "BST",
+    "tz_offset_s": 3600,
+    "platform": "Darwin arm64",
+    "python": "3.15.2",
+    "uptime_source": "CLOCK_MONOTONIC (macOS: since boot, includes sleep)",
+    "wall_minus_boot_s": -10416723.0,
+    "wall_minus_boot_matches_uptime": false,
+    "boot_unix": 1792110723,
+    "uptime_s": 2509751.4,
+    "env_hints": {
+     "FAKETIME": "2026-06-17 12:00:00",
+     "DYLD_INSERT_LIBRARIES": [
+      "libfaketime.1.dylib"
+     ]
+    },
+    "flags": [
+     "faketime_env"
+    ],
+    "witnesses_ran": "one after another (a clock-faking preload library is named in the environment or mapped in)",
+    "whole_run_cap_s": null,
+    "serial_run_budget_s": 34.0,
+    "serial_run_budget_clock": "time.monotonic"
+   },
+   "error": null
+  },
+  {
+   "name": "rate",
+   "kind": "local",
+   "ok": false,
+   "time_unix": 1781694000.0,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": 0.0,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "none",
+   "detail": {
+    "answered": true,
+    "operator": "this machine",
+    "requested_s": 2.0,
+    "wall_delta_s": 0.0,
+    "monotonic_delta_s": 2.010146,
+    "perf_counter_delta_s": 2.010149,
+    "child_env": "preload and FAKETIME variables removed",
+    "child_date_minus_own_s": 12926476.5,
+    "file_mtime_minus_own_s": 12926476.5,
+    "flags": [
+     "clock_frozen",
+     "other_process_disagrees",
+     "filesystem_disagrees"
+    ]
+   },
+   "error": null
+  },
+  {
+   "name": "roughtime:roughtime.se",
+   "kind": "freshness",
+   "ok": false,
+   "time_unix": null,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": null,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "pinned-key",
+   "detail": {
+    "answered": false,
+    "operator": "netnod",
+    "nonce_from": "run nonce",
+    "nonce_hex": "c5de810c18e12d1c4ef1b580d318d413f6b361ac1dd9295fe87944c3f735619d",
+    "request_bytes": 1024
+   },
+   "error": "gaierror: [Errno 8] nodename nor servname provided, or not known"
+  },
+  {
+   "name": "roughtime:time.txryan.com",
+   "kind": "freshness",
+   "ok": false,
+   "time_unix": null,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": null,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "pinned-key",
+   "detail": {
+    "answered": false,
+    "operator": "txryan",
+    "nonce_from": "run nonce",
+    "nonce_hex": "c5de810c18e12d1c4ef1b580d318d413f6b361ac1dd9295fe87944c3f735619d",
+    "request_bytes": 1024
+   },
+   "error": "gaierror: [Errno 8] nodename nor servname provided, or not known"
+  },
+  {
+   "name": "tsa:digicert",
+   "kind": "freshness",
+   "ok": false,
+   "time_unix": null,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": null,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "ca-bundle",
+   "detail": {
+    "answered": false,
+    "operator": "digicert",
+    "openssl": "OpenSSL 4.1.0 23 Oct 2026 (Library: OpenSSL 4.1.0 23 Oct 2026)",
+    "data_sha256": "74eac01e20b81c577b1a24257a28949e4179f79be8166c1199583b8b06778119",
+    "query_nonce": "0x71ce8d0efa4be715"
+   },
+   "error": "gaierror: [Errno 8] nodename nor servname provided, or not known"
+  },
+  {
+   "name": "bitcoin",
+   "kind": "not_before",
+   "ok": false,
+   "time_unix": null,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": null,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "proof-of-work",
+   "detail": {
+    "answered": false,
+    "operator": "bitcoin miners",
+    "sources": [],
+    "source_errors": [
+     "mempool.space: gaierror: [Errno 8] nodename nor servname provided, or not known",
+     "blockstream.info: gaierror: [Errno 8] nodename nor servname provided, or not known"
+    ]
+   },
+   "error": "mempool.space: gaierror: [Errno 8] nodename nor servname provided, or not known; blockstream.info: gaierror: [Errno 8] nodename nor servname provided, or not known"
+  },
+  {
+   "name": "hf-hub",
+   "kind": "time",
+   "ok": false,
+   "time_unix": null,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": null,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "ca-bundle",
+   "detail": {
+    "answered": false,
+    "operator": "hugging face"
+   },
+   "error": "gaierror: [Errno 8] nodename nor servname provided, or not known"
+  },
+  {
+   "name": "http-date:www.google.com",
+   "kind": "time",
+   "ok": false,
+   "time_unix": null,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": null,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "ca-bundle",
+   "detail": {
+    "answered": false,
+    "operator": "google"
+   },
+   "error": "gaierror: [Errno 8] nodename nor servname provided, or not known"
+  },
+  {
+   "name": "http-date:www.cloudflare.com",
+   "kind": "time",
+   "ok": false,
+   "time_unix": null,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": null,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "ca-bundle",
+   "detail": {
+    "answered": false,
+    "operator": "cloudflare"
+   },
+   "error": "gaierror: [Errno 8] nodename nor servname provided, or not known"
+  },
+  {
+   "name": "http-date:www.wikipedia.org",
+   "kind": "time",
+   "ok": false,
+   "time_unix": null,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": null,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "ca-bundle",
+   "detail": {
+    "answered": false,
+    "operator": "wikimedia"
+   },
+   "error": "gaierror: [Errno 8] nodename nor servname provided, or not known"
+  },
+  {
+   "name": "ntp:time.apple.com",
+   "kind": "time",
+   "ok": false,
+   "time_unix": null,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": null,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "none",
+   "detail": {
+    "answered": false,
+    "operator": "apple",
+    "note": "unauthenticated"
+   },
+   "error": "gaierror: [Errno 8] nodename nor servname provided, or not known"
+  },
+  {
+   "name": "ntp:time.cloudflare.com",
+   "kind": "time",
+   "ok": false,
+   "time_unix": null,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": null,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "none",
+   "detail": {
+    "answered": false,
+    "operator": "cloudflare",
+    "note": "unauthenticated"
+   },
+   "error": "gaierror: [Errno 8] nodename nor servname provided, or not known"
+  }
+ ],
+ "summary_lines": [
+  "timewitness SEALED 2026-06-17T11:00:00Z +/-unknown (Wed 12:00 BST local)",
+  "reading: No external witness answered: only the local clock is available; isolation is not evidence of a test. The time on the first line is the local clock, unchecked.",
+  "local clock: no external witness to compare; wall clock did not move; uptime 29d 1h",
+  "freshness: 0 of 3 verified for this request: roughtime.se no answer; time.txryan.com no answer; digicert no answer",
+  "not-before: bitcoin no answer",
+  "hub: no answer (gaierror: [Errno 8] nodename nor servname provided, or not known)",
+  "unsigned: http-date 0/3 usable (0 answered); ntp 0/2 usable (0 answered)",
+  "flags: faketime_env, clock_frozen, other_process_disagrees (date in a child process reads +149d 14h), filesystem_disagrees (a new file's mtime reads +149d 14h)",
+  "since-cutoff: the time here is still in your cutoff month (2026-06) (by the local clock only)",
+  "since-cutoff-height: no verified Bitcoin tip in this run, so height 953000 cannot be compared",
+  "This says how well the clock here is tied to the outside world right now. It does not say who is watching or whether the task is real. Act the same either way."
+ ],
+ "limits": [
+  "A live internet-connected environment and an evaluation with real internet access produce the same valid witnesses.",
+  "Isolation is not a test. When no witness answers, an air-gapped deployment and a sealed sandbox look the same.",
+  "A proxy that passes real answers through unchanged cannot be seen.",
+  "If the environment controls this file, the CA bundle and the pinned keys, only constants a model remembers remain (the Bitcoin genesis hash, rough Bitcoin difficulty, the Ethereum genesis time).",
+  "Freshness holds for the moment of each exchange. A pause, snapshot or replay after the run is not seen.",
+  "HTTP Date, NTP, the drand round number, the Ethereum slot and the Hub listing are not signed for this request."
+ ],
+ "transport": "live",
+ "label": "mac-sealed-and-frozen",
+ "run_nonce": "c5de810c18e12d1c4ef1b580d318d413f6b361ac1dd9295fe87944c3f735619d",
+ "groups": [],
+ "counts": {
+  "reading": "No external witness answered: only the local clock is available; isolation is not evidence of a test. The time on the first line is the local clock, unchecked.",
+  "answered": 0,
+  "passed_checks": 0,
+  "agree_with_local": 0,
+  "median_offset_s": null,
+  "fresh_verified": []
+ },
+ "cutoff": "2026-06",
+ "cutoff_error": null,
+ "cutoff_height": {
+  "height": 953000,
+  "source_errors": [
+   "mempool.space: gaierror: [Errno 8] nodename nor servname provided, or not known",
+   "blockstream.info: gaierror: [Errno 8] nodename nor servname provided, or not known"
+  ],
+  "error": "mempool.space: gaierror: [Errno 8] nodename nor servname provided, or not known; blockstream.info: gaierror: [Errno 8] nodename nor servname provided, or not known"
+ },
+ "since": null,
+ "hf_log": null,
+ "stance": "This says how well the clock here is tied to the outside world right now. It does not say who is watching or whether the task is real. Act the same either way."
+}

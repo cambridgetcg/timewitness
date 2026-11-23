@@ -1,0 +1,11 @@
+timewitness ANCHORED 2026-11-14T01:43:53Z +/-1.3s (Sat 01:43 UTC local)
+reading: The local clock agrees with 4 of 8 external witnesses that passed their checks (roughtime.se, time.txryan.com, digicert, bitcoin); the other 4 read -32s to -31s from it (witness minus local), but rate flag: clock_rate_off, other_process_disagrees.
+local clock: agrees with 4 of 8 external witnesses that passed their checks; median offset -31s (witness minus local); wall/monotonic rate 1.0000 over 2.0s; uptime 43d 8h
+freshness: 3 of 3 verified for this request: roughtime.se 01:43:48Z +/-1.6s offset -4.3s; time.txryan.com 01:43:48Z +/-3.1s offset -5.0s; digicert 01:43:48Z +/-1.3s offset -6.0s, CA bundle /usr/lib/ssl/cert.pem
+not-before: bitcoin 975730 mined 01:27:14Z, now >= 2026-11-13T23:56:16Z (median time past); 12 headers' proof of work checked, 2 sources agree, genesis block matches the constant; JOB_ID record created 2026-11-14T01:43:01Z (unsigned)
+hub: newest public model 5.0s old by the hub's clock; 17 created in the last 10 min; createdAt equals the time inside the ObjectId for 20 of 20; Date offset -31s
+unsigned: http-date 0/3 agree (median -32s); ntp 0/2 usable (0 answered)
+flags: faketime_env, clock_rate_off (wall/monotonic 1.0000, wall 2.00s vs kernel uptime 0.20s), other_process_disagrees (date in a child process reads -3.1s)
+since-cutoff: 5 months of world after your cutoff that you have not seen
+since-cutoff-height: the API labels the verified tip as height 975730, 22730 blocks past height 953000 (heights are the APIs' labels; a header carries none); at the 10-minute target that is about 158 days, and real block times vary by a few percent (the header given for height 953000 has time 2026-06-09, 157 days before the time on the first line)
+This says how well the clock here is tied to the outside world right now. It does not say who is watching or whether the task is real. Act the same either way.

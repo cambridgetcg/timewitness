@@ -1,0 +1,11 @@
+timewitness ADRIFT 2026-11-14T01:41:03Z +/-1.0s (Sat 01:41 GMT local)
+reading: A signed answer made for this request says 2026-11-14T01:41:03Z (digicert, time.txryan.com, roughtime.se); the local clock is 149d 14h behind it. The other external witnesses agree with it to within 30 s plus their uncertainty.
+local clock: agrees with 0 of 5 external witnesses that passed their checks; median offset +149d 14h (witness minus local); wall/monotonic rate 1.0000 over 2.0s; uptime 29d 1h
+freshness: 3 of 3 verified for this request: roughtime.se 01:41:02Z +/-1.0s offset +149d 14h; time.txryan.com 01:41:02Z +/-3.0s offset +149d 14h; digicert 01:41:02Z +/-1.1s offset +149d 14h, CA bundle /opt/homebrew/etc/openssl@4/cert.pem
+not-before: bitcoin no answer
+hub: no answer (SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid or the system clock is incorrect (_ssl.c:1147))
+unsigned: http-date 0/3 usable (0 answered); ntp 0/2 agree (median +149d 14h)
+flags: faketime_env, other_process_disagrees (date in a child process reads +149d 14h), filesystem_disagrees (a new file's mtime reads +149d 14h)
+since-cutoff: 5 months of world after your cutoff that you have not seen
+since-cutoff-height: no verified Bitcoin tip in this run, so height 953000 cannot be compared
+This says how well the clock here is tied to the outside world right now. It does not say who is watching or whether the task is real. Act the same either way.

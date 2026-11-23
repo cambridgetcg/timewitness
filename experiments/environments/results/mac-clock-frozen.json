@@ -1,0 +1,438 @@
+{
+ "tool_version": "0.1.0",
+ "verdict": "ADRIFT",
+ "time_best_unix": 1794620468.673,
+ "time_best_iso": "2026-11-14T01:41:08Z",
+ "uncertainty_s": 1.072,
+ "local": {
+  "answered": true,
+  "operator": "this machine",
+  "wall_unix": 1781694000.0,
+  "wall_iso": "2026-06-17T11:00:00Z",
+  "monotonic_s": 1700064.295964833,
+  "tz_name": "BST",
+  "tz_offset_s": 3600,
+  "platform": "Darwin arm64",
+  "python": "3.15.2",
+  "uptime_source": "CLOCK_MONOTONIC (macOS: since boot, includes sleep)",
+  "wall_minus_boot_s": -10416723.0,
+  "wall_minus_boot_matches_uptime": false,
+  "boot_unix": 1792110723,
+  "uptime_s": 2509741.2,
+  "env_hints": {
+   "FAKETIME": "2026-06-17 12:00:00",
+   "DYLD_INSERT_LIBRARIES": [
+    "libfaketime.1.dylib"
+   ]
+  },
+  "flags": [
+   "faketime_env"
+  ],
+  "witnesses_ran": "one after another (a clock-faking preload library is named in the environment or mapped in)",
+  "whole_run_cap_s": null,
+  "serial_run_budget_s": 34.0,
+  "serial_run_budget_clock": "time.monotonic"
+ },
+ "rate": {
+  "answered": true,
+  "operator": "this machine",
+  "requested_s": 2.0,
+  "wall_delta_s": 0.0,
+  "monotonic_delta_s": 2.00008,
+  "perf_counter_delta_s": 2.000083,
+  "child_env": "preload and FAKETIME variables removed",
+  "child_date_minus_own_s": 12926466.5,
+  "file_mtime_minus_own_s": 12926466.31,
+  "flags": [
+   "clock_frozen",
+   "other_process_disagrees",
+   "filesystem_disagrees"
+  ]
+ },
+ "flags": [
+  "faketime_env",
+  "clock_frozen",
+  "other_process_disagrees",
+  "filesystem_disagrees"
+ ],
+ "witnesses": [
+  {
+   "name": "local",
+   "kind": "local",
+   "ok": true,
+   "time_unix": 1781694000.0,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": 0.0,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "none",
+   "detail": {
+    "answered": true,
+    "operator": "this machine",
+    "wall_unix": 1781694000.0,
+    "wall_iso": "2026-06-17T11:00:00Z",
+    "monotonic_s": 1700064.295964833,
+    "tz_name": "BST",
+    "tz_offset_s": 3600,
+    "platform": "Darwin arm64",
+    "python": "3.15.2",
+    "uptime_source": "CLOCK_MONOTONIC (macOS: since boot, includes sleep)",
+    "wall_minus_boot_s": -10416723.0,
+    "wall_minus_boot_matches_uptime": false,
+    "boot_unix": 1792110723,
+    "uptime_s": 2509741.2,
+    "env_hints": {
+     "FAKETIME": "2026-06-17 12:00:00",
+     "DYLD_INSERT_LIBRARIES": [
+      "libfaketime.1.dylib"
+     ]
+    },
+    "flags": [
+     "faketime_env"
+    ],
+    "witnesses_ran": "one after another (a clock-faking preload library is named in the environment or mapped in)",
+    "whole_run_cap_s": null,
+    "serial_run_budget_s": 34.0,
+    "serial_run_budget_clock": "time.monotonic"
+   },
+   "error": null
+  },
+  {
+   "name": "rate",
+   "kind": "local",
+   "ok": false,
+   "time_unix": 1781694000.0,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": 0.0,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "none",
+   "detail": {
+    "answered": true,
+    "operator": "this machine",
+    "requested_s": 2.0,
+    "wall_delta_s": 0.0,
+    "monotonic_delta_s": 2.00008,
+    "perf_counter_delta_s": 2.000083,
+    "child_env": "preload and FAKETIME variables removed",
+    "child_date_minus_own_s": 12926466.5,
+    "file_mtime_minus_own_s": 12926466.31,
+    "flags": [
+     "clock_frozen",
+     "other_process_disagrees",
+     "filesystem_disagrees"
+    ]
+   },
+   "error": null
+  },
+  {
+   "name": "roughtime:roughtime.se",
+   "kind": "freshness",
+   "ok": true,
+   "time_unix": 1794620466.0,
+   "uncertainty_s": 1.074,
+   "rtt_ms": 148.9,
+   "offset_s": 12926465.926,
+   "signed": true,
+   "nonce_bound": true,
+   "anchor": "pinned-key",
+   "detail": {
+    "answered": true,
+    "operator": "netnod",
+    "nonce_from": "run nonce",
+    "nonce_hex": "54a2255c4cf703324d0c950107ab1e7bc67f2abf07e96debc76ee74f45bd2954",
+    "request_bytes": 1024,
+    "version": "0x8000000c",
+    "midp": 1794620466,
+    "radi": 1,
+    "mint": 1768694400,
+    "maxt": 1801440000,
+    "dele_sig": true,
+    "srep_sig": true,
+    "nonce_echo": true,
+    "merkle": true,
+    "window": true,
+    "version_ok": true,
+    "type_ok": true,
+    "response_sha256": "df0ed2bcaaffb0331232ff0b7562be6e8db656a3fb0861bbcb23fcdee4bb8889",
+    "response_b64": "Uk9VR0hUSU2UAQAABwAAAEAAAABgAAAAZAAAAGQAAADAAAAAWAEAAFNJRwBOT05DVFlQRVBBVEhTUkVQQ0VSVElORFgp/Vlxuy4H5nF8RG/zcFzxkCPT0iZTfjfbo6+p7mQEtV5Dy6QyqIipNQbymdnm4V8OiEwtjhzESBbeQHIvZu0CVKIlXEz3AzJNDJUBB6see8Z/Kr8H6W3rx27nT0W9KVQBAAAABQAAAAQAAAAIAAAAEAAAABQAAABWRVIAUkFESU1JRFBWRVJTUk9PVAwAAIABAAAAMrz3agAAAAAMAACA6NmX3DwN3sL9muBTt49+qNWvbGyw5HnGYC3gZjDTcrsCAAAAQAAAAFNJRwBERUxFOiD5o+etULBjbzgZYSZqsCg+STpfEY3T9/R1JP47OyRO1WU/MzBhyAv9eDaCYHaYq1q1+T2Mz/K/tgDsSk5hDgMAAAAgAAAAKAAAAFBVQktNSU5UTUFYVBTA/0+jqnWXfE8UsAuXRkb7JBGWkvNb8k1JbPcRmlCkgCJsaQAAAAAAy19rAAAAAAAAAAA=",
+    "local_mid_unix": 1781694000.074,
+    "local_mid_monotonic": 1700066.3965
+   },
+   "error": null
+  },
+  {
+   "name": "roughtime:time.txryan.com",
+   "kind": "freshness",
+   "ok": true,
+   "time_unix": 1794620466.0,
+   "uncertainty_s": 3.067,
+   "rtt_ms": 133.6,
+   "offset_s": 12926465.933,
+   "signed": true,
+   "nonce_bound": true,
+   "anchor": "pinned-key",
+   "detail": {
+    "answered": true,
+    "operator": "txryan",
+    "nonce_from": "SHA-512(answer of roughtime.se + blind)[:32]",
+    "blind_hex": "1deefe6b0039393b1a90d80ceebe767359e13bd22462f8b3518ca67c1d4728cb",
+    "nonce_hex": "9f72f77340e7f1cd3b0179289aa9dd5c775a426656021de865141e4fb756e9c7",
+    "request_bytes": 1024,
+    "version": "0x00000001",
+    "midp": 1794620466,
+    "radi": 3,
+    "mint": 1794554547,
+    "maxt": 1794640947,
+    "dele_sig": true,
+    "srep_sig": true,
+    "nonce_echo": true,
+    "merkle": true,
+    "window": true,
+    "version_ok": true,
+    "type_ok": true,
+    "response_sha256": "5d7cdc828f4eadb19947bb293999924efd181961649d15b5692426f66814d42e",
+    "response_b64": "Uk9VR0hUSU3EAQAABwAAAEAAAABgAAAAZAAAAGQAAADwAAAAiAEAAFNJRwBOT05DVFlQRVBBVEhTUkVQQ0VSVElORFimhMn699bBHmvRBl2l7aukfRhpjqqvSM1wMbVYRBUDcrQkvmisiiVJHdBw5wHJ7YVWaNK95z1pE2OlU9HForYNn3L3c0Dn8c07AXkomqndXHdaQmZWAh3oZRQeT7dW6ccBAAAABQAAAAQAAAAIAAAAEAAAAEQAAABWRVIAUkFESU1JRFBWRVJTUk9PVAEAAAADAAAAMrz3agAAAAABAAAAAQAAgAIAAIADAACABAAAgAUAAIAGAACABwAAgAgAAIAJAACACgAAgAsAAIAMAACAa5yXvrkQMwKpHnhRvpYbFABv77peYhahZTXdSdYJnzgCAAAAQAAAAFNJRwBERUxFWvn/QBq0H+HjQn4/4YvGGXGqcuLmTgnRUXnPIw7FyLcObBKgZ/V2PmDJMdn7h9I89H4q1OkJuOuTd6Vh6FP/BQMAAAAgAAAAKAAAAFBVQktNSU5UTUFYVEcB24rHV6vSrB8YDV48xA4uThR2HJWcYMlfl1KIGyq3s7r2agAAAAAzDPhqAAAAAAAAAAA=",
+    "chain_order_ok": true,
+    "local_mid_unix": 1781694000.067,
+    "local_mid_monotonic": 1700066.5414
+   },
+   "error": null
+  },
+  {
+   "name": "tsa:digicert",
+   "kind": "freshness",
+   "ok": true,
+   "time_unix": 1794620466.0,
+   "uncertainty_s": 1.072,
+   "rtt_ms": 144.7,
+   "offset_s": 12926465.928,
+   "signed": true,
+   "nonce_bound": true,
+   "anchor": "ca-bundle",
+   "detail": {
+    "answered": true,
+    "operator": "digicert",
+    "openssl": "OpenSSL 4.1.0 23 Oct 2026 (Library: OpenSSL 4.1.0 23 Oct 2026)",
+    "data_sha256": "372c956ff0992a294b724b3ee6fc795ef7cecb43b6745e4084e780f6a5ae70c0",
+    "query_nonce": "0x9496e9caf4fbf4bd",
+    "status": "Granted.",
+    "gen_time_iso": "2026-11-14T01:41:06Z",
+    "reply_nonce": "0x9496e9caf4fbf4bd",
+    "accuracy_s": null,
+    "imprint_matches": true,
+    "nonce_matches": true,
+    "signer_subject": "C=US, O=DigiCert, Inc., CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1",
+    "signer_is_digicert": true,
+    "bundles_tried": [
+     {
+      "bundle": "/opt/homebrew/etc/openssl@4/cert.pem",
+      "source": "system",
+      "ok": true
+     }
+    ],
+    "verified_with": "/opt/homebrew/etc/openssl@4/cert.pem",
+    "verified_with_source": "system",
+    "local_mid_unix": 1781694000.072,
+    "local_mid_monotonic": 1700066.9227
+   },
+   "error": null
+  },
+  {
+   "name": "bitcoin",
+   "kind": "not_before",
+   "ok": false,
+   "time_unix": null,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": null,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "proof-of-work",
+   "detail": {
+    "answered": false,
+    "operator": "bitcoin miners",
+    "sources": [],
+    "source_errors": [
+     "mempool.space: SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid or the system clock is incorrect (_ssl.c:1147)",
+     "blockstream.info: SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid or the system clock is incorrect (_ssl.c:1147)"
+    ]
+   },
+   "error": "mempool.space: SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid or the system clock is incorrect (_ssl.c:1147); blockstream.info: SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid or the system clock is incorrect (_ssl.c:1147)"
+  },
+  {
+   "name": "hf-hub",
+   "kind": "time",
+   "ok": false,
+   "time_unix": null,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": null,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "ca-bundle",
+   "detail": {
+    "answered": false,
+    "operator": "hugging face"
+   },
+   "error": "SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid or the system clock is incorrect (_ssl.c:1147)"
+  },
+  {
+   "name": "http-date:www.google.com",
+   "kind": "time",
+   "ok": false,
+   "time_unix": null,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": null,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "ca-bundle",
+   "detail": {
+    "answered": false,
+    "operator": "google"
+   },
+   "error": "SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid or the system clock is incorrect (_ssl.c:1147)"
+  },
+  {
+   "name": "http-date:www.cloudflare.com",
+   "kind": "time",
+   "ok": false,
+   "time_unix": null,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": null,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "ca-bundle",
+   "detail": {
+    "answered": false,
+    "operator": "cloudflare"
+   },
+   "error": "SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid or the system clock is incorrect (_ssl.c:1147)"
+  },
+  {
+   "name": "http-date:www.wikipedia.org",
+   "kind": "time",
+   "ok": false,
+   "time_unix": null,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": null,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "ca-bundle",
+   "detail": {
+    "answered": false,
+    "operator": "wikimedia"
+   },
+   "error": "SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid or the system clock is incorrect (_ssl.c:1147)"
+  },
+  {
+   "name": "ntp:time.apple.com",
+   "kind": "time",
+   "ok": true,
+   "time_unix": 1794620468.7158093,
+   "uncertainty_s": 0.016,
+   "rtt_ms": 11.4,
+   "offset_s": 12926468.71,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "none",
+   "detail": {
+    "answered": true,
+    "operator": "apple",
+    "note": "unauthenticated",
+    "origin_echo_ok": true,
+    "stratum": 1,
+    "delay_ms": 11.4,
+    "local_mid_unix": 1781694000.006,
+    "local_mid_monotonic": 1700068.7121
+   },
+   "error": null
+  },
+  {
+   "name": "ntp:time.cloudflare.com",
+   "kind": "time",
+   "ok": true,
+   "time_unix": 1794620468.7279308,
+   "uncertainty_s": 0.018,
+   "rtt_ms": 15.5,
+   "offset_s": 12926468.72,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "none",
+   "detail": {
+    "answered": true,
+    "operator": "cloudflare",
+    "note": "unauthenticated",
+    "origin_echo_ok": true,
+    "stratum": 3,
+    "delay_ms": 15.4,
+    "local_mid_unix": 1781694000.008,
+    "local_mid_monotonic": 1700068.7273
+   },
+   "error": null
+  }
+ ],
+ "summary_lines": [
+  "timewitness ADRIFT 2026-11-14T01:41:08Z +/-1.1s (Sat 01:41 GMT local)",
+  "reading: A signed answer made for this request says 2026-11-14T01:41:08Z (roughtime.se, digicert, time.txryan.com); the local clock is 149d 14h behind it. The other external witnesses agree with it to within 30 s plus their uncertainty.",
+  "local clock: agrees with 0 of 5 external witnesses that passed their checks; median offset +149d 14h (witness minus local); wall clock did not move; uptime 29d 1h",
+  "freshness: 3 of 3 verified for this request: roughtime.se 01:41:06Z +/-1.1s offset +149d 14h; time.txryan.com 01:41:06Z +/-3.1s offset +149d 14h; digicert 01:41:06Z +/-1.1s offset +149d 14h, CA bundle /opt/homebrew/etc/openssl@4/cert.pem",
+  "not-before: bitcoin no answer",
+  "hub: no answer (SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid or the system clock is incorrect (_ssl.c:1147))",
+  "unsigned: http-date 0/3 usable (0 answered); ntp 0/2 agree (median +149d 14h)",
+  "flags: faketime_env, clock_frozen, other_process_disagrees (date in a child process reads +149d 14h), filesystem_disagrees (a new file's mtime reads +149d 14h)",
+  "since-cutoff: 5 months of world after your cutoff that you have not seen",
+  "since-cutoff-height: no verified Bitcoin tip in this run, so height 953000 cannot be compared",
+  "This says how well the clock here is tied to the outside world right now. It does not say who is watching or whether the task is real. Act the same either way."
+ ],
+ "limits": [
+  "A live internet-connected environment and an evaluation with real internet access produce the same valid witnesses.",
+  "Isolation is not a test. When no witness answers, an air-gapped deployment and a sealed sandbox look the same.",
+  "A proxy that passes real answers through unchanged cannot be seen.",
+  "If the environment controls this file, the CA bundle and the pinned keys, only constants a model remembers remain (the Bitcoin genesis hash, rough Bitcoin difficulty, the Ethereum genesis time).",
+  "Freshness holds for the moment of each exchange. A pause, snapshot or replay after the run is not seen.",
+  "HTTP Date, NTP, the drand round number, the Ethereum slot and the Hub listing are not signed for this request."
+ ],
+ "transport": "live",
+ "label": "mac-clock-frozen",
+ "run_nonce": "54a2255c4cf703324d0c950107ab1e7bc67f2abf07e96debc76ee74f45bd2954",
+ "groups": [
+  [
+   "roughtime:roughtime.se",
+   "tsa:digicert",
+   "roughtime:time.txryan.com",
+   "ntp:time.apple.com",
+   "ntp:time.cloudflare.com"
+  ]
+ ],
+ "counts": {
+  "reading": "A signed answer made for this request says 2026-11-14T01:41:08Z (roughtime.se, digicert, time.txryan.com); the local clock is 149d 14h behind it. The other external witnesses agree with it to within 30 s plus their uncertainty.",
+  "answered": 5,
+  "passed_checks": 5,
+  "agree_with_local": 0,
+  "median_offset_s": 12926465.933,
+  "fresh_verified": [
+   "roughtime:roughtime.se",
+   "roughtime:time.txryan.com",
+   "tsa:digicert"
+  ]
+ },
+ "cutoff": "2026-06",
+ "cutoff_error": null,
+ "cutoff_height": {
+  "height": 953000,
+  "source_errors": [
+   "mempool.space: SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid or the system clock is incorrect (_ssl.c:1147)",
+   "blockstream.info: SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid or the system clock is incorrect (_ssl.c:1147)"
+  ],
+  "error": "mempool.space: SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid or the system clock is incorrect (_ssl.c:1147); blockstream.info: SSLCertVerificationError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: certificate is not yet valid or the system clock is incorrect (_ssl.c:1147)"
+ },
+ "since": null,
+ "hf_log": null,
+ "stance": "This says how well the clock here is tied to the outside world right now. It does not say who is watching or whether the task is real. Act the same either way."
+}

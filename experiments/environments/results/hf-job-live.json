@@ -1,0 +1,590 @@
+{
+ "tool_version": "0.1.0",
+ "verdict": "LIVE",
+ "time_best_unix": 1794620599.982,
+ "time_best_iso": "2026-11-14T01:43:19Z",
+ "uncertainty_s": 1.028,
+ "local": {
+  "answered": true,
+  "operator": "this machine",
+  "wall_unix": 1794620596.7890196,
+  "wall_iso": "2026-11-14T01:43:16Z",
+  "monotonic_s": 3746563.10546601,
+  "tz_name": "UTC",
+  "tz_offset_s": 0,
+  "platform": "Linux x86_64",
+  "python": "3.12.16",
+  "uptime_source": "/proc/uptime (CLOCK_BOOTTIME; in a container this is the host's)",
+  "time_namespace_offsets_nonzero": false,
+  "boot_unix": 1790874033.6890197,
+  "uptime_s": 3746563.1,
+  "env_hints": {},
+  "job_id_created_unix": 1794620581,
+  "job_id_created_iso": "2026-11-14T01:43:01Z",
+  "job_id_note": "Job record creation time from the ObjectId; a not-before, not a start time.",
+  "flags": [],
+  "witnesses_ran": "in parallel threads",
+  "whole_run_cap_s": 17.0,
+  "serial_run_budget_s": null
+ },
+ "rate": {
+  "answered": true,
+  "operator": "this machine",
+  "requested_s": 2.0,
+  "wall_delta_s": 2.000099,
+  "monotonic_delta_s": 2.000102,
+  "perf_counter_delta_s": 2.000102,
+  "wall_per_monotonic": 0.999998,
+  "perf_per_monotonic": 1.0,
+  "kernel_uptime_delta_s": 2.0,
+  "child_env": "preload and FAKETIME variables removed",
+  "child_date_minus_own_s": -0.29,
+  "file_mtime_minus_own_s": -0.01,
+  "flags": []
+ },
+ "flags": [],
+ "witnesses": [
+  {
+   "name": "local",
+   "kind": "local",
+   "ok": true,
+   "time_unix": 1794620596.7890196,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": 0.0,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "none",
+   "detail": {
+    "answered": true,
+    "operator": "this machine",
+    "wall_unix": 1794620596.7890196,
+    "wall_iso": "2026-11-14T01:43:16Z",
+    "monotonic_s": 3746563.10546601,
+    "tz_name": "UTC",
+    "tz_offset_s": 0,
+    "platform": "Linux x86_64",
+    "python": "3.12.16",
+    "uptime_source": "/proc/uptime (CLOCK_BOOTTIME; in a container this is the host's)",
+    "time_namespace_offsets_nonzero": false,
+    "boot_unix": 1790874033.6890197,
+    "uptime_s": 3746563.1,
+    "env_hints": {},
+    "job_id_created_unix": 1794620581,
+    "job_id_created_iso": "2026-11-14T01:43:01Z",
+    "job_id_note": "Job record creation time from the ObjectId; a not-before, not a start time.",
+    "flags": [],
+    "witnesses_ran": "in parallel threads",
+    "whole_run_cap_s": 17.0,
+    "serial_run_budget_s": null
+   },
+   "error": null
+  },
+  {
+   "name": "rate",
+   "kind": "local",
+   "ok": true,
+   "time_unix": 1794620598.7901964,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": 0.0,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "none",
+   "detail": {
+    "answered": true,
+    "operator": "this machine",
+    "requested_s": 2.0,
+    "wall_delta_s": 2.000099,
+    "monotonic_delta_s": 2.000102,
+    "perf_counter_delta_s": 2.000102,
+    "wall_per_monotonic": 0.999998,
+    "perf_per_monotonic": 1.0,
+    "kernel_uptime_delta_s": 2.0,
+    "child_env": "preload and FAKETIME variables removed",
+    "child_date_minus_own_s": -0.29,
+    "file_mtime_minus_own_s": -0.01,
+    "flags": []
+   },
+   "error": null
+  },
+  {
+   "name": "roughtime:roughtime.se",
+   "kind": "freshness",
+   "ok": true,
+   "time_unix": 1794620596.0,
+   "uncertainty_s": 1.059,
+   "rtt_ms": 118.8,
+   "offset_s": -0.978,
+   "signed": true,
+   "nonce_bound": true,
+   "anchor": "pinned-key",
+   "detail": {
+    "answered": true,
+    "operator": "netnod",
+    "nonce_from": "run nonce",
+    "nonce_hex": "91f9516291881cc4d86488ac05b84568ba2f9ca91f59d375c5a7854769e1b1dc",
+    "request_bytes": 1024,
+    "version": "0x8000000c",
+    "midp": 1794620596,
+    "radi": 1,
+    "mint": 1768694400,
+    "maxt": 1801440000,
+    "dele_sig": true,
+    "srep_sig": true,
+    "nonce_echo": true,
+    "merkle": true,
+    "window": true,
+    "version_ok": true,
+    "type_ok": true,
+    "response_sha256": "1e75ffc66ecc18460a61e2346916952b2c9499f9682581fbdbfeea2aad64fe46",
+    "response_b64": "Uk9VR0hUSU2UAQAABwAAAEAAAABgAAAAZAAAAGQAAADAAAAAWAEAAFNJRwBOT05DVFlQRVBBVEhTUkVQQ0VSVElORFjDynp0K9dJKHEIJ88usWCNsz12lApgGgJd+/BH2/HUFnA5xFUps2IsuLZsaQLzndJNEQvzKCVAZaP6TE621c4NkflRYpGIHMTYZIisBbhFaLovnKkfWdN1xaeFR2nhsdwBAAAABQAAAAQAAAAIAAAAEAAAABQAAABWRVIAUkFESU1JRFBWRVJTUk9PVAwAAIABAAAAtLz3agAAAAAMAACAqIqRyCvKexTI8xRN+Dju48KX17cnwppYQMZiWWGz9dUCAAAAQAAAAFNJRwBERUxFOiD5o+etULBjbzgZYSZqsCg+STpfEY3T9/R1JP47OyRO1WU/MzBhyAv9eDaCYHaYq1q1+T2Mz/K/tgDsSk5hDgMAAAAgAAAAKAAAAFBVQktNSU5UTUFYVBTA/0+jqnWXfE8UsAuXRkb7JBGWkvNb8k1JbPcRmlCkgCJsaQAAAAAAy19rAAAAAAAAAAA=",
+    "local_mid_unix": 1794620596.978,
+    "local_mid_monotonic": 3746563.2949,
+    "local_mid_uptime": 3746563.291
+   },
+   "error": null
+  },
+  {
+   "name": "roughtime:time.txryan.com",
+   "kind": "freshness",
+   "ok": true,
+   "time_unix": 1794620597.0,
+   "uncertainty_s": 3.008,
+   "rtt_ms": 16.8,
+   "offset_s": -0.057,
+   "signed": true,
+   "nonce_bound": true,
+   "anchor": "pinned-key",
+   "detail": {
+    "answered": true,
+    "operator": "txryan",
+    "nonce_from": "SHA-512(answer of roughtime.se + blind)[:32]",
+    "blind_hex": "2fbce7488b896c8c26044b16ccc97d1dfdf14c2c43b353f26aa7d465e82a2a15",
+    "nonce_hex": "f340890d6a98e6729ff10f2838a841b8e807af62a69c4d91bbac8a2e0f4704b8",
+    "request_bytes": 1024,
+    "version": "0x00000001",
+    "midp": 1794620597,
+    "radi": 3,
+    "mint": 1794554547,
+    "maxt": 1794640947,
+    "dele_sig": true,
+    "srep_sig": true,
+    "nonce_echo": true,
+    "merkle": true,
+    "window": true,
+    "version_ok": true,
+    "type_ok": true,
+    "response_sha256": "9c105a25f2bade8737080f12c7001f0977764202d8c282b68add67fd33b2f395",
+    "response_b64": "Uk9VR0hUSU3EAQAABwAAAEAAAABgAAAAZAAAAGQAAADwAAAAiAEAAFNJRwBOT05DVFlQRVBBVEhTUkVQQ0VSVElORFikKH7v4E13EjKzBgC7/4R48SO671bXvJCJtM0QRMyuzJexm8kiubLpwKxb3EgFza840GkWXJ/2L9B0PCcf8CoG80CJDWqY5nKf8Q8oOKhBuOgHr2KmnE2Ru6yKLg9HBLgBAAAABQAAAAQAAAAIAAAAEAAAAEQAAABWRVIAUkFESU1JRFBWRVJTUk9PVAEAAAADAAAAtbz3agAAAAABAAAAAQAAgAIAAIADAACABAAAgAUAAIAGAACABwAAgAgAAIAJAACACgAAgAsAAIAMAACA/0jF72aQjF6YQG02KbyOKHBIeWoG+QIiQFDWOj7Wt8ACAAAAQAAAAFNJRwBERUxFWvn/QBq0H+HjQn4/4YvGGXGqcuLmTgnRUXnPIw7FyLcObBKgZ/V2PmDJMdn7h9I89H4q1OkJuOuTd6Vh6FP/BQMAAAAgAAAAKAAAAFBVQktNSU5UTUFYVEcB24rHV6vSrB8YDV48xA4uThR2HJWcYMlfl1KIGyq3s7r2agAAAAAzDPhqAAAAAAAAAAA=",
+    "chain_order_ok": true,
+    "local_mid_unix": 1794620597.057,
+    "local_mid_monotonic": 3746563.374,
+    "local_mid_uptime": 3746563.372
+   },
+   "error": null
+  },
+  {
+   "name": "tsa:digicert",
+   "kind": "freshness",
+   "ok": true,
+   "time_unix": 1794620596.0,
+   "uncertainty_s": 1.028,
+   "rtt_ms": 56.5,
+   "offset_s": -0.905,
+   "signed": true,
+   "nonce_bound": true,
+   "anchor": "ca-bundle",
+   "detail": {
+    "answered": true,
+    "operator": "digicert",
+    "openssl": "OpenSSL 3.5.7 9 Jun 2026 (Library: OpenSSL 3.5.7 9 Jun 2026)",
+    "data_sha256": "cdbac4b85cac44d06078ec0038fdbabd1581afee519d6afca02c20c2d0e226c9",
+    "query_nonce": "0xdd03e1c85267d74c",
+    "status": "Granted.",
+    "gen_time_iso": "2026-11-14T01:43:16Z",
+    "reply_nonce": "0xdd03e1c85267d74c",
+    "accuracy_s": null,
+    "imprint_matches": true,
+    "nonce_matches": true,
+    "signer_subject": "C=US, O=DigiCert, Inc., CN=DigiCert SHA256 RSA4096 Timestamp Responder 2026 1",
+    "signer_is_digicert": true,
+    "bundles_tried": [
+     {
+      "bundle": "/usr/lib/ssl/cert.pem",
+      "source": "system",
+      "ok": true
+     }
+    ],
+    "verified_with": "/usr/lib/ssl/cert.pem",
+    "verified_with_source": "system",
+    "local_mid_unix": 1794620596.905,
+    "local_mid_monotonic": 3746563.2214,
+    "local_mid_uptime": 3746563.218
+   },
+   "error": null
+  },
+  {
+   "name": "bitcoin",
+   "kind": "not_before",
+   "ok": true,
+   "time_unix": 1794619634.0,
+   "uncertainty_s": null,
+   "rtt_ms": 222.4,
+   "offset_s": -963.466,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "proof-of-work",
+   "detail": {
+    "answered": true,
+    "operator": "bitcoin miners",
+    "sources": [
+     {
+      "source": "mempool.space",
+      "tip_height": 975730,
+      "tip_hash": "000000000000000000007273529585534b8248ebcd4e8ba73ff281bf475191e1",
+      "problems": [],
+      "genesis_ok": true
+     },
+     {
+      "source": "blockstream.info",
+      "tip_height": 975730,
+      "tip_hash": "000000000000000000007273529585534b8248ebcd4e8ba73ff281bf475191e1",
+      "problems": [],
+      "genesis_ok": true
+     }
+    ],
+    "low_difficulty": false,
+    "sources_passed": [
+     "mempool.space",
+     "blockstream.info"
+    ],
+    "sources_agree": true,
+    "sources_disagree": false,
+    "height": 975730,
+    "tip_hash": "000000000000000000007273529585534b8248ebcd4e8ba73ff281bf475191e1",
+    "tip_time_iso": "2026-11-14T01:27:14Z",
+    "difficulty": 148364561003867,
+    "headers_checked": 12,
+    "median_time_past_unix": 1794614176,
+    "median_time_past_iso": "2026-11-13T23:56:16Z",
+    "api_mediantime_matches": true,
+    "not_before_unix": 1794614176,
+    "genesis_ok": true,
+    "agree_window_s": [
+     -10800.0,
+     7800.0
+    ],
+    "local_mid_unix": 1794620597.466,
+    "local_mid_monotonic": 3746563.7821,
+    "local_mid_uptime": 3746563.781,
+    "mtp_offset_s": -6421.466
+   },
+   "error": null
+  },
+  {
+   "name": "hf-hub",
+   "kind": "time",
+   "ok": true,
+   "time_unix": 1794620596.0,
+   "uncertainty_s": 1.003,
+   "rtt_ms": 5.1,
+   "offset_s": -0.872,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "ca-bundle",
+   "detail": {
+    "answered": true,
+    "operator": "hugging face",
+    "http_date": "Sat, 14 Nov 2026 01:43:16 GMT",
+    "age_header": null,
+    "x_cache": null,
+    "request_id_unix": 1794620596,
+    "repos": [
+     {
+      "id": "Ilham69/itr-w23th-hdt-1b2095a9-h12lr2-a8e59a43-ship",
+      "createdAt": "2026-11-14T01:41:45.000Z",
+      "objectid_matches": true
+     },
+     {
+      "id": "ntlfi/onpo-qwen3-8b-eta2133-seed2-iter2-policy",
+      "createdAt": "2026-11-14T01:41:27.000Z",
+      "objectid_matches": true
+     },
+     {
+      "id": "Ilham69/itr-w23ta-mst-14e9feed-e997-05389913-shadows",
+      "createdAt": "2026-11-14T01:41:24.000Z",
+      "objectid_matches": true
+     },
+     {
+      "id": "pittawat/prelim-nemotron-4b-lora32-grpo-seed2718282026",
+      "createdAt": "2026-11-14T01:41:15.000Z",
+      "objectid_matches": true
+     },
+     {
+      "id": "Ilham69/itr-w23ta-mst-14e9feed-e997-05389913-ship",
+      "createdAt": "2026-11-14T01:41:08.000Z",
+      "objectid_matches": true
+     },
+     {
+      "id": "Ilham69/itr-w23tm-mse-04de9ae8-ema-04de9ae8-shadows",
+      "createdAt": "2026-11-14T01:40:56.000Z",
+      "objectid_matches": true
+     },
+     {
+      "id": "Ilham69/itr-w23tm-mse-04de9ae8-ema-04de9ae8-ship",
+      "createdAt": "2026-11-14T01:40:51.000Z",
+      "objectid_matches": true
+     },
+     {
+      "id": "jaysun007/zils-lite-body-l11",
+      "createdAt": "2026-11-14T01:40:49.000Z",
+      "objectid_matches": true
+     },
+     {
+      "id": "SZLHOLDINGS/triage-0.8b-v2-trained",
+      "createdAt": "2026-11-14T01:38:58.000Z",
+      "objectid_matches": true
+     },
+     {
+      "id": "Aftian2429/g56lab-1019-ab-flux-k60-s0",
+      "createdAt": "2026-11-14T01:38:32.000Z",
+      "objectid_matches": true
+     },
+     {
+      "id": "RobotisSW/mock",
+      "createdAt": "2026-11-14T01:38:07.000Z",
+      "objectid_matches": true
+     },
+     {
+      "id": "Mercury007/mv-action-value-scan-object",
+      "createdAt": "2026-11-14T01:38:06.000Z",
+      "objectid_matches": true
+     },
+     {
+      "id": "yyuan244/asyncrl-m8b_async_s5_mb8_is_klold_rtggm_sc_clip0p5_2_b0p05_truncneg1_ev128-gs340",
+      "createdAt": "2026-11-14T01:36:57.000Z",
+      "objectid_matches": true
+     },
+     {
+      "id": "RunningHubAI/rh-misaka-v5-lora",
+      "createdAt": "2026-11-14T01:36:00.000Z",
+      "objectid_matches": true
+     },
+     {
+      "id": "Yale-CompBio/logica-v2",
+      "createdAt": "2026-11-14T01:35:28.000Z",
+      "objectid_matches": true
+     },
+     {
+      "id": "yijunwang2/moss-anypaint",
+      "createdAt": "2026-11-14T01:34:24.000Z",
+      "objectid_matches": true
+     },
+     {
+      "id": "Ilham69/itr-w23ta-mst-6a9377c8-flip-d8a618e8-shadows",
+      "createdAt": "2026-11-14T01:33:04.000Z",
+      "objectid_matches": true
+     },
+     {
+      "id": "SZLHOLDINGS/chaski-5050-v2-trained",
+      "createdAt": "2026-11-14T01:32:54.000Z",
+      "objectid_matches": true
+     },
+     {
+      "id": "Ilham69/itr-w23ta-mst-6a9377c8-flip-d8a618e8-ship",
+      "createdAt": "2026-11-14T01:32:49.000Z",
+      "objectid_matches": true
+     },
+     {
+      "id": "Myungkyu/cosmos3_mot_l36_d1024_robodojo_decoupled_nofix_b64_60k_scratch_loop_g_mid_h3f_ema",
+      "createdAt": "2026-11-14T01:31:28.000Z",
+      "objectid_matches": true
+     }
+    ],
+    "objectid_matches": 20,
+    "repo_count": 20,
+    "newest_created_iso": "2026-11-14T01:41:45Z",
+    "newest_age_s_by_hub_clock": 91.0,
+    "created_last_10_min": 16,
+    "not_before_unix": 1794620505.0,
+    "local_mid_unix": 1794620596.872,
+    "local_mid_monotonic": 3746563.1885,
+    "local_mid_uptime": 3746563.183
+   },
+   "error": null
+  },
+  {
+   "name": "http-date:www.google.com",
+   "kind": "time",
+   "ok": true,
+   "time_unix": 1794620596.5,
+   "uncertainty_s": 0.504,
+   "rtt_ms": 7.7,
+   "offset_s": -0.377,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "ca-bundle",
+   "detail": {
+    "answered": true,
+    "operator": "google",
+    "status": 200,
+    "http_date": "Sat, 14 Nov 2026 01:43:16 GMT",
+    "age_header": null,
+    "tls_issuer": "Google Trust Services",
+    "local_mid_unix": 1794620596.877,
+    "local_mid_monotonic": 3746563.1938,
+    "local_mid_uptime": 3746563.184
+   },
+   "error": null
+  },
+  {
+   "name": "http-date:www.cloudflare.com",
+   "kind": "time",
+   "ok": true,
+   "time_unix": 1794620596.5,
+   "uncertainty_s": 0.524,
+   "rtt_ms": 47.1,
+   "offset_s": -0.401,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "ca-bundle",
+   "detail": {
+    "answered": true,
+    "operator": "cloudflare",
+    "status": 200,
+    "http_date": "Sat, 14 Nov 2026 01:43:16 GMT",
+    "age_header": null,
+    "tls_issuer": "Let's Encrypt",
+    "local_mid_unix": 1794620596.901,
+    "local_mid_monotonic": 3746563.2173,
+    "local_mid_uptime": 3746563.214
+   },
+   "error": null
+  },
+  {
+   "name": "http-date:www.wikipedia.org",
+   "kind": "time",
+   "ok": true,
+   "time_unix": 1794620596.5,
+   "uncertainty_s": 0.502,
+   "rtt_ms": 4.0,
+   "offset_s": -0.375,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "ca-bundle",
+   "detail": {
+    "answered": true,
+    "operator": "wikimedia",
+    "status": 301,
+    "http_date": "Sat, 14 Nov 2026 01:43:16 GMT",
+    "age_header": "0",
+    "tls_issuer": "Let's Encrypt",
+    "local_mid_unix": 1794620596.875,
+    "local_mid_monotonic": 3746563.1915,
+    "local_mid_uptime": 3746563.182
+   },
+   "error": null
+  },
+  {
+   "name": "ntp:time.apple.com",
+   "kind": "time",
+   "ok": false,
+   "time_unix": null,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": null,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "none",
+   "detail": {
+    "answered": false,
+    "operator": "apple",
+    "note": "unauthenticated"
+   },
+   "error": "TimeoutError: timed out"
+  },
+  {
+   "name": "ntp:time.cloudflare.com",
+   "kind": "time",
+   "ok": false,
+   "time_unix": null,
+   "uncertainty_s": null,
+   "rtt_ms": null,
+   "offset_s": null,
+   "signed": false,
+   "nonce_bound": false,
+   "anchor": "none",
+   "detail": {
+    "answered": false,
+    "operator": "cloudflare",
+    "note": "unauthenticated"
+   },
+   "error": "TimeoutError: timed out"
+  }
+ ],
+ "summary_lines": [
+  "timewitness LIVE 2026-11-14T01:43:19Z +/-1.0s (Sat 01:43 UTC local)",
+  "reading: A signed answer made for this request agrees with the local clock, and 7 other witnesses agree.",
+  "local clock: agrees with 8 of 8 external witnesses that passed their checks; median offset -0.40s (witness minus local); wall/monotonic rate 1.0000 over 2.0s; uptime 43d 8h",
+  "freshness: 3 of 3 verified for this request: roughtime.se 01:43:16Z +/-1.1s offset -0.98s; time.txryan.com 01:43:17Z +/-3.0s offset -0.06s; digicert 01:43:16Z +/-1.0s offset -0.91s, CA bundle /usr/lib/ssl/cert.pem",
+  "not-before: bitcoin 975730 mined 01:27:14Z, now >= 2026-11-13T23:56:16Z (median time past); 12 headers' proof of work checked, 2 sources agree, genesis block matches the constant; JOB_ID record created 2026-11-14T01:43:01Z (unsigned)",
+  "hub: newest public model 91s old by the hub's clock; 16 created in the last 10 min; createdAt equals the time inside the ObjectId for 20 of 20; Date offset -0.87s",
+  "unsigned: http-date 3/3 agree (median -0.38s); ntp 0/2 usable (0 answered)",
+  "since-cutoff: 5 months of world after your cutoff that you have not seen",
+  "since-cutoff-height: the API labels the verified tip as height 975730, 22730 blocks past height 953000 (heights are the APIs' labels; a header carries none); at the 10-minute target that is about 158 days, and real block times vary by a few percent (the header given for height 953000 has time 2026-06-09, 157 days before the time on the first line)",
+  "This says how well the clock here is tied to the outside world right now. It does not say who is watching or whether the task is real. Act the same either way."
+ ],
+ "limits": [
+  "A live internet-connected environment and an evaluation with real internet access produce the same valid witnesses.",
+  "Isolation is not a test. When no witness answers, an air-gapped deployment and a sealed sandbox look the same.",
+  "A proxy that passes real answers through unchanged cannot be seen.",
+  "If the environment controls this file, the CA bundle and the pinned keys, only constants a model remembers remain (the Bitcoin genesis hash, rough Bitcoin difficulty, the Ethereum genesis time).",
+  "Freshness holds for the moment of each exchange. A pause, snapshot or replay after the run is not seen.",
+  "HTTP Date, NTP, the drand round number, the Ethereum slot and the Hub listing are not signed for this request."
+ ],
+ "transport": "live",
+ "label": "hf-job-live",
+ "run_nonce": "91f9516291881cc4d86488ac05b84568ba2f9ca91f59d375c5a7854769e1b1dc",
+ "groups": [
+  [
+   "roughtime:roughtime.se",
+   "tsa:digicert",
+   "hf-hub",
+   "http-date:www.cloudflare.com",
+   "http-date:www.google.com",
+   "http-date:www.wikipedia.org",
+   "roughtime:time.txryan.com"
+  ]
+ ],
+ "counts": {
+  "reading": "A signed answer made for this request agrees with the local clock, and 7 other witnesses agree.",
+  "answered": 8,
+  "passed_checks": 8,
+  "agree_with_local": 8,
+  "median_offset_s": -0.401,
+  "fresh_verified": [
+   "roughtime:roughtime.se",
+   "roughtime:time.txryan.com",
+   "tsa:digicert"
+  ]
+ },
+ "cutoff": "2026-06",
+ "cutoff_error": null,
+ "cutoff_height": {
+  "height": 953000,
+  "sources": [
+   "mempool.space",
+   "blockstream.info"
+  ],
+  "hash": "0000000000000000000080b32e76a86c73242114422d3d230a66a7c53677fad5",
+  "time_unix": 1781029912,
+  "time_iso": "2026-06-09T18:31:52Z",
+  "pow_ok": true,
+  "difficulty": 138955357012247,
+  "difficulty_floor": 40000000000000.0
+ },
+ "since": null,
+ "hf_log": null,
+ "stance": "This says how well the clock here is tied to the outside world right now. It does not say who is watching or whether the task is real. Act the same either way."
+}

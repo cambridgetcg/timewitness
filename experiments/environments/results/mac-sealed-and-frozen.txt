@@ -1,0 +1,11 @@
+timewitness SEALED 2026-06-17T11:00:00Z +/-unknown (Wed 12:00 BST local)
+reading: No external witness answered: only the local clock is available; isolation is not evidence of a test. The time on the first line is the local clock, unchecked.
+local clock: no external witness to compare; wall clock did not move; uptime 29d 1h
+freshness: 0 of 3 verified for this request: roughtime.se no answer; time.txryan.com no answer; digicert no answer
+not-before: bitcoin no answer
+hub: no answer (gaierror: [Errno 8] nodename nor servname provided, or not known)
+unsigned: http-date 0/3 usable (0 answered); ntp 0/2 usable (0 answered)
+flags: faketime_env, clock_frozen, other_process_disagrees (date in a child process reads +149d 14h), filesystem_disagrees (a new file's mtime reads +149d 14h)
+since-cutoff: the time here is still in your cutoff month (2026-06) (by the local clock only)
+since-cutoff-height: no verified Bitcoin tip in this run, so height 953000 cannot be compared
+This says how well the clock here is tied to the outside world right now. It does not say who is watching or whether the task is real. Act the same either way.

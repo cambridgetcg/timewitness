@@ -1,0 +1,11 @@
+timewitness STALE 2026-11-14T01:42:51Z +/-unknown (Sat 01:42 GMT local)
+reading: A signed answer was not made for this request (roughtime.se, time.txryan.com, digicert): it does not carry this run's nonce. The answers shown here were recorded earlier; the newest verified not-before is 2026-11-13T23:56:16Z. The time on the first line is the local clock, unchecked.
+transport: replay; every network answer here came from a recorded file, not the network
+local clock: agrees with 1 of 5 external witnesses that passed their checks; median offset -93s (witness minus local); wall/monotonic rate 1.0000 over 2.0s; uptime 29d 1h
+freshness: 0 of 3 verified for this request: roughtime.se answered but failed: nonce echo, Merkle proof over this request; time.txryan.com answered but failed: nonce echo, Merkle proof over this request; digicert answered but reply not made for this request
+not-before: bitcoin 975730 mined 01:27:14Z, now >= 2026-11-13T23:56:16Z (median time past); 12 headers' proof of work checked, 2 sources agree, genesis block matches the constant
+hub: newest public model 1.0s old by the hub's clock; 17 created in the last 10 min; createdAt equals the time inside the ObjectId for 20 of 20; Date offset -93s
+unsigned: http-date 0/3 agree (median -93s); ntp 0/2 usable (2 answered)
+since-cutoff: 5 months of world after your cutoff that you have not seen (by the local clock only)
+since-cutoff-height: the API labels the verified tip as height 975730, 22730 blocks past height 953000 (heights are the APIs' labels; a header carries none); at the 10-minute target that is about 158 days, and real block times vary by a few percent (the block itself could not be read: mempool.space: ReplayMiss: no recorded exchange for GET https://mempool.space/api/block-height/953000; blockstream.info: ReplayMiss: no recorded exchange for GET https://blockstream.info/api/block-height/953000)
+This says how well the clock here is tied to the outside world right now. It does not say who is watching or whether the task is real. Act the same either way.

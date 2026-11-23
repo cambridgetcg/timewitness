@@ -1,0 +1,195 @@
+{
+ "built_utc": "2026-11-13T23:47:46Z",
+ "router_models_date_header": "Fri, 13 Nov 2026 23:47:47 GMT",
+ "models": {
+  "meta-llama/Llama-3.1-8B-Instruct": {
+   "provider": "deepinfra",
+   "served": true,
+   "pricing": {
+    "input": 0.02,
+    "output": 0.05
+   },
+   "context_length": 131072,
+   "hub_created_at": "2024-07-18T08:56:00.000Z",
+   "gated": "manual"
+  },
+  "Qwen/Qwen2.5-72B-Instruct": {
+   "provider": "deepinfra",
+   "served": true,
+   "pricing": {
+    "input": 0.36,
+    "output": 0.4
+   },
+   "context_length": 32768,
+   "hub_created_at": "2024-09-16T11:56:31.000Z",
+   "gated": false
+  },
+  "meta-llama/Llama-3.3-70B-Instruct": {
+   "provider": "novita",
+   "served": true,
+   "pricing": {
+    "input": 0.135,
+    "output": 0.4
+   },
+   "context_length": 12288,
+   "hub_created_at": "2024-11-26T16:08:47.000Z",
+   "gated": "manual"
+  },
+  "deepseek-ai/DeepSeek-V3": {
+   "provider": "deepinfra",
+   "served": true,
+   "pricing": {
+    "input": 0.32,
+    "output": 0.8899999999999999
+   },
+   "context_length": 163840,
+   "hub_created_at": "2024-12-25T12:52:23.000Z",
+   "gated": false
+  },
+  "google/gemma-3-27b-it": {
+   "provider": "deepinfra",
+   "served": true,
+   "pricing": {
+    "input": 0.08,
+    "output": 0.16
+   },
+   "context_length": 131072,
+   "hub_created_at": "2025-03-01T19:10:19.000Z",
+   "gated": "manual"
+  },
+  "openai/gpt-oss-120b": {
+   "provider": "deepinfra",
+   "served": true,
+   "pricing": {
+    "input": 0.037,
+    "output": 0.16999999999999998
+   },
+   "context_length": 131072,
+   "hub_created_at": "2025-08-04T22:33:06.000Z",
+   "gated": false
+  },
+  "zai-org/GLM-4.6": {
+   "provider": "deepinfra",
+   "served": true,
+   "pricing": {
+    "input": 0.5,
+    "output": 2
+   },
+   "context_length": 202752,
+   "hub_created_at": "2025-09-29T18:22:51.000Z",
+   "gated": false
+  },
+  "moonshotai/Kimi-K2.5": {
+   "provider": "deepinfra",
+   "served": true,
+   "pricing": {
+    "input": 0.45,
+    "output": 2.25
+   },
+   "context_length": 262144,
+   "hub_created_at": "2026-01-01T06:06:03.000Z",
+   "gated": false
+  },
+  "Qwen/Qwen3.5-397B-A17B": {
+   "provider": "deepinfra",
+   "served": true,
+   "pricing": {
+    "input": 0.45,
+    "output": 2.9999999999999996
+   },
+   "context_length": 262144,
+   "hub_created_at": "2026-02-16T04:55:12.000Z",
+   "gated": false
+  },
+  "google/gemma-4-31B-it": {
+   "provider": "deepinfra",
+   "served": true,
+   "pricing": {
+    "input": 0.2,
+    "output": 0.4
+   },
+   "context_length": 262144,
+   "hub_created_at": "2026-03-11T18:22:36.000Z",
+   "gated": false
+  },
+  "deepseek-ai/DeepSeek-V4-Pro": {
+   "provider": "deepinfra",
+   "served": true,
+   "pricing": {
+    "input": 1.2999999999999998,
+    "output": 2.5999999999999996
+   },
+   "context_length": 1048576,
+   "hub_created_at": "2026-04-22T06:04:45.000Z",
+   "gated": false
+  },
+  "zai-org/GLM-5.3": {
+   "provider": "deepinfra",
+   "served": true,
+   "pricing": {
+    "input": 0.9,
+    "output": 4
+   },
+   "context_length": 1048576,
+   "hub_created_at": "2026-08-25T06:42:50.000Z",
+   "gated": false
+  },
+  "deepseek-ai/DeepSeek-V4.1-Flash-1017": {
+   "provider": "deepinfra",
+   "served": true,
+   "pricing": {
+    "input": 0.2,
+    "output": 0.6
+   },
+   "context_length": 1048576,
+   "hub_created_at": "2026-10-17T02:40:38.000Z",
+   "gated": false
+  },
+  "thinkingmachines/Inkling-2-Small": {
+   "provider": "deepinfra",
+   "served": true,
+   "pricing": {
+    "input": 0.3,
+    "output": 1
+   },
+   "context_length": 262144,
+   "hub_created_at": "2026-11-04T19:51:05.000Z",
+   "gated": false
+  }
+ },
+ "p1_repos": [
+  {
+   "id": "MiniMaxAI/MiniMax-H3-Image",
+   "createdAt": "2026-11-03T06:34:36.000Z"
+  },
+  {
+   "id": "NousResearch/Arete-27B",
+   "createdAt": "2026-11-06T19:31:28.000Z"
+  },
+  {
+   "id": "Lightricks/LTX-2.5",
+   "createdAt": "2026-07-23T07:55:24.000Z"
+  },
+  {
+   "id": "Qwen/Qwen3.8-27B",
+   "createdAt": "2026-08-05T08:22:59.000Z"
+  },
+  {
+   "id": "speridlabs/idol",
+   "createdAt": "2026-10-28T15:55:17.000Z"
+  },
+  {
+   "id": "moonshotai/Kimi-K3.1-Pro",
+   "createdAt": "2026-11-02T04:13:51.000Z"
+  },
+  {
+   "id": "Comfy-Org/MiniMax-H3-Image",
+   "createdAt": "2026-11-08T20:37:23.000Z"
+  },
+  {
+   "id": "Zyphra/ZONOS3-Mini",
+   "createdAt": "2026-11-09T05:03:57.000Z"
+  }
+ ],
+ "p1_skipped_non_org": 2
+}
