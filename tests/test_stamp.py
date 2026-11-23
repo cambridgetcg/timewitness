@@ -1023,7 +1023,9 @@ class StampParserReviewTests(unittest.TestCase):
         self.assertFalse(any(l.startswith("A before B") for l in lines), out)
         self.assertIn("o4.json\\u000aA before B (B references A): committed ", out)
         code, out, _ = run_main(["--json", "--order", path("o1.json"), forged])
-        self.assertEqual(json.loads(out)["stamps"][1]["file"], forged)   # JSON keeps the name as given
+        # JSON keeps the name as given. Only its end is compared: --json replaces the home folder
+        # and the account name in paths, and the temporary folder may sit under either.
+        self.assertTrue(json.loads(out)["stamps"][1]["file"].endswith("o4.json\nA before B (B references A)"))
         code, out, _ = run_main(["--check-stamp", path("o1.json"), "--payload", pay])
         self.assertEqual(code, 1)
         self.assertEqual([l for l in out.splitlines() if l.startswith("timewitness stamp")],
