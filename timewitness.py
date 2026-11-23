@@ -22,6 +22,7 @@ import base64
 import collections
 import datetime
 import email.utils
+import errno
 import getpass
 import hashlib
 import http.client
@@ -42,7 +43,7 @@ import time
 import urllib.parse
 import _strptime  # noqa: F401  datetime.strptime loads this lazily; load it before any thread starts
 
-TOOL_VERSION = "0.1.0"
+TOOL_VERSION = "0.2.0"
 USER_AGENT = "timewitness/0.1"
 DEFAULT_TIMEOUT = 4.0
 DEFAULT_RATE_SECONDS = 2.0
@@ -846,13 +847,15 @@ def rt_build_request(nonce, pub, versions=None):
     return pkt
 
 
-def rt_verify(request_pkt, nonce, response, pub, offered=None, signatures=True):
+def rt_verify(request_pkt, nonce, response, pub, offered=None, signatures=True, verify=None):
     """Check one Roughtime answer. Returns a dict; never raises.
 
     signatures=False parses the answer and checks everything except the two
-    Ed25519 signatures, which then read False.
+    Ed25519 signatures, which then read False. verify: a function to use in
+    place of ed25519_verify (stamp_order passes one that remembers results).
     """
     offered = offered or ROUGHTIME_OFFER
+    verify = verify or ed25519_verify
     r = {"parsed": False, "version": None, "midp": None, "radi": None, "mint": None, "maxt": None,
          "dele_sig": False, "srep_sig": False, "nonce_echo": False, "merkle": False,
          "window": False, "version_ok": False, "type_ok": False, "error": None}
@@ -877,8 +880,8 @@ def rt_verify(request_pkt, nonce, response, pub, offered=None, signatures=True):
         r["type_ok"] = resp.get("TYPE") in (None, struct.pack("<I", 1))
         rules = ROUGHTIME_RULES.get(ver)
         if rules and signatures:
-            r["dele_sig"] = ed25519_verify(pub, rules[0] + cert["DELE"], cert["SIG"])
-            r["srep_sig"] = ed25519_verify(dele["PUBK"], rules[1] + resp["SREP"], resp["SIG"])
+            r["dele_sig"] = verify(pub, rules[0] + cert["DELE"], cert["SIG"])
+            r["srep_sig"] = verify(dele["PUBK"], rules[1] + resp["SREP"], resp["SIG"])
         elif not rules:
             r["error"] = "server chose version %#x, which this tool cannot verify" % ver
         r["nonce_echo"] = resp.get("NONC") == nonce
@@ -2602,6 +2605,831 @@ def build_doc(result, records, tr, args, run_nonce, cutoff, since, hf_log, cutof
     }
 
 
+# ---------------------------------------------------------------------------
+# Time brackets for messages (experimental): --stamp, --check-stamp, --order.
+#
+# A stamp shows that the exact bytes of a payload were committed inside a
+# window of a few seconds. The check is offline and uses only signed
+# Roughtime answers and the keys pinned in this file; it uses neither the
+# author's clock nor the checker's. For each pinned server:
+#   1. Beacon. An ordinary request with 32 fresh random bytes as the nonce.
+#      The signed answer carries time Tb and radius rb. Nobody without the
+#      server's keys could produce those bytes before the server signed them.
+#      beacon = SHA-512(answer bytes)[:32].
+#   2. Commitment. C = SHA-512(core)[:32]; core (stamp_core) holds a label,
+#      SHA-256(payload), every beacon in order, and the commitments of any
+#      referenced stamps. C could not exist before every beacon did.
+#   3. Seal. A request whose nonce is C. The signed answer (time Ts, radius
+#      rs) carries a Merkle root whose leaf is the full request packet, so
+#      the packet, and C inside it, existed by then.
+# not_before = the latest Tb - rb; existed_by = the earliest Ts + rs.
+# The NONC echo at the top of a Roughtime answer is not signed (it sits
+# outside SREP), so rt_verify's echo check alone would accept an answer
+# whose echo was edited. The check therefore reads C out of the seal request
+# packet itself, which the signed Merkle root covers.
+
+STAMP_FORMAT = "timewitness-stamp/1"
+STAMP_CORE_LABEL = b"timewitness stamp v1\x00"
+# Roughtime times are whole seconds. Bounds from different servers may cross
+# by up to this much before the servers are said to contradict each other,
+# and an order read from two windows needs a gap larger than this.
+STAMP_TOLERANCE_S = 1.0
+# A stamp file comes from someone else, so the check bounds its work before
+# any signature is checked. A stamp this tool makes is about 9 KB, has one
+# entry per pinned server, and holds 1024-byte requests.
+STAMP_MAX_FILE_BYTES = 262144
+STAMP_MAX_SERVERS = 16
+STAMP_MAX_REFS = 256
+# --order compares every pair and follows chains through every stamp that
+# verifies, so its work grows faster than the number of stamps.
+STAMP_MAX_ORDER = 64
+STAMP_MAX_PACKET_BYTES = 4096
+STAMP_MAX_DEPTH = 32           # a stamp nests 4 levels deep
+STAMP_MAX_NUMBER_CHARS = 32
+STAMP_TIME_RANGE = (0, 253402300799)  # 1970-01-01T00:00:00Z to 9999-12-31T23:59:59Z
+STAMP_NAME_RE = re.compile(r"[A-Za-z0-9.-]{1,253}")
+# Base64 in its one standard form (RFC 4648 section 4: padded, no line breaks).
+# Python versions differ on what else b64decode(validate=True) accepts, such
+# as extra '=' at the end, and the verdict must not depend on the version.
+STAMP_B64_RE = re.compile(r"(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?")
+STAMP_PROVES = ("The bytes with this SHA-256 were committed inside the window, by someone: the commitment "
+                "could not be made before the not-before time, and it existed by the existed-by time.")
+STAMP_LIMITS = [
+    "It does not show who made the stamp or wrote the bytes; that needs a signature by the author.",
+    "It does not show that the content is true.",
+    "It does not show when the content was first written or thought of: old text can be stamped today.",
+    "It does not show when the message was sent or read.",
+    "It holds only while the pinned Roughtime keys, and the online keys they delegate to, are not misused. "
+    "A server that signs a wrong time moves the window.",
+]
+_RT_WORDS = {"dele_sig": "delegation signature", "srep_sig": "response signature", "nonce_echo": "nonce echo",
+             "merkle": "Merkle proof over the request packet", "window": "time inside the delegation window",
+             "version_ok": "version", "type_ok": "message type"}
+
+
+class StampError(Exception):
+    pass
+
+
+def _rt_failure(v, signatures=True):
+    keys = ("dele_sig", "srep_sig") if signatures else ()
+    bad = [_RT_WORDS[k] for k in keys + ("nonce_echo", "merkle", "window", "version_ok", "type_ok") if not v[k]]
+    return v["error"] or ("failed: " + ", ".join(bad))
+
+
+def _rt_usable(v):
+    """Everything rt_verify checks except the two signatures (those are checked afterwards)."""
+    return v["parsed"] and v["nonce_bound"] and v["window"] and v["version_ok"] and v["type_ok"]
+
+
+def rt_parse_request(pkt):
+    """Read a Roughtime request packet. Returns (nonce, offered versions or None). Raises ValueError."""
+    if len(pkt) < 12 or pkt[:8] != b"ROUGHTIM":
+        raise ValueError("no ROUGHTIM header")
+    if struct.unpack_from("<I", pkt, 8)[0] != len(pkt) - 12:
+        raise ValueError("length field does not match the packet")
+    msg = rt_decode(pkt[12:])
+    nonce = msg.get("NONC")
+    if nonce is None or len(nonce) != 32:
+        raise ValueError("no 32-byte nonce")
+    if msg.get("TYPE") not in (None, struct.pack("<I", 0)):
+        raise ValueError("not a request")
+    ver = msg.get("VER") or b""
+    if len(ver) % 4:
+        raise ValueError("bad VER field")
+    offered = [struct.unpack_from("<I", ver, i)[0] for i in range(0, len(ver), 4)]
+    return nonce, offered or None
+
+
+def stamp_core(payload_sha256, beacons, refs):
+    """The bytes whose SHA-512 (first 32 bytes) is the commitment C.
+
+    "timewitness stamp v1" and one zero byte (21 bytes) | SHA-256 of the
+    payload (32) | number of beacons, uint32 little-endian | each beacon (32)
+    | number of references, uint32 little-endian | each reference (32).
+    Every field has a fixed size or a count before it, so a core can be read
+    only one way.
+    """
+    if any(len(b) != 32 for b in [payload_sha256] + list(beacons) + list(refs)):
+        raise ValueError("every hash in the core is 32 bytes")
+    return (STAMP_CORE_LABEL + payload_sha256 + struct.pack("<I", len(beacons)) + b"".join(beacons)
+            + struct.pack("<I", len(refs)) + b"".join(refs))
+
+
+def stamp_make(tr, payload, refs=(), timeout=DEFAULT_TIMEOUT):
+    """Make a stamp for the payload bytes. Returns (stamp document, notes). Raises StampError.
+
+    Two exchanges per pinned server, one after another in this thread: the
+    beacons first, then the seals. Signatures are not checked here; the
+    caller checks the finished stamp with stamp_check, in the main thread.
+    refs are commitments (32 bytes each) of earlier stamps.
+    """
+    payload_sha = hashlib.sha256(payload).digest()
+    refs = list(refs)
+    notes = []
+    used = []
+    for srv in ROUGHTIME_SERVERS:
+        pub = base64.b64decode(srv["key"])
+        nonce = os.urandom(32)
+        pkt = rt_build_request(nonce, pub)
+        try:
+            data, _, _ = tr.udp("udp %s:%d roughtime" % (srv["host"], srv["port"]), srv["host"], srv["port"],
+                                pkt, timeout)
+        except Exception as e:
+            notes.append("%s beacon: %s: %s" % (srv["name"], type(e).__name__, e))
+            continue
+        v = rt_verify(pkt, nonce, data, pub, signatures=False)
+        if not _rt_usable(v):
+            notes.append("%s beacon: answer not usable (%s)" % (srv["name"], _rt_failure(v, signatures=False)))
+            continue
+        used.append({"srv": srv, "pub": pub, "beacon": (pkt, data), "seal": None})
+    if not used:
+        raise StampError("no Roughtime server gave a usable beacon: " + "; ".join(notes))
+    commitment = rt_hash(stamp_core(payload_sha, [rt_hash(u["beacon"][1]) for u in used], refs))
+    t_local = time.time()
+    for u in used:
+        srv = u["srv"]
+        pkt = rt_build_request(commitment, u["pub"])
+        for attempt in (1, 2):
+            try:
+                data, _, _ = tr.udp("udp %s:%d roughtime" % (srv["host"], srv["port"]), srv["host"],
+                                    srv["port"], pkt, timeout)
+            except Exception as e:
+                notes.append("%s seal, try %d: %s: %s" % (srv["name"], attempt, type(e).__name__, e))
+                continue
+            v = rt_verify(pkt, commitment, data, u["pub"], signatures=False)
+            if not _rt_usable(v):
+                notes.append("%s seal, try %d: answer not usable (%s)" % (srv["name"], attempt,
+                                                                         _rt_failure(v, signatures=False)))
+                continue
+            u["seal"] = (pkt, data)
+            break
+
+    def pair(p):
+        return None if p is None else {"request_b64": base64.b64encode(p[0]).decode(),
+                                       "response_b64": base64.b64encode(p[1]).decode()}
+    doc = {
+        "format": STAMP_FORMAT,
+        "tool_version": TOOL_VERSION,
+        "payload_sha256": payload_sha.hex(),
+        "refs": [r.hex() for r in refs],
+        "commitment": commitment.hex(),
+        "servers": [{"name": u["srv"]["name"], "key": u["srv"]["key"], "beacon": pair(u["beacon"]),
+                     "seal": pair(u["seal"])} for u in used],
+        "self_reported": {"local_clock_unix": round(t_local, 3),
+                          "note": "The stamping machine's own clock when the commitment was made. "
+                                  "Self-reported, not evidence; the check does not use it."},
+    }
+    return doc, notes
+
+
+def _stamp_b64(value, what):
+    if not isinstance(value, str):
+        raise StampError("%s is missing" % what)
+    # The re-encoding check also refuses non-zero unused bits in the last
+    # character, so one packet has one text: two different texts would read as
+    # the same stamp.
+    if not STAMP_B64_RE.fullmatch(value):
+        raise StampError("%s is not base64" % what)
+    data = base64.b64decode(value)
+    if base64.b64encode(data).decode("ascii") != value:
+        raise StampError("%s is not base64" % what)
+    if len(data) > STAMP_MAX_PACKET_BYTES:
+        raise StampError("%s is longer than %d bytes" % (what, STAMP_MAX_PACKET_BYTES))
+    return data
+
+
+def _stamp_hex32(value, what):
+    if not isinstance(value, str) or not re.fullmatch(r"[0-9a-f]{64}", value):
+        raise StampError("%s is not 64 lower-case hex digits" % what)
+    return bytes.fromhex(value)
+
+
+def _stamp_parse(doc):
+    if not isinstance(doc, dict):
+        raise StampError("not a timewitness stamp: not a JSON object")
+    if doc.get("format") != STAMP_FORMAT:
+        raise StampError("not a timewitness stamp: format is not %s" % STAMP_FORMAT)
+    payload_sha = _stamp_hex32(doc.get("payload_sha256"), "payload_sha256")
+    refs_in = doc.get("refs", [])
+    if not isinstance(refs_in, list):
+        raise StampError("refs is not a list")
+    if len(refs_in) > STAMP_MAX_REFS:
+        raise StampError("refs holds more than %d references" % STAMP_MAX_REFS)
+    refs = [_stamp_hex32(r, "refs[%d]" % i) for i, r in enumerate(refs_in)]
+    # The tool always writes the commitment, and readers name a stamp by it.
+    stored_c = _stamp_hex32(doc.get("commitment"), "commitment")
+    servers = doc.get("servers")
+    if not isinstance(servers, list) or not servers:
+        raise StampError("servers is missing or empty")
+    if len(servers) > STAMP_MAX_SERVERS:
+        raise StampError("servers has more than %d entries" % STAMP_MAX_SERVERS)
+    entries = []
+    names = set()
+    for i, s in enumerate(servers):
+        if not isinstance(s, dict) or not isinstance(s.get("name"), str):
+            raise StampError("servers[%d] has no name" % i)
+        if not STAMP_NAME_RE.fullmatch(s["name"]):
+            raise StampError("servers[%d].name is not a host name" % i)
+        # One server listed twice would read as two servers vouching.
+        if s["name"] in names:
+            raise StampError("servers[%d] repeats the server name %s" % (i, s["name"]))
+        names.add(s["name"])
+        key = s.get("key")
+        if key is not None and not isinstance(key, str):
+            raise StampError("servers[%d].key is not a string" % i)
+        b = s.get("beacon")
+        if not isinstance(b, dict):
+            raise StampError("servers[%d] has no beacon" % i)
+        beacon = (_stamp_b64(b.get("request_b64"), "servers[%d].beacon.request_b64" % i),
+                  _stamp_b64(b.get("response_b64"), "servers[%d].beacon.response_b64" % i))
+        sl = s.get("seal")
+        if sl is not None and not isinstance(sl, dict):
+            raise StampError("servers[%d].seal is neither null nor an object" % i)
+        seal = None if sl is None else (_stamp_b64(sl.get("request_b64"), "servers[%d].seal.request_b64" % i),
+                                        _stamp_b64(sl.get("response_b64"), "servers[%d].seal.response_b64" % i))
+        entries.append({"name": s["name"], "key": key, "beacon": beacon, "seal": seal})
+    # self_reported is outside the commitment, so anyone can edit it. Keep it
+    # only when it is a number inside the calendar range (this also drops NaN
+    # and infinities); it is shown, never used.
+    sr = doc.get("self_reported")
+    clock = sr.get("local_clock_unix") if isinstance(sr, dict) else None
+    unreadable = clock is not None
+    if isinstance(clock, bool) or not isinstance(clock, (int, float)) or not (
+            STAMP_TIME_RANGE[0] <= clock <= STAMP_TIME_RANGE[1]):
+        clock = None
+    unreadable = unreadable and clock is None
+    return payload_sha, refs, entries, stored_c, clock, unreadable
+
+
+def _stamp_exchange(pair, pub, want_nonce, verify=None):
+    """Verify one stored exchange. want_nonce: the commitment for a seal, None for a beacon."""
+    req, resp = pair
+    out = {"present": True, "ok": False, "time_unix": None, "radius_s": None, "error": None}
+    try:
+        nonce, offered = rt_parse_request(req)
+    except ValueError as e:
+        out["error"] = "request packet: %s" % e
+        return out
+    if want_nonce is not None:
+        out["nonce_is_commitment"] = nonce == want_nonce
+        if nonce != want_nonce:
+            out["error"] = "the seal request's nonce is not this stamp's commitment"
+            return out
+    v = rt_verify(req, nonce, resp, pub, offered=offered, verify=verify)
+    if v["parsed"]:
+        out["time_unix"] = v["midp"]
+        out["radius_s"] = v["radi"]
+    if not v["ok"]:
+        out["error"] = _rt_failure(v)
+        return out
+    # Only a broken server or a misused key signs such a time. Refusing it
+    # also keeps every bound printable on every platform.
+    if not (STAMP_TIME_RANGE[0] <= v["midp"] - v["radi"] and v["midp"] + v["radi"] <= STAMP_TIME_RANGE[1]):
+        out["error"] = "the signed time %d +/- %d s is outside the years 1970 to 9999" % (v["midp"], v["radi"])
+        return out
+    out["ok"] = True
+    return out
+
+
+def stamp_check(doc, payload=None, verify=None):
+    """Check a stamp offline with the keys pinned in this file. Never raises; returns a dict.
+
+    verify: a function to use in place of ed25519_verify (stamp_order passes
+    one that remembers results); it does not change the verdict.
+
+    Valid needs all of: the stamp parses; for every server whose name and key
+    are pinned here, the beacon answer verifies (signatures, nonce echo,
+    Merkle path, delegation window) and the seal, when present, verifies the
+    same way and its request packet carries the recomputed commitment as its
+    nonce; at least one beacon and one seal counted; the bounds do not cross
+    by more than STAMP_TOLERANCE_S; with a payload, its SHA-256 matches; the
+    commitment written in the stamp equals the recomputed one. A server whose
+    name or key is not pinned here, or whose entry names no key, is not
+    checkable and does not count. A key written in the stamp is only compared
+    with the pinned one, never used. A server name may appear once.
+    """
+    res = {"valid": False, "format": STAMP_FORMAT, "problems": [], "commitment": None, "payload_sha256": None,
+           "payload_match": None, "refs": [], "servers": [], "not_before_unix": None, "existed_by_unix": None,
+           "width_s": None, "bounds_cross_s": None, "not_before_from": None, "existed_by_from": None,
+           "tolerance_s": STAMP_TOLERANCE_S, "beacons_counted": 0, "seals_counted": 0,
+           "servers_pinned_here": len(ROUGHTIME_SERVERS), "self_reported_local_clock_unix": None,
+           "self_reported_unreadable": False, "proves": STAMP_PROVES, "does_not_prove": STAMP_LIMITS}
+    probs = res["problems"]
+    try:
+        payload_sha, refs, entries, stored_c, clock, unreadable = _stamp_parse(doc)
+    except StampError as e:
+        probs.append(str(e))
+        return res
+    res["payload_sha256"] = payload_sha.hex()
+    res["refs"] = [r.hex() for r in refs]
+    res["self_reported_local_clock_unix"] = clock
+    res["self_reported_unreadable"] = unreadable
+    # Each beacon is the digest of the exact answer bytes stored, not of a re-encoding.
+    commitment = rt_hash(stamp_core(payload_sha, [rt_hash(e["beacon"][1]) for e in entries], refs))
+    res["commitment"] = commitment.hex()
+    if stored_c != commitment:
+        probs.append("the commitment written in the stamp is not the one recomputed from its contents")
+    if payload is not None:
+        res["payload_match"] = hashlib.sha256(payload).digest() == payload_sha
+        if not res["payload_match"]:
+            probs.append("the payload's SHA-256 does not match the stamp")
+    pinned = {s["name"]: s for s in ROUGHTIME_SERVERS}
+    nbs, ebs = [], []
+    for e in entries:
+        out = {"name": e["name"], "checkable": False, "note": None, "beacon": None, "seal": None,
+               "not_before_unix": None, "existed_by_unix": None}
+        res["servers"].append(out)
+        srv = pinned.get(e["name"])
+        if srv is None or e["key"] != srv["key"]:
+            out["note"] = "not checkable with this tool's pinned keys (%s); not counted" % (
+                "unknown server name" if srv is None else
+                "the stamp names no key" if e["key"] is None else "the stamp names a different key")
+            continue
+        out["checkable"] = True
+        pub = base64.b64decode(srv["key"])
+        b = out["beacon"] = _stamp_exchange(e["beacon"], pub, None, verify)
+        if b["ok"]:
+            out["not_before_unix"] = b["time_unix"] - b["radius_s"]
+            nbs.append((out["not_before_unix"], e["name"]))
+        else:
+            probs.append("%s beacon: %s" % (e["name"], b["error"]))
+        if e["seal"] is None:
+            out["seal"] = {"present": False, "ok": False, "time_unix": None, "radius_s": None, "error": None}
+            out["note"] = "no seal answer, so this server gives a not-before only"
+            continue
+        s = out["seal"] = _stamp_exchange(e["seal"], pub, commitment, verify)
+        if s["ok"]:
+            out["existed_by_unix"] = s["time_unix"] + s["radius_s"]
+            ebs.append((out["existed_by_unix"], e["name"]))
+        else:
+            probs.append("%s seal: %s" % (e["name"], s["error"]))
+    res["beacons_counted"] = len(nbs)
+    res["seals_counted"] = len(ebs)
+    if not nbs:
+        probs.append("no beacon verified with this tool's pinned keys, so there is no not-before")
+    if not ebs:
+        probs.append("no seal verified with this tool's pinned keys, so there is no existed-by")
+    if nbs and ebs:
+        nb, nb_from = max(nbs)
+        eb, eb_from = min(ebs)
+        res.update(not_before_unix=nb, existed_by_unix=eb, width_s=eb - nb, bounds_cross_s=max(0, nb - eb),
+                   not_before_from=nb_from, existed_by_from=eb_from)
+        if nb - eb > STAMP_TOLERANCE_S:
+            probs.append("the servers contradict each other: %s gives not before %s, but %s gives existed by %s, "
+                         "%s earlier (more than the %gs tolerance)" % (nb_from, iso(nb), eb_from, iso(eb),
+                                                                      human_span(nb - eb), STAMP_TOLERANCE_S))
+    res["valid"] = not probs
+    return res
+
+
+def _when(t, ref):
+    """hh:mm:ssZ, with the date when t falls on another UTC date than ref."""
+    return iso(t) if iso(t)[:10] != iso(ref)[:10] else hhmm(t)
+
+
+def _secs(x):
+    """A number of seconds as printed: whole numbers in full ('2000000000', not '2e+09')."""
+    return "%d" % x if float(x).is_integer() else "%g" % x
+
+
+def _span_text(width_s):
+    """'window 2s', or, when the bounds cross (allowed up to STAMP_TOLERANCE_S), how far they cross."""
+    if width_s < 0:
+        return "the servers' bounds cross by %ss, within the %gs tolerance for whole-second times" % (
+            _secs(-width_s), STAMP_TOLERANCE_S)
+    return "window %ss" % _secs(width_s)
+
+
+# Characters that could add a line to the output, or reorder what a reader
+# sees, when a name the user gave is printed: C0 and C1 controls, DEL, the
+# Unicode line and paragraph separators, direction marks and overrides, and
+# lone surrogates (bytes that are not UTF-8 in a file name).
+_UNPRINTABLE_RE = re.compile("[\x00-\x1f\x7f-\x9f\u200e\u200f\u2028\u2029\u202a-\u202e\u2066-\u2069"
+                             "\ud800-\udfff]")
+
+
+def printable_name(name):
+    """A file name as the text output prints it: each such character becomes \\uXXXX.
+
+    The JSON output keeps names as given; JSON escapes them itself.
+    """
+    return _UNPRINTABLE_RE.sub(lambda m: "\\u%04x" % ord(m.group()), str(name))
+
+
+def stamp_window_text(res):
+    b, s, pinned = res["beacons_counted"], res["seals_counted"], res["servers_pinned_here"]
+    who = ("beacon and seal from %d of the %d servers pinned here" % (b, pinned) if b == s else
+           "beacons from %d and seals from %d of the %d servers pinned here" % (b, s, pinned))
+    return "committed no earlier than %s and no later than %s (%s; %s)" % (
+        iso(res["not_before_unix"]), iso(res["existed_by_unix"]), _span_text(res["width_s"]), who)
+
+
+def stamp_lines(res, payload_name=None):
+    """Plain-words lines for a stamp_check result."""
+    if res["valid"]:
+        # Without --payload the check says nothing about the bytes in the reader's hands.
+        lines = ["timewitness stamp VALID%s: %s" % ("" if res["payload_match"] else " (payload not compared)",
+                                                     stamp_window_text(res))]
+    else:
+        lines = ["timewitness stamp INVALID: " + res["problems"][0]]
+        lines += ["problem: " + p for p in res["problems"][1:]]
+    ref = res["not_before_unix"]
+    if ref is None:
+        ref = res["self_reported_local_clock_unix"] or 0
+    for s in res["servers"]:
+        if not s["checkable"]:
+            lines.append("%s: %s" % (s["name"], s["note"]))
+            continue
+        parts = []
+        for what, ex, bound, word in (("beacon", s["beacon"], s["not_before_unix"], "not before"),
+                                      ("seal", s["seal"], s["existed_by_unix"], "existed by")):
+            if not ex["present"]:
+                parts.append("no seal answer")
+            elif ex["ok"]:
+                parts.append("%s %s +/-%ds, so %s %s" % (what, _when(ex["time_unix"], ref), ex["radius_s"], word,
+                                                          _when(bound, ref)))
+            else:
+                parts.append("%s failed: %s" % (what, ex["error"]))
+        lines.append("%s: %s" % (s["name"], "; ".join(parts)))
+    if res["payload_sha256"]:
+        if res["payload_match"] is None:
+            lines.append("payload: SHA-256 %s (not compared; give --payload FILE to compare)" % res["payload_sha256"])
+        else:
+            lines.append("payload: SHA-256 %s %s %s" % (res["payload_sha256"], "matches" if res["payload_match"]
+                                                         else "does NOT match",
+                                                         printable_name(payload_name or "the payload given")))
+    if res["commitment"]:
+        lines.append("commitment: %s" % res["commitment"])
+    if res["refs"]:
+        # At check time a reference is only 32 bytes; it means something next to the stamp it names.
+        lines.append("references: %d inside the commitment (%s); where a reference equals another stamp's "
+                     "commitment, this stamp was committed after that one (--order checks this)" % (
+                         len(res["refs"]), ", ".join(r[:16] for r in res["refs"])))
+    elif res["payload_sha256"]:
+        lines.append("references: none")
+    if res["self_reported_local_clock_unix"] is not None:
+        lines.append("self-reported clock of the stamping machine: %s (not evidence; the check does not use it)"
+                     % iso(res["self_reported_local_clock_unix"]))
+    elif res.get("self_reported_unreadable"):
+        lines.append("self-reported clock of the stamping machine: unreadable (not evidence; the check does not "
+                     "use it)")
+    if res["valid"]:
+        lines.append("What this shows: " + STAMP_PROVES + " What it does not show: who wrote the bytes, that they "
+                     "are true, when they were first written (old text can be stamped today), or when they were "
+                     "sent or read. It holds only while the pinned servers' keys are not misused.")
+    return lines
+
+
+def stamp_order(items):
+    """Order checked stamps by what they prove. items: [(label, doc)]. Never guesses.
+
+    A is before B when A's existed-by is more than STAMP_TOLERANCE_S earlier
+    than B's not-before, or when B's core holds A's commitment, or through a
+    chain of such steps. Otherwise the pair is "overlap: order unknown".
+    """
+    # Stamps from the same servers share delegation signatures, and the same
+    # stamp can be given twice: check each signature once in this call.
+    seen = {}
+
+    def verify(pub, msg, sig):
+        key = (bytes(pub), bytes(msg), bytes(sig))
+        if key not in seen:
+            seen[key] = ed25519_verify(pub, msg, sig)
+        return seen[key]
+    stamps = []
+    for label, doc in items:
+        r = stamp_check(doc, verify=verify)
+        stamps.append({"label": label, "valid": r["valid"], "problems": r["problems"],
+                       "commitment": r["commitment"], "refs": r["refs"], "not_before_unix": r["not_before_unix"],
+                       "existed_by_unix": r["existed_by_unix"], "width_s": r["width_s"]})
+    n = len(stamps)
+    why = [[None] * n for _ in range(n)]  # why[i][j]: reasons i is before j
+    for i, a in enumerate(stamps):
+        for j, b in enumerate(stamps):
+            if i == j or not (a["valid"] and b["valid"]) or a["commitment"] == b["commitment"]:
+                continue
+            reasons = []
+            if a["commitment"] in b["refs"]:
+                reasons.append("%s references %s" % (b["label"], a["label"]))
+            if a["existed_by_unix"] + STAMP_TOLERANCE_S < b["not_before_unix"]:
+                reasons.append("%s existed by %s, more than %gs before %s's not-before %s" % (
+                    a["label"], iso(a["existed_by_unix"]), STAMP_TOLERANCE_S, b["label"], iso(b["not_before_unix"])))
+            if reasons:
+                why[i][j] = reasons
+    direct = [[bool(x) for x in row] for row in why]
+    # Chains: before is transitive, so i before k and k before j give i before j.
+    # Only stamps that verify have any step, so the chains run over them alone.
+    ok = [i for i in range(n) if stamps[i]["valid"]]
+    for k in ok:
+        for i in ok:
+            if not why[i][k]:
+                continue
+            for j in ok:
+                if i != j and why[i][j] is None and why[k][j]:
+                    why[i][j] = ["through %s" % stamps[k]["label"]]
+    pairs = []
+    contradiction = False
+    for i in range(n):
+        for j in range(i + 1, n):
+            a, b = stamps[i], stamps[j]
+            p = {"a": a["label"], "b": b["label"], "earlier": None, "reasons": []}
+            if not (a["valid"] and b["valid"]):
+                bad = [s["label"] for s in (a, b) if not s["valid"]]
+                p["result"] = "not compared: %s %s not verify" % (" and ".join(bad), "does" if len(bad) == 1 else "do")
+            elif a["commitment"] == b["commitment"]:
+                p["result"] = "same commitment: order unknown"
+            elif why[i][j] and why[j][i]:
+                contradiction = True
+                # derived: at least one direction holds only through other stamps.
+                p.update(result="contradiction: each is shown before the other", reasons=why[i][j] + why[j][i],
+                         a_before_b=why[i][j], b_before_a=why[j][i], derived=not (direct[i][j] and direct[j][i]))
+            elif why[i][j]:
+                p.update(result="%s before %s" % (a["label"], b["label"]), earlier=a["label"], reasons=why[i][j])
+            elif why[j][i]:
+                p.update(result="%s before %s" % (b["label"], a["label"]), earlier=b["label"], reasons=why[j][i])
+            else:
+                p["result"] = "overlap: order unknown"
+            pairs.append(p)
+    return {"stamps": stamps, "pairs": pairs, "tolerance_s": STAMP_TOLERANCE_S,
+            "all_valid": all(s["valid"] for s in stamps), "contradiction": contradiction}
+
+
+def order_lines(res, names):
+    """Plain-words lines for a stamp_order result. names: {label: file name as given}."""
+    ok = sum(1 for s in res["stamps"] if s["valid"])
+    lines = ["timewitness order: %d stamps, %d verify" % (len(res["stamps"]), ok)]
+    for s in res["stamps"]:
+        name = printable_name(names[s["label"]])
+        if s["valid"]:
+            lines.append("%s = %s: committed %s to %s%s" % (
+                s["label"], name, iso(s["not_before_unix"]), iso(s["existed_by_unix"]),
+                " (%s)" % _span_text(s["width_s"]) if s["width_s"] < 0 else ""))
+        else:
+            lines.append("%s = %s: INVALID (%s)" % (s["label"], name, s["problems"][0]))
+    for p in res["pairs"]:
+        if p["result"].startswith("contradiction"):
+            lines.append("%s and %s: contradiction: %s before %s (%s), but %s before %s (%s)" % (
+                p["a"], p["b"], p["a"], p["b"], "; ".join(p["a_before_b"]), p["b"], p["a"],
+                "; ".join(p["b_before_a"])))
+        elif p["earlier"] is not None:
+            lines.append("%s (%s)" % (p["result"], "; ".join(p["reasons"])))
+        else:
+            lines.append("%s and %s: %s" % (p["a"], p["b"], p["result"]))
+    if res["contradiction"]:
+        lines.append("A contradiction means that at least one signed time in these stamps is wrong; the stamps do "
+                     "not show which. A reason that reads \"through\" follows from other pairs, not from this pair "
+                     "alone.")
+    lines.append("An order is given only when the signed windows or a reference prove it. It is the order in which "
+                 "the stamps were committed, not when the messages were written, sent or read. Payloads are not "
+                 "compared here; check each stamp with --check-stamp and --payload.")
+    return lines
+
+
+def _read_input(path, limit=None):
+    """The bytes of path (- for standard input); with limit, at most limit + 1 bytes."""
+    n = -1 if limit is None else limit + 1
+    if path == "-":
+        # sys.stdin is None when the process was started with standard input closed.
+        if sys.stdin is None:
+            raise OSError(errno.EBADF, "standard input is closed", "standard input (it is closed)")
+        if getattr(sys.stdin, "buffer", None) is None:
+            raise OSError(errno.EBADF, "standard input gives no bytes", "standard input (it gives no bytes)")
+        return sys.stdin.buffer.read(n)
+    with open(path, "rb") as f:
+        return f.read(n)
+
+
+class _NotStrictJSON(ValueError):
+    pass
+
+
+def _json_too_deep(text, limit):
+    depth, in_str, esc = 0, False, False
+    for ch in text:
+        if in_str:
+            if esc:
+                esc = False
+            elif ch == "\\":
+                esc = True
+            elif ch == '"':
+                in_str = False
+        elif ch == '"':
+            in_str = True
+        elif ch in "[{":
+            depth += 1
+            if depth > limit:
+                return True
+        elif ch in "]}":
+            depth -= 1
+    return False
+
+
+def _strict_pairs(pairs):
+    out = {}
+    for k, v in pairs:
+        if k in out:
+            raise _NotStrictJSON("the file repeats a key inside one object, so JSON readers can disagree on it")
+        out[k] = v
+    return out
+
+
+def _strict_number(kind):
+    def parse(s):
+        if len(s) > STAMP_MAX_NUMBER_CHARS:
+            raise _NotStrictJSON("the file holds a number longer than %d characters" % STAMP_MAX_NUMBER_CHARS)
+        v = kind(s)
+        # 1e400 is a JSON number, but Python reads it as Infinity, which other readers may refuse.
+        if kind is float and v in (float("inf"), float("-inf")):
+            raise _NotStrictJSON("the file holds a number too large to read as a finite number")
+        return v
+    return parse
+
+
+def _strict_constant(name):
+    raise _NotStrictJSON("the file holds NaN or Infinity, which are not JSON")
+
+
+def stamp_loads(raw):
+    """Parse stamp file bytes strictly. Returns (doc, None), or (None, reason).
+
+    A stamp comes from someone else, and agents on different machines must
+    reach the same verdict on the same bytes. So the file is refused, before
+    any signature is checked, when it is larger than STAMP_MAX_FILE_BYTES,
+    nests deeper than STAMP_MAX_DEPTH, repeats a key in one object (readers
+    differ on which copy wins), holds NaN or Infinity or a number that reads
+    as Infinity (such as 1e400), or holds a number longer than
+    STAMP_MAX_NUMBER_CHARS (Python 3.9 parses long integers in quadratic
+    time; 3.11 and later refuse them).
+    """
+    if len(raw) > STAMP_MAX_FILE_BYTES:
+        return None, "the file is larger than %d bytes, which no stamp needs" % STAMP_MAX_FILE_BYTES
+    try:
+        text = raw.decode("utf-8")
+    except UnicodeDecodeError:
+        return None, "the file is not JSON"
+    if _json_too_deep(text, STAMP_MAX_DEPTH):
+        return None, "the file nests deeper than %d levels, which no stamp needs" % STAMP_MAX_DEPTH
+    try:
+        return json.loads(text, object_pairs_hook=_strict_pairs, parse_int=_strict_number(int),
+                          parse_float=_strict_number(float), parse_constant=_strict_constant), None
+    except _NotStrictJSON as e:
+        return None, str(e)
+    except (ValueError, RecursionError):
+        return None, "the file is not JSON"
+
+
+def _load_stamp(path):
+    """Returns (doc, None), or (None, reason) when it is not a strict JSON stamp. Raises OSError when unreadable."""
+    return stamp_loads(_read_input(path, STAMP_MAX_FILE_BYTES))
+
+
+def _write_text(path, text):
+    with open(path, "w", encoding="utf-8") as f:
+        f.write(text)
+
+
+def stamp_main(args, ap):
+    """--stamp, --check-stamp and --order. Exit 0 valid, 1 not valid, 2 usage error (via ap.error)."""
+    modes = [f for f, v in (("--stamp", args.stamp), ("--check-stamp", args.check_stamp), ("--order", args.order))
+             if v is not None]
+    if (args.out or args.ref) and args.stamp is None:
+        ap.error("--out and --ref go with --stamp")
+    if args.payload is not None and args.check_stamp is None:
+        ap.error("--payload goes with --check-stamp")
+    if len(modes) != 1:
+        ap.error("use one of --stamp, --check-stamp and --order")
+    other = [f for f, on in (("--all", args.all), ("--quick", args.quick), ("--since", args.since),
+                             ("--cutoff", args.cutoff), ("--cutoff-height", args.cutoff_height is not None),
+                             ("--label", args.label), ("--hf-log", args.hf_log),
+                             ("--rate-seconds", args.rate_seconds != DEFAULT_RATE_SECONDS)) if on]
+    if other:
+        ap.error("%s cannot be used with %s" % (", ".join(other), modes[0]))
+    # --check-stamp and --order never use the network, so --no-network is harmless there.
+    if args.stamp is None and (args.record or args.replay or args.timeout != DEFAULT_TIMEOUT):
+        ap.error("%s is offline; --record, --replay and --timeout go with --stamp" % modes[0])
+    if args.record and args.replay:
+        ap.error("--record and --replay cannot be used together")
+    dash = [f for f, v in (("--stamp", args.stamp), ("--check-stamp", args.check_stamp), ("--payload", args.payload))
+            if v == "-"]
+    dash += ["--ref" for r in args.ref or [] if r == "-"] + ["--order" for o in args.order or [] if o == "-"]
+    if len(dash) > 1:
+        ap.error("standard input (-) can be read only once; it was given to %s" % ", ".join(dash))
+    if args.ref and len(args.ref) > STAMP_MAX_REFS:
+        ap.error("at most %d --ref" % STAMP_MAX_REFS)
+    if args.order and len(args.order) > STAMP_MAX_ORDER:
+        ap.error("at most %d stamps with --order" % STAMP_MAX_ORDER)
+
+    def unreadable(e, path):
+        ap.error("cannot read %s" % printable_name(e.filename or path))
+
+    if args.check_stamp is not None:
+        try:
+            doc, err = _load_stamp(args.check_stamp)
+            payload = None if args.payload is None else _read_input(args.payload)
+        except OSError as e:
+            unreadable(e, "the input")
+        res = stamp_check(doc, payload)
+        if err:
+            res["problems"] = [err]
+        if args.json:
+            sys.stdout.write(scrub(json.dumps(res, indent=1, allow_nan=False)) + "\n")
+        else:
+            sys.stdout.write(scrub("\n".join(stamp_lines(res, args.payload))) + "\n")
+        return 0 if res["valid"] else 1
+
+    if args.order is not None:
+        if len(args.order) < 2:
+            ap.error("--order needs two or more stamps")
+        items, names, errs = [], {}, {}
+        for i, path in enumerate(args.order):
+            label = chr(ord("A") + i) if i < 26 else "S%d" % (i + 1)
+            try:
+                doc, err = _load_stamp(path)
+            except OSError as e:
+                unreadable(e, path)
+            items.append((label, doc))
+            names[label] = path
+            if err:
+                errs[label] = err
+        res = stamp_order(items)
+        for s in res["stamps"]:
+            s["file"] = names[s["label"]]
+            if s["label"] in errs:
+                s["problems"] = [errs[s["label"]]]
+        if args.json:
+            sys.stdout.write(scrub(json.dumps(res, indent=1, allow_nan=False)) + "\n")
+        else:
+            sys.stdout.write(scrub("\n".join(order_lines(res, names))) + "\n")
+        return 0 if res["all_valid"] and not res["contradiction"] else 1
+
+    # --stamp
+    if args.out:
+        # Checked before the network is used; a write that still fails below prints the stamp instead.
+        where = os.path.dirname(os.path.abspath(args.out))
+        if os.path.isdir(args.out) or not os.path.isdir(where):
+            ap.error("cannot write %s" % printable_name(args.out))
+    refs = []
+    for path in args.ref or []:
+        try:
+            doc, err = _load_stamp(path)
+        except OSError as e:
+            unreadable(e, path)
+        r = stamp_check(doc)
+        if err or not r["valid"]:
+            ap.error("--ref %s is not a stamp that verifies (%s)" % (printable_name(path), err or r["problems"][0]))
+        refs.append(bytes.fromhex(r["commitment"]))
+    try:
+        payload = _read_input(args.stamp)
+    except OSError as e:
+        unreadable(e, args.stamp)
+    try:
+        if args.replay:
+            tr = Transport("replay", args.replay)
+        elif args.no_network:
+            tr = Transport("none")
+        elif args.record:
+            tr = Transport("record", args.record)
+        else:
+            tr = Transport("live")
+    except (OSError, ValueError) as e:
+        sys.stderr.write("timewitness: cannot read the replay file (%s)\n" % type(e).__name__)
+        return 1
+    try:
+        doc, notes = stamp_make(tr, payload, refs, args.timeout)
+    except StampError as e:
+        tr.save()
+        sys.stderr.write(scrub("timewitness stamp FAILED: %s\n" % e))
+        return 1
+    tr.save()
+    res = stamp_check(doc, payload)  # signatures are checked here, in the main thread
+    notes = ["note: " + n for n in notes]
+    if not res["valid"]:
+        sys.stderr.write(scrub("\n".join(["timewitness stamp FAILED: the new stamp does not verify"]
+                                         + stamp_lines(res)[1:] + notes)) + "\n")
+        return 1
+    # The stamp holds no path, host or user name, so it is written as made: scrubbing could alter base64.
+    text = json.dumps(doc, indent=1, allow_nan=False) + "\n"
+    summary = ["timewitness stamp made: " + stamp_window_text(res)] + notes
+    if args.out:
+        try:
+            _write_text(args.out, text)
+        except OSError as e:
+            # The stamp cost four network exchanges and cannot be made again with the same times: keep it.
+            sys.stdout.write(text)
+            sys.stderr.write(scrub("\n".join(summary + ["timewitness: cannot write %s (%s); the stamp is on standard "
+                                                        "output instead" % (printable_name(args.out),
+                                                                            type(e).__name__)]) + "\n"))
+            return 2
+        summary.append("written to %s; check it with --check-stamp %s" % (printable_name(args.out),
+                                                                          printable_name(args.out)))
+        sys.stdout.write(scrub("\n".join(summary)) + "\n")
+    else:
+        sys.stdout.write(text)
+        sys.stderr.write(scrub("\n".join(summary)) + "\n")
+    return 0
+
+
 def month_arg(s):
     if not re.fullmatch(r"\d{4}-(0[1-9]|1[0-2])", s):
         raise argparse.ArgumentTypeError("use YYYY-MM")
@@ -2638,9 +3466,23 @@ def main(argv=None):
     ap.add_argument("--record", metavar="FILE", help="developer: record every network exchange to FILE")
     ap.add_argument("--replay", metavar="FILE", help="developer: answer every network exchange from FILE")
     ap.add_argument("--hf-log", metavar="REPO_ID", help="upload the JSON to ledger/ in this Hub dataset repo")
+    st = ap.add_argument_group("time brackets for messages (experimental)")
+    st.add_argument("--stamp", metavar="FILE",
+                    help="stamp FILE's bytes (- reads standard input) with two Roughtime exchanges per server; "
+                         "prints the stamp as JSON")
+    st.add_argument("--out", metavar="PATH", help="with --stamp: write the stamp to PATH instead")
+    st.add_argument("--ref", metavar="STAMP", action="append",
+                    help="with --stamp: put this earlier stamp's commitment inside the new one (repeatable)")
+    st.add_argument("--check-stamp", metavar="STAMP", help="check a stamp offline with the pinned keys")
+    st.add_argument("--payload", metavar="FILE", help="with --check-stamp: also compare FILE's SHA-256")
+    st.add_argument("--order", metavar="STAMP", nargs="+",
+                    help="check 2 to %d stamps offline and say which came before which, where that is proven"
+                         % STAMP_MAX_ORDER)
     args = ap.parse_args(argv)
     if args.record and args.replay:
         ap.error("--record and --replay cannot be used together")
+    if any(v is not None for v in (args.stamp, args.check_stamp, args.order, args.out, args.ref, args.payload)):
+        return stamp_main(args, ap)
     try:
         result, doc = run(args)
     except (OSError, ValueError) as e:

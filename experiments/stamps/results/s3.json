@@ -1,0 +1,977 @@
+{
+ "by_sent": {
+  "40": {
+   "a_close": {
+    "right": 6,
+    "undecided": 0,
+    "wrong": 6
+   },
+   "a_deadline": {
+    "right": 6,
+    "undecided": 0,
+    "wrong": 6
+   },
+   "b_close": {
+    "right": 12,
+    "undecided": 0,
+    "wrong": 0
+   },
+   "b_deadline": {
+    "right": 12,
+    "undecided": 0,
+    "wrong": 0
+   }
+  },
+  "80": {
+   "a_close": {
+    "right": 6,
+    "undecided": 0,
+    "wrong": 6
+   },
+   "a_deadline": {
+    "right": 6,
+    "undecided": 0,
+    "wrong": 6
+   },
+   "b_close": {
+    "right": 12,
+    "undecided": 0,
+    "wrong": 0
+   },
+   "b_deadline": {
+    "right": 12,
+    "undecided": 0,
+    "wrong": 0
+   }
+  }
+ },
+ "clock_check": {
+  "exit": 0,
+  "first_line": "timewitness LIVE 2026-11-23T14:11:39Z +/-1.0s (Mon 14:11 GMT local)",
+  "flags": [],
+  "local_wall_unix": 1795443098.882499,
+  "median_offset_s": 0.024,
+  "platform": "Darwin arm64",
+  "python": "3.15.2",
+  "verdict": "LIVE",
+  "witnesses": [
+   {
+    "kind": "freshness",
+    "name": "roughtime:roughtime.se",
+    "offset_s": -0.937,
+    "ok": true,
+    "uncertainty_s": 1.031
+   },
+   {
+    "kind": "freshness",
+    "name": "roughtime:time.txryan.com",
+    "offset_s": -0.018,
+    "ok": true,
+    "uncertainty_s": 3.048
+   },
+   {
+    "kind": "not_before",
+    "name": "bitcoin",
+    "offset_s": -194.987,
+    "ok": true,
+    "uncertainty_s": null
+   },
+   {
+    "kind": "time",
+    "name": "hf-hub",
+    "offset_s": 0.012,
+    "ok": true,
+    "uncertainty_s": 1.052
+   },
+   {
+    "kind": "time",
+    "name": "http-date:www.google.com",
+    "offset_s": -0.457,
+    "ok": true,
+    "uncertainty_s": 0.513
+   },
+   {
+    "kind": "time",
+    "name": "http-date:www.cloudflare.com",
+    "offset_s": 0.507,
+    "ok": true,
+    "uncertainty_s": 0.541
+   },
+   {
+    "kind": "time",
+    "name": "http-date:www.wikipedia.org",
+    "offset_s": 0.474,
+    "ok": true,
+    "uncertainty_s": 0.556
+   },
+   {
+    "kind": "time",
+    "name": "ntp:time.apple.com",
+    "offset_s": 0.036,
+    "ok": true,
+    "uncertainty_s": 0.014
+   },
+   {
+    "kind": "time",
+    "name": "ntp:time.cloudflare.com",
+    "offset_s": 0.037,
+    "ok": true,
+    "uncertainty_s": 0.015
+   }
+  ]
+ },
+ "objections": [
+  {
+   "a_close": "wrong",
+   "a_close_text": "wrong",
+   "a_deadline": "wrong",
+   "a_deadline_text": "wrong",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "B before H",
+   "id": "s3-P1-objection-40-ahead-2h",
+   "objector": "ahead-2h",
+   "proposal": "P1",
+   "proposer": "true",
+   "self_reported_elapsed_s": 7239.996,
+   "sent_s": 40.0,
+   "true_elapsed_commit_s": 40.026,
+   "true_elapsed_read_s": 39.996,
+   "true_to_close_commit_s": 30.063,
+   "true_to_close_read_s": 29.999,
+   "truth_in_time": true,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "right",
+   "a_close_text": "right",
+   "a_deadline": "right",
+   "a_deadline_text": "right",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "C before H",
+   "id": "s3-P1-objection-40-behind-7m",
+   "objector": "behind-7m",
+   "proposal": "P1",
+   "proposer": "true",
+   "self_reported_elapsed_s": -380.004,
+   "sent_s": 40.0,
+   "true_elapsed_commit_s": 40.033,
+   "true_elapsed_read_s": 39.996,
+   "true_to_close_commit_s": 30.056,
+   "true_to_close_read_s": 29.999,
+   "truth_in_time": true,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "right",
+   "a_close_text": "right",
+   "a_deadline": "right",
+   "a_deadline_text": "right",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "D before H",
+   "id": "s3-P1-objection-40-set-back-june",
+   "objector": "set-back-june",
+   "proposal": "P1",
+   "proposer": "true",
+   "self_reported_elapsed_s": -13749060.434,
+   "sent_s": 40.0,
+   "true_elapsed_commit_s": 40.032,
+   "true_elapsed_read_s": 39.996,
+   "true_to_close_commit_s": 30.056,
+   "true_to_close_read_s": 29.999,
+   "truth_in_time": true,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "right",
+   "a_close_text": "right",
+   "a_deadline": "right",
+   "a_deadline_text": "right",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "H before E",
+   "id": "s3-P1-objection-80-ahead-2h",
+   "objector": "ahead-2h",
+   "proposal": "P1",
+   "proposer": "true",
+   "self_reported_elapsed_s": 7279.997,
+   "sent_s": 80.0,
+   "true_elapsed_commit_s": 80.038,
+   "true_elapsed_read_s": 79.997,
+   "true_to_close_commit_s": -9.95,
+   "true_to_close_read_s": -10.002,
+   "truth_in_time": false,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "wrong",
+   "a_close_text": "wrong",
+   "a_deadline": "wrong",
+   "a_deadline_text": "wrong",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "H before F",
+   "id": "s3-P1-objection-80-behind-7m",
+   "objector": "behind-7m",
+   "proposal": "P1",
+   "proposer": "true",
+   "self_reported_elapsed_s": -340.003,
+   "sent_s": 80.0,
+   "true_elapsed_commit_s": 80.038,
+   "true_elapsed_read_s": 79.997,
+   "true_to_close_commit_s": -9.95,
+   "true_to_close_read_s": -10.002,
+   "truth_in_time": false,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "wrong",
+   "a_close_text": "wrong",
+   "a_deadline": "wrong",
+   "a_deadline_text": "wrong",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "H before G",
+   "id": "s3-P1-objection-80-set-back-june",
+   "objector": "set-back-june",
+   "proposal": "P1",
+   "proposer": "true",
+   "self_reported_elapsed_s": -13749020.432,
+   "sent_s": 80.0,
+   "true_elapsed_commit_s": 80.038,
+   "true_elapsed_read_s": 79.997,
+   "true_to_close_commit_s": -9.949,
+   "true_to_close_read_s": -10.002,
+   "truth_in_time": false,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "wrong",
+   "a_close_text": "wrong",
+   "a_deadline": "wrong",
+   "a_deadline_text": "wrong",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "B before H",
+   "id": "s3-P2-objection-40-ahead-2h",
+   "objector": "ahead-2h",
+   "proposal": "P2",
+   "proposer": "behind-7m",
+   "self_reported_elapsed_s": 7659.999,
+   "sent_s": 40.0,
+   "true_elapsed_commit_s": 40.032,
+   "true_elapsed_read_s": 39.999,
+   "true_to_close_commit_s": 30.149,
+   "true_to_close_read_s": 29.999,
+   "truth_in_time": true,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "right",
+   "a_close_text": "right",
+   "a_deadline": "right",
+   "a_deadline_text": "right",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "C before H",
+   "id": "s3-P2-objection-40-set-back-june",
+   "objector": "set-back-june",
+   "proposal": "P2",
+   "proposer": "behind-7m",
+   "self_reported_elapsed_s": -13748640.431,
+   "sent_s": 40.0,
+   "true_elapsed_commit_s": 40.026,
+   "true_elapsed_read_s": 39.999,
+   "true_to_close_commit_s": 30.154,
+   "true_to_close_read_s": 29.999,
+   "truth_in_time": true,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "wrong",
+   "a_close_text": "wrong",
+   "a_deadline": "wrong",
+   "a_deadline_text": "wrong",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "D before H",
+   "id": "s3-P2-objection-40-true",
+   "objector": "true",
+   "proposal": "P2",
+   "proposer": "behind-7m",
+   "self_reported_elapsed_s": 459.999,
+   "sent_s": 40.0,
+   "true_elapsed_commit_s": 40.032,
+   "true_elapsed_read_s": 39.999,
+   "true_to_close_commit_s": 30.149,
+   "true_to_close_read_s": 29.999,
+   "truth_in_time": true,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "right",
+   "a_close_text": "right",
+   "a_deadline": "right",
+   "a_deadline_text": "right",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "H before E",
+   "id": "s3-P2-objection-80-ahead-2h",
+   "objector": "ahead-2h",
+   "proposal": "P2",
+   "proposer": "behind-7m",
+   "self_reported_elapsed_s": 7699.994,
+   "sent_s": 80.0,
+   "true_elapsed_commit_s": 80.052,
+   "true_elapsed_read_s": 79.994,
+   "true_to_close_commit_s": -9.872,
+   "true_to_close_read_s": -9.996,
+   "truth_in_time": false,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "wrong",
+   "a_close_text": "wrong",
+   "a_deadline": "wrong",
+   "a_deadline_text": "wrong",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "H before F",
+   "id": "s3-P2-objection-80-set-back-june",
+   "objector": "set-back-june",
+   "proposal": "P2",
+   "proposer": "behind-7m",
+   "self_reported_elapsed_s": -13748600.434,
+   "sent_s": 80.0,
+   "true_elapsed_commit_s": 80.052,
+   "true_elapsed_read_s": 79.995,
+   "true_to_close_commit_s": -9.871,
+   "true_to_close_read_s": -9.997,
+   "truth_in_time": false,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "right",
+   "a_close_text": "right",
+   "a_deadline": "right",
+   "a_deadline_text": "right",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "H before G",
+   "id": "s3-P2-objection-80-true",
+   "objector": "true",
+   "proposal": "P2",
+   "proposer": "behind-7m",
+   "self_reported_elapsed_s": 499.995,
+   "sent_s": 80.0,
+   "true_elapsed_commit_s": 80.052,
+   "true_elapsed_read_s": 79.994,
+   "true_to_close_commit_s": -9.872,
+   "true_to_close_read_s": -9.996,
+   "truth_in_time": false,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "right",
+   "a_close_text": "right",
+   "a_deadline": "right",
+   "a_deadline_text": "right",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "B before H",
+   "id": "s3-P3-objection-40-behind-7m",
+   "objector": "behind-7m",
+   "proposal": "P3",
+   "proposer": "ahead-2h",
+   "self_reported_elapsed_s": -7579.997,
+   "sent_s": 40.0,
+   "true_elapsed_commit_s": 40.031,
+   "true_elapsed_read_s": 40.003,
+   "true_to_close_commit_s": 30.035,
+   "true_to_close_read_s": 29.997,
+   "truth_in_time": true,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "right",
+   "a_close_text": "right",
+   "a_deadline": "right",
+   "a_deadline_text": "right",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "C before H",
+   "id": "s3-P3-objection-40-set-back-june",
+   "objector": "set-back-june",
+   "proposal": "P3",
+   "proposer": "ahead-2h",
+   "self_reported_elapsed_s": -13756260.426,
+   "sent_s": 40.0,
+   "true_elapsed_commit_s": 40.059,
+   "true_elapsed_read_s": 40.003,
+   "true_to_close_commit_s": 30.006,
+   "true_to_close_read_s": 29.996,
+   "truth_in_time": true,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "right",
+   "a_close_text": "right",
+   "a_deadline": "right",
+   "a_deadline_text": "right",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "D before H",
+   "id": "s3-P3-objection-40-true",
+   "objector": "true",
+   "proposal": "P3",
+   "proposer": "ahead-2h",
+   "self_reported_elapsed_s": -7159.996,
+   "sent_s": 40.0,
+   "true_elapsed_commit_s": 40.044,
+   "true_elapsed_read_s": 40.003,
+   "true_to_close_commit_s": 30.022,
+   "true_to_close_read_s": 29.996,
+   "truth_in_time": true,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "wrong",
+   "a_close_text": "wrong",
+   "a_deadline": "wrong",
+   "a_deadline_text": "wrong",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "H before E",
+   "id": "s3-P3-objection-80-behind-7m",
+   "objector": "behind-7m",
+   "proposal": "P3",
+   "proposer": "ahead-2h",
+   "self_reported_elapsed_s": -7539.997,
+   "sent_s": 80.0,
+   "true_elapsed_commit_s": 80.002,
+   "true_elapsed_read_s": 80.003,
+   "true_to_close_commit_s": -9.937,
+   "true_to_close_read_s": -10.003,
+   "truth_in_time": false,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "wrong",
+   "a_close_text": "wrong",
+   "a_deadline": "wrong",
+   "a_deadline_text": "wrong",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "H before F",
+   "id": "s3-P3-objection-80-set-back-june",
+   "objector": "set-back-june",
+   "proposal": "P3",
+   "proposer": "ahead-2h",
+   "self_reported_elapsed_s": -13756220.426,
+   "sent_s": 80.0,
+   "true_elapsed_commit_s": 79.996,
+   "true_elapsed_read_s": 80.003,
+   "true_to_close_commit_s": -9.93,
+   "true_to_close_read_s": -10.003,
+   "truth_in_time": false,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "wrong",
+   "a_close_text": "wrong",
+   "a_deadline": "wrong",
+   "a_deadline_text": "wrong",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "H before G",
+   "id": "s3-P3-objection-80-true",
+   "objector": "true",
+   "proposal": "P3",
+   "proposer": "ahead-2h",
+   "self_reported_elapsed_s": -7119.997,
+   "sent_s": 80.0,
+   "true_elapsed_commit_s": 79.997,
+   "true_elapsed_read_s": 80.003,
+   "true_to_close_commit_s": -9.932,
+   "true_to_close_read_s": -10.003,
+   "truth_in_time": false,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "wrong",
+   "a_close_text": "wrong",
+   "a_deadline": "wrong",
+   "a_deadline_text": "wrong",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "B before H",
+   "id": "s3-P4-objection-40-ahead-2h",
+   "objector": "ahead-2h",
+   "proposal": "P4",
+   "proposer": "set-back-june",
+   "self_reported_elapsed_s": 13756340.428,
+   "sent_s": 40.0,
+   "true_elapsed_commit_s": 39.954,
+   "true_elapsed_read_s": 39.998,
+   "true_to_close_commit_s": 30.087,
+   "true_to_close_read_s": 30.004,
+   "truth_in_time": true,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "wrong",
+   "a_close_text": "wrong",
+   "a_deadline": "wrong",
+   "a_deadline_text": "wrong",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "C before H",
+   "id": "s3-P4-objection-40-behind-7m",
+   "objector": "behind-7m",
+   "proposal": "P4",
+   "proposer": "set-back-june",
+   "self_reported_elapsed_s": 13748720.428,
+   "sent_s": 40.0,
+   "true_elapsed_commit_s": 39.95,
+   "true_elapsed_read_s": 39.998,
+   "true_to_close_commit_s": 30.091,
+   "true_to_close_read_s": 30.004,
+   "truth_in_time": true,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "wrong",
+   "a_close_text": "wrong",
+   "a_deadline": "wrong",
+   "a_deadline_text": "wrong",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "D before H",
+   "id": "s3-P4-objection-40-true",
+   "objector": "true",
+   "proposal": "P4",
+   "proposer": "set-back-june",
+   "self_reported_elapsed_s": 13749140.428,
+   "sent_s": 40.0,
+   "true_elapsed_commit_s": 39.955,
+   "true_elapsed_read_s": 39.998,
+   "true_to_close_commit_s": 30.086,
+   "true_to_close_read_s": 30.004,
+   "truth_in_time": true,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "right",
+   "a_close_text": "right",
+   "a_deadline": "right",
+   "a_deadline_text": "right",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "H before E",
+   "id": "s3-P4-objection-80-ahead-2h",
+   "objector": "ahead-2h",
+   "proposal": "P4",
+   "proposer": "set-back-june",
+   "self_reported_elapsed_s": 13756380.431,
+   "sent_s": 80.0,
+   "true_elapsed_commit_s": 79.953,
+   "true_elapsed_read_s": 80.001,
+   "true_to_close_commit_s": -9.911,
+   "true_to_close_read_s": -9.998,
+   "truth_in_time": false,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "right",
+   "a_close_text": "right",
+   "a_deadline": "right",
+   "a_deadline_text": "right",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "H before F",
+   "id": "s3-P4-objection-80-behind-7m",
+   "objector": "behind-7m",
+   "proposal": "P4",
+   "proposer": "set-back-june",
+   "self_reported_elapsed_s": 13748760.431,
+   "sent_s": 80.0,
+   "true_elapsed_commit_s": 79.953,
+   "true_elapsed_read_s": 80.001,
+   "true_to_close_commit_s": -9.911,
+   "true_to_close_read_s": -9.998,
+   "truth_in_time": false,
+   "truth_read_same_as_commit": true
+  },
+  {
+   "a_close": "right",
+   "a_close_text": "right",
+   "a_deadline": "right",
+   "a_deadline_text": "right",
+   "b_close": "right",
+   "b_close_how": "window",
+   "b_deadline": "right",
+   "close_order_result": "H before G",
+   "id": "s3-P4-objection-80-true",
+   "objector": "true",
+   "proposal": "P4",
+   "proposer": "set-back-june",
+   "self_reported_elapsed_s": 13749180.431,
+   "sent_s": 80.0,
+   "true_elapsed_commit_s": 79.955,
+   "true_elapsed_read_s": 80.001,
+   "true_to_close_commit_s": -9.913,
+   "true_to_close_read_s": -9.998,
+   "truth_in_time": false,
+   "truth_read_same_as_commit": true
+  }
+ ],
+ "order_runs": [
+  {
+   "all_valid": true,
+   "contradiction": false,
+   "exit": 0,
+   "proposal": "P1"
+  },
+  {
+   "all_valid": true,
+   "contradiction": false,
+   "exit": 0,
+   "proposal": "P2"
+  },
+  {
+   "all_valid": true,
+   "contradiction": false,
+   "exit": 0,
+   "proposal": "P3"
+  },
+  {
+   "all_valid": true,
+   "contradiction": false,
+   "exit": 0,
+   "proposal": "P4"
+  }
+ ],
+ "part": "s3",
+ "rows": 32,
+ "rows_failed_to_parse": 0,
+ "rules": {
+  "a_close": {
+   "right": 12,
+   "undecided": 0,
+   "wrong": 12
+  },
+  "a_close_text": {
+   "right": 12,
+   "undecided": 0,
+   "wrong": 12
+  },
+  "a_deadline": {
+   "right": 12,
+   "undecided": 0,
+   "wrong": 12
+  },
+  "a_deadline_text": {
+   "right": 12,
+   "undecided": 0,
+   "wrong": 12
+  },
+  "b_close": {
+   "right": 24,
+   "undecided": 0,
+   "wrong": 0
+  },
+  "b_deadline": {
+   "right": 24,
+   "undecided": 0,
+   "wrong": 0
+  }
+ },
+ "run": {
+  "agents": {
+   "ahead-2h": {
+    "clock": "+2h",
+    "faketime_env": true,
+    "offset_at_start_s": 7200.000000476837,
+    "python": "3.15.2",
+    "tool_version": "0.2.0"
+   },
+   "behind-7m": {
+    "clock": "-7m",
+    "faketime_env": true,
+    "offset_at_start_s": -420.0000002384186,
+    "python": "3.15.2",
+    "tool_version": "0.2.0"
+   },
+   "set-back-june": {
+    "clock": "@2026-06-17 12:00:00",
+    "faketime_env": true,
+    "offset_at_start_s": -13749100.429571152,
+    "python": "3.15.2",
+    "tool_version": "0.2.0"
+   },
+   "true": {
+    "clock": "true",
+    "faketime_env": false,
+    "offset_at_start_s": 2.384185791015625e-07,
+    "python": "3.15.2",
+    "tool_version": "0.2.0"
+   }
+  },
+  "driver_python": "3.15.2",
+  "faketime": "/opt/homebrew/bin/faketime: Version 0.9.13",
+  "first_planned_true": 1795443123.782273,
+  "label": "s3",
+  "late_sends": [],
+  "machine": "arm64",
+  "map_end": 1793136197.7251513,
+  "map_start": 1793136197.7241516,
+  "part": "s3",
+  "platform": "macOS-26.6.2",
+  "rows": 32,
+  "stamped": 32,
+  "tool_version": [
+   "0.2.0"
+  ]
+ },
+ "windows": {
+  "agent_offset_spread_s": {
+   "ahead-2h": 0.000705718994140625,
+   "behind-7m": 0.00075531005859375,
+   "set-back-june": 0.0006062984466552734,
+   "true": 0.0008027553558349609
+  },
+  "bounds_cross": 0,
+  "bounds_from": {
+   "roughtime.se / roughtime.se": 32
+  },
+  "commit_margins": [
+   {
+    "after_not_before_s": 1.9618,
+    "before_existed_by_s": 1.0382,
+    "id": "s3-P1-proposal"
+   },
+   {
+    "after_not_before_s": 1.9638,
+    "before_existed_by_s": 1.0362,
+    "id": "s3-P2-proposal"
+   },
+   {
+    "after_not_before_s": 2.0127,
+    "before_existed_by_s": 0.9873,
+    "id": "s3-P3-proposal"
+   },
+   {
+    "after_not_before_s": 2.0412,
+    "before_existed_by_s": 0.9588,
+    "id": "s3-P4-proposal"
+   },
+   {
+    "after_not_before_s": 1.9875,
+    "before_existed_by_s": 1.0125,
+    "id": "s3-P1-objection-40-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.9945,
+    "before_existed_by_s": 1.0055,
+    "id": "s3-P1-objection-40-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.994,
+    "before_existed_by_s": 1.006,
+    "id": "s3-P1-objection-40-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.9954,
+    "before_existed_by_s": 1.0046,
+    "id": "s3-P2-objection-40-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.99,
+    "before_existed_by_s": 1.01,
+    "id": "s3-P2-objection-40-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.9954,
+    "before_existed_by_s": 1.0046,
+    "id": "s3-P2-objection-40-true"
+   },
+   {
+    "after_not_before_s": 2.0434,
+    "before_existed_by_s": 0.9566,
+    "id": "s3-P3-objection-40-behind-7m"
+   },
+   {
+    "after_not_before_s": 2.0719,
+    "before_existed_by_s": 0.9281,
+    "id": "s3-P3-objection-40-set-back-june"
+   },
+   {
+    "after_not_before_s": 2.0564,
+    "before_existed_by_s": 0.9436,
+    "id": "s3-P3-objection-40-true"
+   },
+   {
+    "after_not_before_s": 1.9953,
+    "before_existed_by_s": 1.0047,
+    "id": "s3-P4-objection-40-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.9913,
+    "before_existed_by_s": 1.0087,
+    "id": "s3-P4-objection-40-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.9963,
+    "before_existed_by_s": 1.0037,
+    "id": "s3-P4-objection-40-true"
+   },
+   {
+    "after_not_before_s": 2.0502,
+    "before_existed_by_s": 0.9498,
+    "id": "s3-P1-close"
+   },
+   {
+    "after_not_before_s": 1.1442,
+    "before_existed_by_s": 0.8558,
+    "id": "s3-P2-close"
+   },
+   {
+    "after_not_before_s": 2.0001,
+    "before_existed_by_s": 0.9999,
+    "id": "s3-P1-objection-80-ahead-2h"
+   },
+   {
+    "after_not_before_s": 2.0001,
+    "before_existed_by_s": 0.9999,
+    "id": "s3-P1-objection-80-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.9997,
+    "before_existed_by_s": 1.0003,
+    "id": "s3-P1-objection-80-set-back-june"
+   },
+   {
+    "after_not_before_s": 2.0781,
+    "before_existed_by_s": 0.9219,
+    "id": "s3-P3-close"
+   },
+   {
+    "after_not_before_s": 2.0161,
+    "before_existed_by_s": 0.9839,
+    "id": "s3-P2-objection-80-ahead-2h"
+   },
+   {
+    "after_not_before_s": 2.0157,
+    "before_existed_by_s": 0.9843,
+    "id": "s3-P2-objection-80-set-back-june"
+   },
+   {
+    "after_not_before_s": 2.0161,
+    "before_existed_by_s": 0.9839,
+    "id": "s3-P2-objection-80-true"
+   },
+   {
+    "after_not_before_s": 2.0827,
+    "before_existed_by_s": 0.9173,
+    "id": "s3-P4-close"
+   },
+   {
+    "after_not_before_s": 2.0151,
+    "before_existed_by_s": 0.9849,
+    "id": "s3-P3-objection-80-behind-7m"
+   },
+   {
+    "after_not_before_s": 2.0086,
+    "before_existed_by_s": 0.9914,
+    "id": "s3-P3-objection-80-set-back-june"
+   },
+   {
+    "after_not_before_s": 2.0101,
+    "before_existed_by_s": 0.9899,
+    "id": "s3-P3-objection-80-true"
+   },
+   {
+    "after_not_before_s": 1.994,
+    "before_existed_by_s": 1.006,
+    "id": "s3-P4-objection-80-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.994,
+    "before_existed_by_s": 1.006,
+    "id": "s3-P4-objection-80-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.996,
+    "before_existed_by_s": 1.004,
+    "id": "s3-P4-objection-80-true"
+   }
+  ],
+  "made": 32,
+  "one_server_only": 0,
+  "payload_match": 32,
+  "read_text_minus_read_wall_abs_max_s": 0.0009338855743408203,
+  "reader_estimate_abs_error_s_stamps_under_2s": {
+   "max": 0.28819870948791504,
+   "median": 0.28409767150878906,
+   "min": 0.21375107765197754,
+   "n": 32
+  },
+  "reader_estimate_of_author_clock_error_minus_true_error_s": {
+   "max": 0.28819870948791504,
+   "median": 0.28409767150878906,
+   "min": -0.21375107765197754,
+   "n": 32
+  },
+  "roughtime_se_beacon_and_seal_in_different_seconds": 31,
+  "seal_over_2s_after_beacon": 0,
+  "slow_details": [],
+  "slow_over_2s": 0,
+  "stamp_seconds": {
+   "max": 0.5621657371520996,
+   "median": 0.4518616199493408,
+   "min": 0.38892173767089844,
+   "n": 32
+  },
+  "stamps": 32,
+  "true_commit_inside_window": 32,
+  "true_commit_inside_window_with_1s": 32,
+  "two_servers": 32,
+  "valid": 32,
+  "width_counts": {
+   "2": 1,
+   "3": 31
+  },
+  "width_s": {
+   "max": 3,
+   "median": 3.0,
+   "min": 2,
+   "n": 32
+  },
+  "with_true_commit": 32
+ }
+}

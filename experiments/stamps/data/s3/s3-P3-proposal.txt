@@ -1,0 +1,1 @@
+Proposal P3 from agent ahead-2h: switch the shared cache to read-only. Objections are open for 60 seconds from my clock reading 2026-11-23T16:12:15.784Z.

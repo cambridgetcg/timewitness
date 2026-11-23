@@ -1,0 +1,180 @@
+[
+ {
+  "args": [
+   "--stamp",
+   "m1.txt",
+   "--out",
+   "o1.json"
+  ],
+  "exit": 0,
+  "seconds": 0.448,
+  "stdout": "timewitness stamp made: committed no earlier than 2026-11-23T13:04:49Z and no later than 2026-11-23T13:04:52Z (window 3s; 2 of 2 servers checkable)\nwritten to o1.json; check it with: timewitness --check-stamp o1.json\n",
+  "stderr": ""
+ },
+ {
+  "args": [
+   "--stamp",
+   "m2.txt",
+   "--ref",
+   "o1.json",
+   "--out",
+   "o2.json"
+  ],
+  "exit": 0,
+  "seconds": 0.57,
+  "stdout": "timewitness stamp made: committed no earlier than 2026-11-23T13:04:50Z and no later than 2026-11-23T13:04:52Z (window 2s; 2 of 2 servers checkable)\nwritten to o2.json; check it with: timewitness --check-stamp o2.json\n",
+  "stderr": ""
+ },
+ {
+  "args": [
+   "--stamp",
+   "m3.txt",
+   "--ref",
+   "o2.json",
+   "--out",
+   "o3.json"
+  ],
+  "exit": 0,
+  "seconds": 0.503,
+  "stdout": "timewitness stamp made: committed no earlier than 2026-11-23T13:04:50Z and no later than 2026-11-23T13:04:53Z (window 3s; 2 of 2 servers checkable)\nwritten to o3.json; check it with: timewitness --check-stamp o3.json\n",
+  "stderr": ""
+ },
+ {
+  "args": [
+   "--stamp",
+   "m4.txt",
+   "--out",
+   "o4.json"
+  ],
+  "exit": 0,
+  "seconds": 0.564,
+  "stdout": "timewitness stamp made: committed no earlier than 2026-11-23T13:04:51Z and no later than 2026-11-23T13:04:53Z (window 2s; 2 of 2 servers checkable)\nwritten to o4.json; check it with: timewitness --check-stamp o4.json\n",
+  "stderr": ""
+ },
+ {
+  "args": [
+   "--stamp",
+   "m5.txt",
+   "--out",
+   "o5.json"
+  ],
+  "exit": 0,
+  "seconds": 0.558,
+  "stdout": "timewitness stamp made: committed no earlier than 2026-11-23T13:05:07Z and no later than 2026-11-23T13:05:09Z (window 2s; 2 of 2 servers checkable)\nwritten to o5.json; check it with: timewitness --check-stamp o5.json\n",
+  "stderr": ""
+ },
+ {
+  "args": [
+   "--stamp",
+   "m1.txt",
+   "--record",
+   "stamp-record.json",
+   "--out",
+   "recorded.json"
+  ],
+  "exit": 0,
+  "seconds": 0.453,
+  "stdout": "timewitness stamp made: committed no earlier than 2026-11-23T13:05:07Z and no later than 2026-11-23T13:05:09Z (window 2s; 2 of 2 servers checkable)\nwritten to recorded.json; check it with: timewitness --check-stamp recorded.json\n",
+  "stderr": ""
+ },
+ {
+  "args": [
+   "--stamp",
+   "-"
+  ],
+  "exit": 0,
+  "seconds": 0.468,
+  "stdout": "(stamp json)",
+  "stderr": "timewitness stamp made: committed no earlier than 2026-11-23T13:05:08Z and no later than 2026-11-23T13:05:10Z (window 2s; 2 of 2 servers checkable)\n"
+ },
+ {
+  "args": [
+   "--stamp",
+   "-"
+  ],
+  "exit": 0,
+  "seconds": 0.487,
+  "stdout": "(stamp json)",
+  "stderr": "timewitness stamp made: committed no earlier than 2026-11-23T13:05:09Z and no later than 2026-11-23T13:05:11Z (window 2s; 2 of 2 servers checkable)\n"
+ },
+ {
+  "args": [
+   "--stamp",
+   "-"
+  ],
+  "exit": 0,
+  "seconds": 0.469,
+  "stdout": "(stamp json)",
+  "stderr": "timewitness stamp made: committed no earlier than 2026-11-23T13:05:11Z and no later than 2026-11-23T13:05:13Z (window 2s; 2 of 2 servers checkable)\n"
+ },
+ {
+  "args": [
+   "--stamp",
+   "-"
+  ],
+  "exit": 0,
+  "seconds": 0.508,
+  "stdout": "(stamp json)",
+  "stderr": "timewitness stamp made: committed no earlier than 2026-11-23T13:05:12Z and no later than 2026-11-23T13:05:14Z (window 2s; 2 of 2 servers checkable)\n"
+ },
+ {
+  "args": [
+   "--stamp",
+   "-"
+  ],
+  "exit": 0,
+  "seconds": 0.474,
+  "stdout": "(stamp json)",
+  "stderr": "timewitness stamp made: committed no earlier than 2026-11-23T13:05:14Z and no later than 2026-11-23T13:05:16Z (window 2s; 2 of 2 servers checkable)\n"
+ },
+ {
+  "args": [
+   "--stamp",
+   "-"
+  ],
+  "exit": 0,
+  "seconds": 0.569,
+  "stdout": "(stamp json)",
+  "stderr": "timewitness stamp made: committed no earlier than 2026-11-23T13:05:15Z and no later than 2026-11-23T13:05:17Z (window 2s; 2 of 2 servers checkable)\n"
+ },
+ {
+  "args": [
+   "--stamp",
+   "-"
+  ],
+  "exit": 0,
+  "seconds": 0.518,
+  "stdout": "(stamp json)",
+  "stderr": "timewitness stamp made: committed no earlier than 2026-11-23T13:05:17Z and no later than 2026-11-23T13:05:19Z (window 2s; 2 of 2 servers checkable)\n"
+ },
+ {
+  "args": [
+   "--stamp",
+   "-"
+  ],
+  "exit": 0,
+  "seconds": 0.542,
+  "stdout": "(stamp json)",
+  "stderr": "timewitness stamp made: committed no earlier than 2026-11-23T13:05:18Z and no later than 2026-11-23T13:05:20Z (window 2s; 2 of 2 servers checkable)\n"
+ },
+ {
+  "args": [
+   "--stamp",
+   "-"
+  ],
+  "exit": 0,
+  "seconds": 0.55,
+  "stdout": "(stamp json)",
+  "stderr": "timewitness stamp made: committed no earlier than 2026-11-23T13:05:20Z and no later than 2026-11-23T13:05:22Z (window 2s; 2 of 2 servers checkable)\nnote: time.txryan.com seal, try 1: answer not usable (failed: delegation signature, response signature, time inside the delegation window)\n"
+ },
+ {
+  "args": [
+   "--stamp",
+   "-"
+  ],
+  "exit": 0,
+  "seconds": 0.46,
+  "stdout": "(stamp json)",
+  "stderr": "timewitness stamp made: committed no earlier than 2026-11-23T13:05:21Z and no later than 2026-11-23T13:05:23Z (window 2s; 2 of 2 servers checkable)\n"
+ }
+]

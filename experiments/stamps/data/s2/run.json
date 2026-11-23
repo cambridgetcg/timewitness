@@ -1,0 +1,47 @@
+{
+ "agents": {
+  "ahead-2h": {
+   "clock": "+2h",
+   "faketime_env": true,
+   "offset_at_start_s": 7200.000000715256,
+   "python": "3.15.2",
+   "tool_version": "0.2.0"
+  },
+  "behind-7m": {
+   "clock": "-7m",
+   "faketime_env": true,
+   "offset_at_start_s": -419.9999997615814,
+   "python": "3.15.2",
+   "tool_version": "0.2.0"
+  },
+  "set-back-june": {
+   "clock": "@2026-06-17 12:00:00",
+   "faketime_env": true,
+   "offset_at_start_s": -13748978.96821332,
+   "python": "3.15.2",
+   "tool_version": "0.2.0"
+  },
+  "true": {
+   "clock": "true",
+   "faketime_env": false,
+   "offset_at_start_s": 9.5367431640625e-07,
+   "python": "3.15.2",
+   "tool_version": "0.2.0"
+  }
+ },
+ "driver_python": "3.15.2",
+ "faketime": "/opt/homebrew/bin/faketime: Version 0.9.13",
+ "first_planned_true": 1795443002.175116,
+ "label": "s2",
+ "late_sends": [],
+ "machine": "arm64",
+ "map_end": 1793136197.7241375,
+ "map_start": 1793136197.7231555,
+ "part": "s2",
+ "platform": "macOS-26.6.2",
+ "rows": 84,
+ "stamped": 84,
+ "tool_version": [
+  "0.2.0"
+ ]
+}

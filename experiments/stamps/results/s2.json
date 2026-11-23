@@ -1,0 +1,2877 @@
+{
+ "by_probe": [
+  {
+   "a": {
+    "right": 10,
+    "undecided": 0,
+    "wrong": 6
+   },
+   "a_on_commit": {
+    "right": 10,
+    "undecided": 0,
+    "wrong": 6
+   },
+   "a_text": {
+    "right": 10,
+    "undecided": 0,
+    "wrong": 6
+   },
+   "a_ties": 0,
+   "b": {
+    "right": 16,
+    "undecided": 0,
+    "wrong": 0
+   },
+   "b_no_tolerance": {
+    "right": 16,
+    "undecided": 0,
+    "wrong": 0
+   },
+   "checks": 16,
+   "probe_s": 30.0,
+   "true_elapsed_commit_s": {
+    "max": 30.082,
+    "median": 30.055500000000002,
+    "min": 30.023,
+    "n": 16
+   },
+   "true_elapsed_read_s": {
+    "max": 30.004,
+    "median": 30.0,
+    "min": 29.995,
+    "n": 16
+   },
+   "truth_expired": 0
+  },
+  {
+   "a": {
+    "right": 10,
+    "undecided": 0,
+    "wrong": 6
+   },
+   "a_on_commit": {
+    "right": 10,
+    "undecided": 0,
+    "wrong": 6
+   },
+   "a_text": {
+    "right": 10,
+    "undecided": 0,
+    "wrong": 6
+   },
+   "a_ties": 0,
+   "b": {
+    "right": 0,
+    "undecided": 16,
+    "wrong": 0
+   },
+   "b_no_tolerance": {
+    "right": 16,
+    "undecided": 0,
+    "wrong": 0
+   },
+   "checks": 16,
+   "probe_s": 57.0,
+   "true_elapsed_commit_s": {
+    "max": 57.114,
+    "median": 57.061,
+    "min": 57.048,
+    "n": 16
+   },
+   "true_elapsed_read_s": {
+    "max": 57.004,
+    "median": 56.9995,
+    "min": 56.995,
+    "n": 16
+   },
+   "truth_expired": 0
+  },
+  {
+   "a": {
+    "right": 10,
+    "undecided": 0,
+    "wrong": 6
+   },
+   "a_on_commit": {
+    "right": 8,
+    "undecided": 0,
+    "wrong": 8
+   },
+   "a_text": {
+    "right": 11,
+    "undecided": 0,
+    "wrong": 5
+   },
+   "a_ties": 16,
+   "b": {
+    "right": 0,
+    "undecided": 16,
+    "wrong": 0
+   },
+   "b_no_tolerance": {
+    "right": 0,
+    "undecided": 16,
+    "wrong": 0
+   },
+   "checks": 16,
+   "probe_s": 60.0,
+   "true_elapsed_commit_s": {
+    "max": 60.076,
+    "median": 60.064,
+    "min": 60.038,
+    "n": 16
+   },
+   "true_elapsed_read_s": {
+    "max": 60.004,
+    "median": 59.999,
+    "min": 59.995,
+    "n": 16
+   },
+   "truth_expired": 16
+  },
+  {
+   "a": {
+    "right": 10,
+    "undecided": 0,
+    "wrong": 6
+   },
+   "a_on_commit": {
+    "right": 10,
+    "undecided": 0,
+    "wrong": 6
+   },
+   "a_text": {
+    "right": 10,
+    "undecided": 0,
+    "wrong": 6
+   },
+   "a_ties": 0,
+   "b": {
+    "right": 0,
+    "undecided": 16,
+    "wrong": 0
+   },
+   "b_no_tolerance": {
+    "right": 16,
+    "undecided": 0,
+    "wrong": 0
+   },
+   "checks": 16,
+   "probe_s": 63.0,
+   "true_elapsed_commit_s": {
+    "max": 63.138,
+    "median": 63.048,
+    "min": 63.027,
+    "n": 16
+   },
+   "true_elapsed_read_s": {
+    "max": 63.004,
+    "median": 62.9985,
+    "min": 62.996,
+    "n": 16
+   },
+   "truth_expired": 16
+  },
+  {
+   "a": {
+    "right": 10,
+    "undecided": 0,
+    "wrong": 6
+   },
+   "a_on_commit": {
+    "right": 10,
+    "undecided": 0,
+    "wrong": 6
+   },
+   "a_text": {
+    "right": 10,
+    "undecided": 0,
+    "wrong": 6
+   },
+   "a_ties": 0,
+   "b": {
+    "right": 16,
+    "undecided": 0,
+    "wrong": 0
+   },
+   "b_no_tolerance": {
+    "right": 16,
+    "undecided": 0,
+    "wrong": 0
+   },
+   "checks": 16,
+   "probe_s": 75.0,
+   "true_elapsed_commit_s": {
+    "max": 75.122,
+    "median": 75.0615,
+    "min": 75.027,
+    "n": 16
+   },
+   "true_elapsed_read_s": {
+    "max": 75.004,
+    "median": 74.9995,
+    "min": 74.999,
+    "n": 16
+   },
+   "truth_expired": 16
+  }
+ ],
+ "checks": [
+  {
+   "a": "wrong",
+   "a_expired": true,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": false,
+   "b_gap_s": 28,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 32,
+   "b_valid": true,
+   "challenger": "ahead-2h",
+   "holder": "true",
+   "id": "s2-L1-check-30-ahead-2h",
+   "lease": "L1",
+   "probe_s": 30.0,
+   "self_reported_elapsed_s": 7230.0,
+   "self_reported_elapsed_text_s": 7230.0,
+   "true_elapsed_commit_s": 30.056,
+   "true_elapsed_read_s": 30.0
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": false,
+   "b_gap_s": 28,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 32,
+   "b_valid": true,
+   "challenger": "behind-7m",
+   "holder": "true",
+   "id": "s2-L1-check-30-behind-7m",
+   "lease": "L1",
+   "probe_s": 30.0,
+   "self_reported_elapsed_s": -390.0,
+   "self_reported_elapsed_text_s": -390.0,
+   "true_elapsed_commit_s": 30.056,
+   "true_elapsed_read_s": 30.0
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": false,
+   "b_gap_s": 28,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 32,
+   "b_valid": true,
+   "challenger": "set-back-june",
+   "holder": "true",
+   "id": "s2-L1-check-30-set-back-june",
+   "lease": "L1",
+   "probe_s": 30.0,
+   "self_reported_elapsed_s": -13748948.968,
+   "self_reported_elapsed_text_s": -13748948.968,
+   "true_elapsed_commit_s": 30.055,
+   "true_elapsed_read_s": 30.0
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": false,
+   "b_gap_s": 28,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 32,
+   "b_valid": true,
+   "challenger": "true",
+   "holder": "true",
+   "id": "s2-L1-check-30-true",
+   "lease": "L1",
+   "probe_s": 30.0,
+   "self_reported_elapsed_s": 30.0,
+   "self_reported_elapsed_text_s": 30.0,
+   "true_elapsed_commit_s": 30.055,
+   "true_elapsed_read_s": 30.0
+  },
+  {
+   "a": "wrong",
+   "a_expired": true,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": false,
+   "b_gap_s": 28,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 32,
+   "b_valid": true,
+   "challenger": "ahead-2h",
+   "holder": "behind-7m",
+   "id": "s2-L2-check-30-ahead-2h",
+   "lease": "L2",
+   "probe_s": 30.0,
+   "self_reported_elapsed_s": 7650.004,
+   "self_reported_elapsed_text_s": 7650.004,
+   "true_elapsed_commit_s": 30.082,
+   "true_elapsed_read_s": 30.004
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": false,
+   "b_gap_s": 28,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 32,
+   "b_valid": true,
+   "challenger": "behind-7m",
+   "holder": "behind-7m",
+   "id": "s2-L2-check-30-behind-7m",
+   "lease": "L2",
+   "probe_s": 30.0,
+   "self_reported_elapsed_s": 30.004,
+   "self_reported_elapsed_text_s": 30.004,
+   "true_elapsed_commit_s": 30.082,
+   "true_elapsed_read_s": 30.004
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": false,
+   "b_gap_s": 28,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 32,
+   "b_valid": true,
+   "challenger": "set-back-june",
+   "holder": "behind-7m",
+   "id": "s2-L2-check-30-set-back-june",
+   "lease": "L2",
+   "probe_s": 30.0,
+   "self_reported_elapsed_s": -13748528.964,
+   "self_reported_elapsed_text_s": -13748528.964,
+   "true_elapsed_commit_s": 30.082,
+   "true_elapsed_read_s": 30.004
+  },
+  {
+   "a": "wrong",
+   "a_expired": true,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": false,
+   "b_gap_s": 28,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 32,
+   "b_valid": true,
+   "challenger": "true",
+   "holder": "behind-7m",
+   "id": "s2-L2-check-30-true",
+   "lease": "L2",
+   "probe_s": 30.0,
+   "self_reported_elapsed_s": 450.005,
+   "self_reported_elapsed_text_s": 450.004,
+   "true_elapsed_commit_s": 30.08,
+   "true_elapsed_read_s": 30.004
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": false,
+   "b_gap_s": 28,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 32,
+   "b_valid": true,
+   "challenger": "ahead-2h",
+   "holder": "ahead-2h",
+   "id": "s2-L3-check-30-ahead-2h",
+   "lease": "L3",
+   "probe_s": 30.0,
+   "self_reported_elapsed_s": 29.996,
+   "self_reported_elapsed_text_s": 29.996,
+   "true_elapsed_commit_s": 30.08,
+   "true_elapsed_read_s": 29.995
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": false,
+   "b_gap_s": 28,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 32,
+   "b_valid": true,
+   "challenger": "behind-7m",
+   "holder": "ahead-2h",
+   "id": "s2-L3-check-30-behind-7m",
+   "lease": "L3",
+   "probe_s": 30.0,
+   "self_reported_elapsed_s": -7590.004,
+   "self_reported_elapsed_text_s": -7590.004,
+   "true_elapsed_commit_s": 30.051,
+   "true_elapsed_read_s": 29.995
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": false,
+   "b_gap_s": 28,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 32,
+   "b_valid": true,
+   "challenger": "set-back-june",
+   "holder": "ahead-2h",
+   "id": "s2-L3-check-30-set-back-june",
+   "lease": "L3",
+   "probe_s": 30.0,
+   "self_reported_elapsed_s": -13756148.973,
+   "self_reported_elapsed_text_s": -13756148.973,
+   "true_elapsed_commit_s": 30.051,
+   "true_elapsed_read_s": 29.995
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": false,
+   "b_gap_s": 28,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 32,
+   "b_valid": true,
+   "challenger": "true",
+   "holder": "ahead-2h",
+   "id": "s2-L3-check-30-true",
+   "lease": "L3",
+   "probe_s": 30.0,
+   "self_reported_elapsed_s": -7170.004,
+   "self_reported_elapsed_text_s": -7170.004,
+   "true_elapsed_commit_s": 30.08,
+   "true_elapsed_read_s": 29.996
+  },
+  {
+   "a": "wrong",
+   "a_expired": true,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": false,
+   "b_gap_s": 28,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 32,
+   "b_valid": true,
+   "challenger": "ahead-2h",
+   "holder": "set-back-june",
+   "id": "s2-L4-check-30-ahead-2h",
+   "lease": "L4",
+   "probe_s": 30.0,
+   "self_reported_elapsed_s": 13756208.968,
+   "self_reported_elapsed_text_s": 13756208.968,
+   "true_elapsed_commit_s": 30.023,
+   "true_elapsed_read_s": 29.999
+  },
+  {
+   "a": "wrong",
+   "a_expired": true,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": false,
+   "b_gap_s": 28,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 32,
+   "b_valid": true,
+   "challenger": "behind-7m",
+   "holder": "set-back-june",
+   "id": "s2-L4-check-30-behind-7m",
+   "lease": "L4",
+   "probe_s": 30.0,
+   "self_reported_elapsed_s": 13748588.968,
+   "self_reported_elapsed_text_s": 13748588.968,
+   "true_elapsed_commit_s": 30.027,
+   "true_elapsed_read_s": 30.0
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": false,
+   "b_gap_s": 28,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 32,
+   "b_valid": true,
+   "challenger": "set-back-june",
+   "holder": "set-back-june",
+   "id": "s2-L4-check-30-set-back-june",
+   "lease": "L4",
+   "probe_s": 30.0,
+   "self_reported_elapsed_s": 30.0,
+   "self_reported_elapsed_text_s": 30.0,
+   "true_elapsed_commit_s": 30.026,
+   "true_elapsed_read_s": 30.0
+  },
+  {
+   "a": "wrong",
+   "a_expired": true,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": false,
+   "b_gap_s": 28,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 32,
+   "b_valid": true,
+   "challenger": "true",
+   "holder": "set-back-june",
+   "id": "s2-L4-check-30-true",
+   "lease": "L4",
+   "probe_s": 30.0,
+   "self_reported_elapsed_s": 13749008.969,
+   "self_reported_elapsed_text_s": 13749008.969,
+   "true_elapsed_commit_s": 30.027,
+   "true_elapsed_read_s": 30.001
+  },
+  {
+   "a": "wrong",
+   "a_expired": true,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 55,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 59,
+   "b_valid": true,
+   "challenger": "ahead-2h",
+   "holder": "true",
+   "id": "s2-L1-check-57-ahead-2h",
+   "lease": "L1",
+   "probe_s": 57.0,
+   "self_reported_elapsed_s": 7257.0,
+   "self_reported_elapsed_text_s": 7257.0,
+   "true_elapsed_commit_s": 57.114,
+   "true_elapsed_read_s": 57.0
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 55,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 59,
+   "b_valid": true,
+   "challenger": "behind-7m",
+   "holder": "true",
+   "id": "s2-L1-check-57-behind-7m",
+   "lease": "L1",
+   "probe_s": 57.0,
+   "self_reported_elapsed_s": -363.0,
+   "self_reported_elapsed_text_s": -363.0,
+   "true_elapsed_commit_s": 57.114,
+   "true_elapsed_read_s": 57.0
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 55,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 59,
+   "b_valid": true,
+   "challenger": "set-back-june",
+   "holder": "true",
+   "id": "s2-L1-check-57-set-back-june",
+   "lease": "L1",
+   "probe_s": 57.0,
+   "self_reported_elapsed_s": -13748921.968,
+   "self_reported_elapsed_text_s": -13748921.969,
+   "true_elapsed_commit_s": 57.113,
+   "true_elapsed_read_s": 57.0
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 55,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 59,
+   "b_valid": true,
+   "challenger": "true",
+   "holder": "true",
+   "id": "s2-L1-check-57-true",
+   "lease": "L1",
+   "probe_s": 57.0,
+   "self_reported_elapsed_s": 57.0,
+   "self_reported_elapsed_text_s": 57.0,
+   "true_elapsed_commit_s": 57.114,
+   "true_elapsed_read_s": 57.0
+  },
+  {
+   "a": "wrong",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "wrong",
+   "a_tie": true,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 58,
+   "b_no_tolerance": "undecided",
+   "b_references_claim": true,
+   "b_span_s": 62,
+   "b_valid": true,
+   "challenger": "ahead-2h",
+   "holder": "true",
+   "id": "s2-L1-check-60-ahead-2h",
+   "lease": "L1",
+   "probe_s": 60.0,
+   "self_reported_elapsed_s": 7260.0,
+   "self_reported_elapsed_text_s": 7259.999,
+   "true_elapsed_commit_s": 60.065,
+   "true_elapsed_read_s": 59.999
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "wrong",
+   "a_text": "right",
+   "a_tie": true,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 58,
+   "b_no_tolerance": "undecided",
+   "b_references_claim": true,
+   "b_span_s": 62,
+   "b_valid": true,
+   "challenger": "behind-7m",
+   "holder": "true",
+   "id": "s2-L1-check-60-behind-7m",
+   "lease": "L1",
+   "probe_s": 60.0,
+   "self_reported_elapsed_s": -360.0,
+   "self_reported_elapsed_text_s": -360.0,
+   "true_elapsed_commit_s": 60.065,
+   "true_elapsed_read_s": 59.999
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "wrong",
+   "a_text": "right",
+   "a_tie": true,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 58,
+   "b_no_tolerance": "undecided",
+   "b_references_claim": true,
+   "b_span_s": 62,
+   "b_valid": true,
+   "challenger": "set-back-june",
+   "holder": "true",
+   "id": "s2-L1-check-60-set-back-june",
+   "lease": "L1",
+   "probe_s": 60.0,
+   "self_reported_elapsed_s": -13748918.968,
+   "self_reported_elapsed_text_s": -13748918.969,
+   "true_elapsed_commit_s": 60.065,
+   "true_elapsed_read_s": 59.999
+  },
+  {
+   "a": "wrong",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": true,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 58,
+   "b_no_tolerance": "undecided",
+   "b_references_claim": true,
+   "b_span_s": 62,
+   "b_valid": true,
+   "challenger": "true",
+   "holder": "true",
+   "id": "s2-L1-check-60-true",
+   "lease": "L1",
+   "probe_s": 60.0,
+   "self_reported_elapsed_s": 60.0,
+   "self_reported_elapsed_text_s": 60.0,
+   "true_elapsed_commit_s": 60.059,
+   "true_elapsed_read_s": 60.0
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 61,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 65,
+   "b_valid": true,
+   "challenger": "ahead-2h",
+   "holder": "true",
+   "id": "s2-L1-check-63-ahead-2h",
+   "lease": "L1",
+   "probe_s": 63.0,
+   "self_reported_elapsed_s": 7262.998,
+   "self_reported_elapsed_text_s": 7262.998,
+   "true_elapsed_commit_s": 63.027,
+   "true_elapsed_read_s": 62.998
+  },
+  {
+   "a": "wrong",
+   "a_expired": false,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 61,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 65,
+   "b_valid": true,
+   "challenger": "behind-7m",
+   "holder": "true",
+   "id": "s2-L1-check-63-behind-7m",
+   "lease": "L1",
+   "probe_s": 63.0,
+   "self_reported_elapsed_s": -357.002,
+   "self_reported_elapsed_text_s": -357.002,
+   "true_elapsed_commit_s": 63.033,
+   "true_elapsed_read_s": 62.998
+  },
+  {
+   "a": "wrong",
+   "a_expired": false,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 61,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 65,
+   "b_valid": true,
+   "challenger": "set-back-june",
+   "holder": "true",
+   "id": "s2-L1-check-63-set-back-june",
+   "lease": "L1",
+   "probe_s": 63.0,
+   "self_reported_elapsed_s": -13748915.97,
+   "self_reported_elapsed_text_s": -13748915.97,
+   "true_elapsed_commit_s": 63.032,
+   "true_elapsed_read_s": 62.998
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 61,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 65,
+   "b_valid": true,
+   "challenger": "true",
+   "holder": "true",
+   "id": "s2-L1-check-63-true",
+   "lease": "L1",
+   "probe_s": 63.0,
+   "self_reported_elapsed_s": 62.998,
+   "self_reported_elapsed_text_s": 62.998,
+   "true_elapsed_commit_s": 63.074,
+   "true_elapsed_read_s": 62.998
+  },
+  {
+   "a": "wrong",
+   "a_expired": true,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 55,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 59,
+   "b_valid": true,
+   "challenger": "ahead-2h",
+   "holder": "behind-7m",
+   "id": "s2-L2-check-57-ahead-2h",
+   "lease": "L2",
+   "probe_s": 57.0,
+   "self_reported_elapsed_s": 7677.004,
+   "self_reported_elapsed_text_s": 7677.004,
+   "true_elapsed_commit_s": 57.064,
+   "true_elapsed_read_s": 57.004
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 55,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 59,
+   "b_valid": true,
+   "challenger": "behind-7m",
+   "holder": "behind-7m",
+   "id": "s2-L2-check-57-behind-7m",
+   "lease": "L2",
+   "probe_s": 57.0,
+   "self_reported_elapsed_s": 57.004,
+   "self_reported_elapsed_text_s": 57.004,
+   "true_elapsed_commit_s": 57.066,
+   "true_elapsed_read_s": 57.004
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 55,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 59,
+   "b_valid": true,
+   "challenger": "set-back-june",
+   "holder": "behind-7m",
+   "id": "s2-L2-check-57-set-back-june",
+   "lease": "L2",
+   "probe_s": 57.0,
+   "self_reported_elapsed_s": -13748501.964,
+   "self_reported_elapsed_text_s": -13748501.964,
+   "true_elapsed_commit_s": 57.075,
+   "true_elapsed_read_s": 57.004
+  },
+  {
+   "a": "wrong",
+   "a_expired": true,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 55,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 59,
+   "b_valid": true,
+   "challenger": "true",
+   "holder": "behind-7m",
+   "id": "s2-L2-check-57-true",
+   "lease": "L2",
+   "probe_s": 57.0,
+   "self_reported_elapsed_s": 477.004,
+   "self_reported_elapsed_text_s": 477.004,
+   "true_elapsed_commit_s": 57.07,
+   "true_elapsed_read_s": 57.004
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": true,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 58,
+   "b_no_tolerance": "undecided",
+   "b_references_claim": true,
+   "b_span_s": 62,
+   "b_valid": true,
+   "challenger": "ahead-2h",
+   "holder": "behind-7m",
+   "id": "s2-L2-check-60-ahead-2h",
+   "lease": "L2",
+   "probe_s": 60.0,
+   "self_reported_elapsed_s": 7680.004,
+   "self_reported_elapsed_text_s": 7680.004,
+   "true_elapsed_commit_s": 60.038,
+   "true_elapsed_read_s": 60.004
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": true,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 58,
+   "b_no_tolerance": "undecided",
+   "b_references_claim": true,
+   "b_span_s": 62,
+   "b_valid": true,
+   "challenger": "behind-7m",
+   "holder": "behind-7m",
+   "id": "s2-L2-check-60-behind-7m",
+   "lease": "L2",
+   "probe_s": 60.0,
+   "self_reported_elapsed_s": 60.004,
+   "self_reported_elapsed_text_s": 60.004,
+   "true_elapsed_commit_s": 60.038,
+   "true_elapsed_read_s": 60.004
+  },
+  {
+   "a": "wrong",
+   "a_expired": false,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": true,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 58,
+   "b_no_tolerance": "undecided",
+   "b_references_claim": true,
+   "b_span_s": 62,
+   "b_valid": true,
+   "challenger": "set-back-june",
+   "holder": "behind-7m",
+   "id": "s2-L2-check-60-set-back-june",
+   "lease": "L2",
+   "probe_s": 60.0,
+   "self_reported_elapsed_s": -13748498.964,
+   "self_reported_elapsed_text_s": -13748498.964,
+   "true_elapsed_commit_s": 60.066,
+   "true_elapsed_read_s": 60.004
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": true,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 58,
+   "b_no_tolerance": "undecided",
+   "b_references_claim": true,
+   "b_span_s": 62,
+   "b_valid": true,
+   "challenger": "true",
+   "holder": "behind-7m",
+   "id": "s2-L2-check-60-true",
+   "lease": "L2",
+   "probe_s": 60.0,
+   "self_reported_elapsed_s": 480.004,
+   "self_reported_elapsed_text_s": 480.004,
+   "true_elapsed_commit_s": 60.076,
+   "true_elapsed_read_s": 60.004
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 61,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 65,
+   "b_valid": true,
+   "challenger": "ahead-2h",
+   "holder": "behind-7m",
+   "id": "s2-L2-check-63-ahead-2h",
+   "lease": "L2",
+   "probe_s": 63.0,
+   "self_reported_elapsed_s": 7683.004,
+   "self_reported_elapsed_text_s": 7683.004,
+   "true_elapsed_commit_s": 63.083,
+   "true_elapsed_read_s": 63.004
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 61,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 65,
+   "b_valid": true,
+   "challenger": "behind-7m",
+   "holder": "behind-7m",
+   "id": "s2-L2-check-63-behind-7m",
+   "lease": "L2",
+   "probe_s": 63.0,
+   "self_reported_elapsed_s": 63.004,
+   "self_reported_elapsed_text_s": 63.004,
+   "true_elapsed_commit_s": 63.076,
+   "true_elapsed_read_s": 63.004
+  },
+  {
+   "a": "wrong",
+   "a_expired": false,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 61,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 65,
+   "b_valid": true,
+   "challenger": "set-back-june",
+   "holder": "behind-7m",
+   "id": "s2-L2-check-63-set-back-june",
+   "lease": "L2",
+   "probe_s": 63.0,
+   "self_reported_elapsed_s": -13748495.964,
+   "self_reported_elapsed_text_s": -13748495.964,
+   "true_elapsed_commit_s": 63.077,
+   "true_elapsed_read_s": 63.004
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 61,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 65,
+   "b_valid": true,
+   "challenger": "true",
+   "holder": "behind-7m",
+   "id": "s2-L2-check-63-true",
+   "lease": "L2",
+   "probe_s": 63.0,
+   "self_reported_elapsed_s": 483.004,
+   "self_reported_elapsed_text_s": 483.004,
+   "true_elapsed_commit_s": 63.1,
+   "true_elapsed_read_s": 63.004
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 55,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 59,
+   "b_valid": true,
+   "challenger": "ahead-2h",
+   "holder": "ahead-2h",
+   "id": "s2-L3-check-57-ahead-2h",
+   "lease": "L3",
+   "probe_s": 57.0,
+   "self_reported_elapsed_s": 56.996,
+   "self_reported_elapsed_text_s": 56.996,
+   "true_elapsed_commit_s": 57.057,
+   "true_elapsed_read_s": 56.995
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 55,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 59,
+   "b_valid": true,
+   "challenger": "behind-7m",
+   "holder": "ahead-2h",
+   "id": "s2-L3-check-57-behind-7m",
+   "lease": "L3",
+   "probe_s": 57.0,
+   "self_reported_elapsed_s": -7563.004,
+   "self_reported_elapsed_text_s": -7563.004,
+   "true_elapsed_commit_s": 57.048,
+   "true_elapsed_read_s": 56.995
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 55,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 59,
+   "b_valid": true,
+   "challenger": "set-back-june",
+   "holder": "ahead-2h",
+   "id": "s2-L3-check-57-set-back-june",
+   "lease": "L3",
+   "probe_s": 57.0,
+   "self_reported_elapsed_s": -13756121.972,
+   "self_reported_elapsed_text_s": -13756121.972,
+   "true_elapsed_commit_s": 57.057,
+   "true_elapsed_read_s": 56.995
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 55,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 59,
+   "b_valid": true,
+   "challenger": "true",
+   "holder": "ahead-2h",
+   "id": "s2-L3-check-57-true",
+   "lease": "L3",
+   "probe_s": 57.0,
+   "self_reported_elapsed_s": -7143.004,
+   "self_reported_elapsed_text_s": -7143.004,
+   "true_elapsed_commit_s": 57.048,
+   "true_elapsed_read_s": 56.995
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "wrong",
+   "a_text": "right",
+   "a_tie": true,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 58,
+   "b_no_tolerance": "undecided",
+   "b_references_claim": true,
+   "b_span_s": 62,
+   "b_valid": true,
+   "challenger": "ahead-2h",
+   "holder": "ahead-2h",
+   "id": "s2-L3-check-60-ahead-2h",
+   "lease": "L3",
+   "probe_s": 60.0,
+   "self_reported_elapsed_s": 59.996,
+   "self_reported_elapsed_text_s": 59.996,
+   "true_elapsed_commit_s": 60.053,
+   "true_elapsed_read_s": 59.995
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "wrong",
+   "a_text": "right",
+   "a_tie": true,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 58,
+   "b_no_tolerance": "undecided",
+   "b_references_claim": true,
+   "b_span_s": 62,
+   "b_valid": true,
+   "challenger": "behind-7m",
+   "holder": "ahead-2h",
+   "id": "s2-L3-check-60-behind-7m",
+   "lease": "L3",
+   "probe_s": 60.0,
+   "self_reported_elapsed_s": -7560.004,
+   "self_reported_elapsed_text_s": -7560.004,
+   "true_elapsed_commit_s": 60.043,
+   "true_elapsed_read_s": 59.995
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "wrong",
+   "a_text": "right",
+   "a_tie": true,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 58,
+   "b_no_tolerance": "undecided",
+   "b_references_claim": true,
+   "b_span_s": 62,
+   "b_valid": true,
+   "challenger": "set-back-june",
+   "holder": "ahead-2h",
+   "id": "s2-L3-check-60-set-back-june",
+   "lease": "L3",
+   "probe_s": 60.0,
+   "self_reported_elapsed_s": -13756118.972,
+   "self_reported_elapsed_text_s": -13756118.972,
+   "true_elapsed_commit_s": 60.053,
+   "true_elapsed_read_s": 59.995
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "wrong",
+   "a_text": "right",
+   "a_tie": true,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 58,
+   "b_no_tolerance": "undecided",
+   "b_references_claim": true,
+   "b_span_s": 62,
+   "b_valid": true,
+   "challenger": "true",
+   "holder": "ahead-2h",
+   "id": "s2-L3-check-60-true",
+   "lease": "L3",
+   "probe_s": 60.0,
+   "self_reported_elapsed_s": -7140.004,
+   "self_reported_elapsed_text_s": -7140.004,
+   "true_elapsed_commit_s": 60.053,
+   "true_elapsed_read_s": 59.996
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": true,
+   "b_gap_s": 73,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 77,
+   "b_valid": true,
+   "challenger": "ahead-2h",
+   "holder": "true",
+   "id": "s2-L1-check-75-ahead-2h",
+   "lease": "L1",
+   "probe_s": 75.0,
+   "self_reported_elapsed_s": 7275.0,
+   "self_reported_elapsed_text_s": 7275.0,
+   "true_elapsed_commit_s": 75.121,
+   "true_elapsed_read_s": 75.0
+  },
+  {
+   "a": "wrong",
+   "a_expired": false,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": true,
+   "b_gap_s": 73,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 77,
+   "b_valid": true,
+   "challenger": "behind-7m",
+   "holder": "true",
+   "id": "s2-L1-check-75-behind-7m",
+   "lease": "L1",
+   "probe_s": 75.0,
+   "self_reported_elapsed_s": -345.0,
+   "self_reported_elapsed_text_s": -345.0,
+   "true_elapsed_commit_s": 75.111,
+   "true_elapsed_read_s": 75.0
+  },
+  {
+   "a": "wrong",
+   "a_expired": false,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": true,
+   "b_gap_s": 73,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 77,
+   "b_valid": true,
+   "challenger": "set-back-june",
+   "holder": "true",
+   "id": "s2-L1-check-75-set-back-june",
+   "lease": "L1",
+   "probe_s": 75.0,
+   "self_reported_elapsed_s": -13748903.968,
+   "self_reported_elapsed_text_s": -13748903.968,
+   "true_elapsed_commit_s": 75.122,
+   "true_elapsed_read_s": 75.0
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": true,
+   "b_gap_s": 73,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 77,
+   "b_valid": true,
+   "challenger": "true",
+   "holder": "true",
+   "id": "s2-L1-check-75-true",
+   "lease": "L1",
+   "probe_s": 75.0,
+   "self_reported_elapsed_s": 75.0,
+   "self_reported_elapsed_text_s": 75.0,
+   "true_elapsed_commit_s": 75.111,
+   "true_elapsed_read_s": 75.0
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 61,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 65,
+   "b_valid": true,
+   "challenger": "ahead-2h",
+   "holder": "ahead-2h",
+   "id": "s2-L3-check-63-ahead-2h",
+   "lease": "L3",
+   "probe_s": 63.0,
+   "self_reported_elapsed_s": 63.0,
+   "self_reported_elapsed_text_s": 63.0,
+   "true_elapsed_commit_s": 63.138,
+   "true_elapsed_read_s": 62.999
+  },
+  {
+   "a": "wrong",
+   "a_expired": false,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 61,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 65,
+   "b_valid": true,
+   "challenger": "behind-7m",
+   "holder": "ahead-2h",
+   "id": "s2-L3-check-63-behind-7m",
+   "lease": "L3",
+   "probe_s": 63.0,
+   "self_reported_elapsed_s": -7557.0,
+   "self_reported_elapsed_text_s": -7557.0,
+   "true_elapsed_commit_s": 63.048,
+   "true_elapsed_read_s": 62.999
+  },
+  {
+   "a": "wrong",
+   "a_expired": false,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 61,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 65,
+   "b_valid": true,
+   "challenger": "set-back-june",
+   "holder": "ahead-2h",
+   "id": "s2-L3-check-63-set-back-june",
+   "lease": "L3",
+   "probe_s": 63.0,
+   "self_reported_elapsed_s": -13756115.968,
+   "self_reported_elapsed_text_s": -13756115.968,
+   "true_elapsed_commit_s": 63.127,
+   "true_elapsed_read_s": 62.999
+  },
+  {
+   "a": "wrong",
+   "a_expired": false,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 61,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 65,
+   "b_valid": true,
+   "challenger": "true",
+   "holder": "ahead-2h",
+   "id": "s2-L3-check-63-true",
+   "lease": "L3",
+   "probe_s": 63.0,
+   "self_reported_elapsed_s": -7137.0,
+   "self_reported_elapsed_text_s": -7137.0,
+   "true_elapsed_commit_s": 63.048,
+   "true_elapsed_read_s": 62.999
+  },
+  {
+   "a": "wrong",
+   "a_expired": true,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 55,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 59,
+   "b_valid": true,
+   "challenger": "ahead-2h",
+   "holder": "set-back-june",
+   "id": "s2-L4-check-57-ahead-2h",
+   "lease": "L4",
+   "probe_s": 57.0,
+   "self_reported_elapsed_s": 13756235.967,
+   "self_reported_elapsed_text_s": 13756235.967,
+   "true_elapsed_commit_s": 57.057,
+   "true_elapsed_read_s": 56.998
+  },
+  {
+   "a": "wrong",
+   "a_expired": true,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 55,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 59,
+   "b_valid": true,
+   "challenger": "behind-7m",
+   "holder": "set-back-june",
+   "id": "s2-L4-check-57-behind-7m",
+   "lease": "L4",
+   "probe_s": 57.0,
+   "self_reported_elapsed_s": 13748615.967,
+   "self_reported_elapsed_text_s": 13748615.967,
+   "true_elapsed_commit_s": 57.057,
+   "true_elapsed_read_s": 56.998
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 55,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 59,
+   "b_valid": true,
+   "challenger": "set-back-june",
+   "holder": "set-back-june",
+   "id": "s2-L4-check-57-set-back-june",
+   "lease": "L4",
+   "probe_s": 57.0,
+   "self_reported_elapsed_s": 56.999,
+   "self_reported_elapsed_text_s": 56.999,
+   "true_elapsed_commit_s": 57.058,
+   "true_elapsed_read_s": 56.999
+  },
+  {
+   "a": "wrong",
+   "a_expired": true,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 55,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 59,
+   "b_valid": true,
+   "challenger": "true",
+   "holder": "set-back-june",
+   "id": "s2-L4-check-57-true",
+   "lease": "L4",
+   "probe_s": 57.0,
+   "self_reported_elapsed_s": 13749035.967,
+   "self_reported_elapsed_text_s": 13749035.967,
+   "true_elapsed_commit_s": 57.057,
+   "true_elapsed_read_s": 56.998
+  },
+  {
+   "a": "wrong",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "wrong",
+   "a_tie": true,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 58,
+   "b_no_tolerance": "undecided",
+   "b_references_claim": true,
+   "b_span_s": 62,
+   "b_valid": true,
+   "challenger": "ahead-2h",
+   "holder": "set-back-june",
+   "id": "s2-L4-check-60-ahead-2h",
+   "lease": "L4",
+   "probe_s": 60.0,
+   "self_reported_elapsed_s": 13756238.968,
+   "self_reported_elapsed_text_s": 13756238.968,
+   "true_elapsed_commit_s": 60.064,
+   "true_elapsed_read_s": 59.999
+  },
+  {
+   "a": "wrong",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "wrong",
+   "a_tie": true,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 58,
+   "b_no_tolerance": "undecided",
+   "b_references_claim": true,
+   "b_span_s": 62,
+   "b_valid": true,
+   "challenger": "behind-7m",
+   "holder": "set-back-june",
+   "id": "s2-L4-check-60-behind-7m",
+   "lease": "L4",
+   "probe_s": 60.0,
+   "self_reported_elapsed_s": 13748618.968,
+   "self_reported_elapsed_text_s": 13748618.968,
+   "true_elapsed_commit_s": 60.064,
+   "true_elapsed_read_s": 59.999
+  },
+  {
+   "a": "right",
+   "a_expired": false,
+   "a_on_commit": "wrong",
+   "a_text": "right",
+   "a_tie": true,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 58,
+   "b_no_tolerance": "undecided",
+   "b_references_claim": true,
+   "b_span_s": 62,
+   "b_valid": true,
+   "challenger": "set-back-june",
+   "holder": "set-back-june",
+   "id": "s2-L4-check-60-set-back-june",
+   "lease": "L4",
+   "probe_s": 60.0,
+   "self_reported_elapsed_s": 60.0,
+   "self_reported_elapsed_text_s": 60.0,
+   "true_elapsed_commit_s": 60.065,
+   "true_elapsed_read_s": 59.999
+  },
+  {
+   "a": "wrong",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "wrong",
+   "a_tie": true,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 58,
+   "b_no_tolerance": "undecided",
+   "b_references_claim": true,
+   "b_span_s": 62,
+   "b_valid": true,
+   "challenger": "true",
+   "holder": "set-back-june",
+   "id": "s2-L4-check-60-true",
+   "lease": "L4",
+   "probe_s": 60.0,
+   "self_reported_elapsed_s": 13749038.968,
+   "self_reported_elapsed_text_s": 13749038.968,
+   "true_elapsed_commit_s": 60.064,
+   "true_elapsed_read_s": 59.999
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": true,
+   "b_gap_s": 73,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 77,
+   "b_valid": true,
+   "challenger": "ahead-2h",
+   "holder": "behind-7m",
+   "id": "s2-L2-check-75-ahead-2h",
+   "lease": "L2",
+   "probe_s": 75.0,
+   "self_reported_elapsed_s": 7695.004,
+   "self_reported_elapsed_text_s": 7695.004,
+   "true_elapsed_commit_s": 75.078,
+   "true_elapsed_read_s": 75.003
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": true,
+   "b_gap_s": 73,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 77,
+   "b_valid": true,
+   "challenger": "behind-7m",
+   "holder": "behind-7m",
+   "id": "s2-L2-check-75-behind-7m",
+   "lease": "L2",
+   "probe_s": 75.0,
+   "self_reported_elapsed_s": 75.004,
+   "self_reported_elapsed_text_s": 75.004,
+   "true_elapsed_commit_s": 75.078,
+   "true_elapsed_read_s": 75.003
+  },
+  {
+   "a": "wrong",
+   "a_expired": false,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": true,
+   "b_gap_s": 73,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 77,
+   "b_valid": true,
+   "challenger": "set-back-june",
+   "holder": "behind-7m",
+   "id": "s2-L2-check-75-set-back-june",
+   "lease": "L2",
+   "probe_s": 75.0,
+   "self_reported_elapsed_s": -13748483.964,
+   "self_reported_elapsed_text_s": -13748483.964,
+   "true_elapsed_commit_s": 75.076,
+   "true_elapsed_read_s": 75.003
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": true,
+   "b_gap_s": 73,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 77,
+   "b_valid": true,
+   "challenger": "true",
+   "holder": "behind-7m",
+   "id": "s2-L2-check-75-true",
+   "lease": "L2",
+   "probe_s": 75.0,
+   "self_reported_elapsed_s": 495.005,
+   "self_reported_elapsed_text_s": 495.005,
+   "true_elapsed_commit_s": 75.078,
+   "true_elapsed_read_s": 75.004
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 61,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 65,
+   "b_valid": true,
+   "challenger": "ahead-2h",
+   "holder": "set-back-june",
+   "id": "s2-L4-check-63-ahead-2h",
+   "lease": "L4",
+   "probe_s": 63.0,
+   "self_reported_elapsed_s": 13756241.964,
+   "self_reported_elapsed_text_s": 13756241.964,
+   "true_elapsed_commit_s": 63.033,
+   "true_elapsed_read_s": 62.996
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 61,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 65,
+   "b_valid": true,
+   "challenger": "behind-7m",
+   "holder": "set-back-june",
+   "id": "s2-L4-check-63-behind-7m",
+   "lease": "L4",
+   "probe_s": 63.0,
+   "self_reported_elapsed_s": 13748621.964,
+   "self_reported_elapsed_text_s": 13748621.964,
+   "true_elapsed_commit_s": 63.033,
+   "true_elapsed_read_s": 62.996
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 61,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 65,
+   "b_valid": true,
+   "challenger": "set-back-june",
+   "holder": "set-back-june",
+   "id": "s2-L4-check-63-set-back-june",
+   "lease": "L4",
+   "probe_s": 63.0,
+   "self_reported_elapsed_s": 62.996,
+   "self_reported_elapsed_text_s": 62.996,
+   "true_elapsed_commit_s": 63.033,
+   "true_elapsed_read_s": 62.996
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "undecided",
+   "b_expired": null,
+   "b_gap_s": 61,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 65,
+   "b_valid": true,
+   "challenger": "true",
+   "holder": "set-back-june",
+   "id": "s2-L4-check-63-true",
+   "lease": "L4",
+   "probe_s": 63.0,
+   "self_reported_elapsed_s": 13749041.965,
+   "self_reported_elapsed_text_s": 13749041.964,
+   "true_elapsed_commit_s": 63.033,
+   "true_elapsed_read_s": 62.996
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": true,
+   "b_gap_s": 73,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 77,
+   "b_valid": true,
+   "challenger": "ahead-2h",
+   "holder": "ahead-2h",
+   "id": "s2-L3-check-75-ahead-2h",
+   "lease": "L3",
+   "probe_s": 75.0,
+   "self_reported_elapsed_s": 75.0,
+   "self_reported_elapsed_text_s": 75.0,
+   "true_elapsed_commit_s": 75.027,
+   "true_elapsed_read_s": 74.999
+  },
+  {
+   "a": "wrong",
+   "a_expired": false,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": true,
+   "b_gap_s": 73,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 77,
+   "b_valid": true,
+   "challenger": "behind-7m",
+   "holder": "ahead-2h",
+   "id": "s2-L3-check-75-behind-7m",
+   "lease": "L3",
+   "probe_s": 75.0,
+   "self_reported_elapsed_s": -7545.0,
+   "self_reported_elapsed_text_s": -7545.0,
+   "true_elapsed_commit_s": 75.047,
+   "true_elapsed_read_s": 74.999
+  },
+  {
+   "a": "wrong",
+   "a_expired": false,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": true,
+   "b_gap_s": 73,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 77,
+   "b_valid": true,
+   "challenger": "set-back-june",
+   "holder": "ahead-2h",
+   "id": "s2-L3-check-75-set-back-june",
+   "lease": "L3",
+   "probe_s": 75.0,
+   "self_reported_elapsed_s": -13756103.968,
+   "self_reported_elapsed_text_s": -13756103.968,
+   "true_elapsed_commit_s": 75.046,
+   "true_elapsed_read_s": 74.999
+  },
+  {
+   "a": "wrong",
+   "a_expired": false,
+   "a_on_commit": "wrong",
+   "a_text": "wrong",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": true,
+   "b_gap_s": 73,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 77,
+   "b_valid": true,
+   "challenger": "true",
+   "holder": "ahead-2h",
+   "id": "s2-L3-check-75-true",
+   "lease": "L3",
+   "probe_s": 75.0,
+   "self_reported_elapsed_s": -7125.0,
+   "self_reported_elapsed_text_s": -7125.0,
+   "true_elapsed_commit_s": 75.027,
+   "true_elapsed_read_s": 74.999
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": true,
+   "b_gap_s": 73,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 77,
+   "b_valid": true,
+   "challenger": "ahead-2h",
+   "holder": "set-back-june",
+   "id": "s2-L4-check-75-ahead-2h",
+   "lease": "L4",
+   "probe_s": 75.0,
+   "self_reported_elapsed_s": 13756253.968,
+   "self_reported_elapsed_text_s": 13756253.968,
+   "true_elapsed_commit_s": 75.046,
+   "true_elapsed_read_s": 74.999
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": true,
+   "b_gap_s": 73,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 77,
+   "b_valid": true,
+   "challenger": "behind-7m",
+   "holder": "set-back-june",
+   "id": "s2-L4-check-75-behind-7m",
+   "lease": "L4",
+   "probe_s": 75.0,
+   "self_reported_elapsed_s": 13748633.968,
+   "self_reported_elapsed_text_s": 13748633.968,
+   "true_elapsed_commit_s": 75.047,
+   "true_elapsed_read_s": 74.999
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": true,
+   "b_gap_s": 73,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 77,
+   "b_valid": true,
+   "challenger": "set-back-june",
+   "holder": "set-back-june",
+   "id": "s2-L4-check-75-set-back-june",
+   "lease": "L4",
+   "probe_s": 75.0,
+   "self_reported_elapsed_s": 75.0,
+   "self_reported_elapsed_text_s": 75.0,
+   "true_elapsed_commit_s": 75.046,
+   "true_elapsed_read_s": 74.999
+  },
+  {
+   "a": "right",
+   "a_expired": true,
+   "a_on_commit": "right",
+   "a_text": "right",
+   "a_tie": false,
+   "b": "right",
+   "b_expired": true,
+   "b_gap_s": 73,
+   "b_no_tolerance": "right",
+   "b_references_claim": true,
+   "b_span_s": 77,
+   "b_valid": true,
+   "challenger": "true",
+   "holder": "set-back-june",
+   "id": "s2-L4-check-75-true",
+   "lease": "L4",
+   "probe_s": 75.0,
+   "self_reported_elapsed_s": 13749053.968,
+   "self_reported_elapsed_text_s": 13749053.968,
+   "true_elapsed_commit_s": 75.046,
+   "true_elapsed_read_s": 74.999
+  }
+ ],
+ "clock_check": {
+  "exit": 0,
+  "first_line": "timewitness LIVE 2026-11-23T14:09:38Z +/-1.0s (Mon 14:09 GMT local)",
+  "flags": [],
+  "local_wall_unix": 1795442977.2661529,
+  "median_offset_s": 0.0375,
+  "platform": "Darwin arm64",
+  "python": "3.15.2",
+  "verdict": "LIVE",
+  "witnesses": [
+   {
+    "kind": "freshness",
+    "name": "roughtime:roughtime.se",
+    "offset_s": -0.319,
+    "ok": true,
+    "uncertainty_s": 1.04
+   },
+   {
+    "kind": "freshness",
+    "name": "roughtime:time.txryan.com",
+    "offset_s": -0.409,
+    "ok": true,
+    "uncertainty_s": 3.047
+   },
+   {
+    "kind": "not_before",
+    "name": "bitcoin",
+    "offset_s": -73.377,
+    "ok": true,
+    "uncertainty_s": null
+   },
+   {
+    "kind": "time",
+    "name": "hf-hub",
+    "offset_s": -0.399,
+    "ok": true,
+    "uncertainty_s": 1.069
+   },
+   {
+    "kind": "time",
+    "name": "http-date:www.google.com",
+    "offset_s": 0.14,
+    "ok": true,
+    "uncertainty_s": 0.529
+   },
+   {
+    "kind": "time",
+    "name": "http-date:www.cloudflare.com",
+    "offset_s": 0.126,
+    "ok": true,
+    "uncertainty_s": 0.543
+   },
+   {
+    "kind": "time",
+    "name": "http-date:www.wikipedia.org",
+    "offset_s": 0.082,
+    "ok": true,
+    "uncertainty_s": 0.557
+   },
+   {
+    "kind": "time",
+    "name": "ntp:time.apple.com",
+    "offset_s": 0.038,
+    "ok": true,
+    "uncertainty_s": 0.016
+   },
+   {
+    "kind": "time",
+    "name": "ntp:time.cloudflare.com",
+    "offset_s": 0.037,
+    "ok": true,
+    "uncertainty_s": 0.019
+   }
+  ]
+ },
+ "matrix_spec_probes": {
+  "ahead-2h": {
+   "ahead-2h": {
+    "30": {
+     "a": "right",
+     "b": "right",
+     "self_reported_elapsed_s": 29.996
+    },
+    "75": {
+     "a": "right",
+     "b": "right",
+     "self_reported_elapsed_s": 75.0
+    }
+   },
+   "behind-7m": {
+    "30": {
+     "a": "right",
+     "b": "right",
+     "self_reported_elapsed_s": -7590.004
+    },
+    "75": {
+     "a": "wrong",
+     "b": "right",
+     "self_reported_elapsed_s": -7545.0
+    }
+   },
+   "set-back-june": {
+    "30": {
+     "a": "right",
+     "b": "right",
+     "self_reported_elapsed_s": -13756148.973
+    },
+    "75": {
+     "a": "wrong",
+     "b": "right",
+     "self_reported_elapsed_s": -13756103.968
+    }
+   },
+   "true": {
+    "30": {
+     "a": "right",
+     "b": "right",
+     "self_reported_elapsed_s": -7170.004
+    },
+    "75": {
+     "a": "wrong",
+     "b": "right",
+     "self_reported_elapsed_s": -7125.0
+    }
+   }
+  },
+  "behind-7m": {
+   "ahead-2h": {
+    "30": {
+     "a": "wrong",
+     "b": "right",
+     "self_reported_elapsed_s": 7650.004
+    },
+    "75": {
+     "a": "right",
+     "b": "right",
+     "self_reported_elapsed_s": 7695.004
+    }
+   },
+   "behind-7m": {
+    "30": {
+     "a": "right",
+     "b": "right",
+     "self_reported_elapsed_s": 30.004
+    },
+    "75": {
+     "a": "right",
+     "b": "right",
+     "self_reported_elapsed_s": 75.004
+    }
+   },
+   "set-back-june": {
+    "30": {
+     "a": "right",
+     "b": "right",
+     "self_reported_elapsed_s": -13748528.964
+    },
+    "75": {
+     "a": "wrong",
+     "b": "right",
+     "self_reported_elapsed_s": -13748483.964
+    }
+   },
+   "true": {
+    "30": {
+     "a": "wrong",
+     "b": "right",
+     "self_reported_elapsed_s": 450.005
+    },
+    "75": {
+     "a": "right",
+     "b": "right",
+     "self_reported_elapsed_s": 495.005
+    }
+   }
+  },
+  "set-back-june": {
+   "ahead-2h": {
+    "30": {
+     "a": "wrong",
+     "b": "right",
+     "self_reported_elapsed_s": 13756208.968
+    },
+    "75": {
+     "a": "right",
+     "b": "right",
+     "self_reported_elapsed_s": 13756253.968
+    }
+   },
+   "behind-7m": {
+    "30": {
+     "a": "wrong",
+     "b": "right",
+     "self_reported_elapsed_s": 13748588.968
+    },
+    "75": {
+     "a": "right",
+     "b": "right",
+     "self_reported_elapsed_s": 13748633.968
+    }
+   },
+   "set-back-june": {
+    "30": {
+     "a": "right",
+     "b": "right",
+     "self_reported_elapsed_s": 30.0
+    },
+    "75": {
+     "a": "right",
+     "b": "right",
+     "self_reported_elapsed_s": 75.0
+    }
+   },
+   "true": {
+    "30": {
+     "a": "wrong",
+     "b": "right",
+     "self_reported_elapsed_s": 13749008.969
+    },
+    "75": {
+     "a": "right",
+     "b": "right",
+     "self_reported_elapsed_s": 13749053.968
+    }
+   }
+  },
+  "true": {
+   "ahead-2h": {
+    "30": {
+     "a": "wrong",
+     "b": "right",
+     "self_reported_elapsed_s": 7230.0
+    },
+    "75": {
+     "a": "right",
+     "b": "right",
+     "self_reported_elapsed_s": 7275.0
+    }
+   },
+   "behind-7m": {
+    "30": {
+     "a": "right",
+     "b": "right",
+     "self_reported_elapsed_s": -390.0
+    },
+    "75": {
+     "a": "wrong",
+     "b": "right",
+     "self_reported_elapsed_s": -345.0
+    }
+   },
+   "set-back-june": {
+    "30": {
+     "a": "right",
+     "b": "right",
+     "self_reported_elapsed_s": -13748948.968
+    },
+    "75": {
+     "a": "wrong",
+     "b": "right",
+     "self_reported_elapsed_s": -13748903.968
+    }
+   },
+   "true": {
+    "30": {
+     "a": "right",
+     "b": "right",
+     "self_reported_elapsed_s": 30.0
+    },
+    "75": {
+     "a": "right",
+     "b": "right",
+     "self_reported_elapsed_s": 75.0
+    }
+   }
+  }
+ },
+ "part": "s2",
+ "rows": 84,
+ "rows_failed_to_parse": 0,
+ "run": {
+  "agents": {
+   "ahead-2h": {
+    "clock": "+2h",
+    "faketime_env": true,
+    "offset_at_start_s": 7200.000000715256,
+    "python": "3.15.2",
+    "tool_version": "0.2.0"
+   },
+   "behind-7m": {
+    "clock": "-7m",
+    "faketime_env": true,
+    "offset_at_start_s": -419.9999997615814,
+    "python": "3.15.2",
+    "tool_version": "0.2.0"
+   },
+   "set-back-june": {
+    "clock": "@2026-06-17 12:00:00",
+    "faketime_env": true,
+    "offset_at_start_s": -13748978.96821332,
+    "python": "3.15.2",
+    "tool_version": "0.2.0"
+   },
+   "true": {
+    "clock": "true",
+    "faketime_env": false,
+    "offset_at_start_s": 9.5367431640625e-07,
+    "python": "3.15.2",
+    "tool_version": "0.2.0"
+   }
+  },
+  "driver_python": "3.15.2",
+  "faketime": "/opt/homebrew/bin/faketime: Version 0.9.13",
+  "first_planned_true": 1795443002.175116,
+  "label": "s2",
+  "late_sends": [],
+  "machine": "arm64",
+  "map_end": 1793136197.7241375,
+  "map_start": 1793136197.7231555,
+  "part": "s2",
+  "platform": "macOS-26.6.2",
+  "rows": 84,
+  "stamped": 84,
+  "tool_version": [
+   "0.2.0"
+  ]
+ },
+ "spec_probes": {
+  "a": {
+   "right": 20,
+   "undecided": 0,
+   "wrong": 12
+  },
+  "b": {
+   "right": 32,
+   "undecided": 0,
+   "wrong": 0
+  },
+  "checks": 32
+ },
+ "tie_s": 0.01,
+ "windows": {
+  "agent_offset_spread_s": {
+   "ahead-2h": 0.0006725788116455078,
+   "behind-7m": 0.0007302761077880859,
+   "set-back-june": 0.0006155967712402344,
+   "true": 0.0007874965667724609
+  },
+  "bounds_cross": 0,
+  "bounds_from": {
+   "roughtime.se / roughtime.se": 84
+  },
+  "commit_margins": [
+   {
+    "after_not_before_s": 1.3498,
+    "before_existed_by_s": 0.6502,
+    "id": "s2-L1-claim"
+   },
+   {
+    "after_not_before_s": 1.3387,
+    "before_existed_by_s": 0.6613,
+    "id": "s2-L2-claim"
+   },
+   {
+    "after_not_before_s": 1.3607,
+    "before_existed_by_s": 0.6393,
+    "id": "s2-L3-claim"
+   },
+   {
+    "after_not_before_s": 1.3828,
+    "before_existed_by_s": 0.6172,
+    "id": "s2-L4-claim"
+   },
+   {
+    "after_not_before_s": 1.4056,
+    "before_existed_by_s": 0.5944,
+    "id": "s2-L1-check-30-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.4056,
+    "before_existed_by_s": 0.5944,
+    "id": "s2-L1-check-30-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.4048,
+    "before_existed_by_s": 0.5952,
+    "id": "s2-L1-check-30-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.4046,
+    "before_existed_by_s": 0.5954,
+    "id": "s2-L1-check-30-true"
+   },
+   {
+    "after_not_before_s": 1.4205,
+    "before_existed_by_s": 0.5795,
+    "id": "s2-L2-check-30-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.4205,
+    "before_existed_by_s": 0.5795,
+    "id": "s2-L2-check-30-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.4207,
+    "before_existed_by_s": 0.5793,
+    "id": "s2-L2-check-30-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.4185,
+    "before_existed_by_s": 0.5815,
+    "id": "s2-L2-check-30-true"
+   },
+   {
+    "after_not_before_s": 1.4404,
+    "before_existed_by_s": 0.5596,
+    "id": "s2-L3-check-30-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.4114,
+    "before_existed_by_s": 0.5886,
+    "id": "s2-L3-check-30-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.4117,
+    "before_existed_by_s": 0.5883,
+    "id": "s2-L3-check-30-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.4404,
+    "before_existed_by_s": 0.5596,
+    "id": "s2-L3-check-30-true"
+   },
+   {
+    "after_not_before_s": 1.4054,
+    "before_existed_by_s": 0.5946,
+    "id": "s2-L4-check-30-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.4094,
+    "before_existed_by_s": 0.5906,
+    "id": "s2-L4-check-30-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.4086,
+    "before_existed_by_s": 0.5914,
+    "id": "s2-L4-check-30-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.4094,
+    "before_existed_by_s": 0.5906,
+    "id": "s2-L4-check-30-true"
+   },
+   {
+    "after_not_before_s": 1.4633,
+    "before_existed_by_s": 0.5367,
+    "id": "s2-L1-check-57-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.4633,
+    "before_existed_by_s": 0.5367,
+    "id": "s2-L1-check-57-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.4626,
+    "before_existed_by_s": 0.5374,
+    "id": "s2-L1-check-57-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.4633,
+    "before_existed_by_s": 0.5367,
+    "id": "s2-L1-check-57-true"
+   },
+   {
+    "after_not_before_s": 1.4143,
+    "before_existed_by_s": 0.5857,
+    "id": "s2-L1-check-60-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.4143,
+    "before_existed_by_s": 0.5857,
+    "id": "s2-L1-check-60-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.4145,
+    "before_existed_by_s": 0.5855,
+    "id": "s2-L1-check-60-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.4083,
+    "before_existed_by_s": 0.5917,
+    "id": "s2-L1-check-60-true"
+   },
+   {
+    "after_not_before_s": 1.3773,
+    "before_existed_by_s": 0.6227,
+    "id": "s2-L1-check-63-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.3833,
+    "before_existed_by_s": 0.6167,
+    "id": "s2-L1-check-63-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.3815,
+    "before_existed_by_s": 0.6185,
+    "id": "s2-L1-check-63-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.4243,
+    "before_existed_by_s": 0.5757,
+    "id": "s2-L1-check-63-true"
+   },
+   {
+    "after_not_before_s": 1.4023,
+    "before_existed_by_s": 0.5977,
+    "id": "s2-L2-check-57-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.4043,
+    "before_existed_by_s": 0.5957,
+    "id": "s2-L2-check-57-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.4135,
+    "before_existed_by_s": 0.5865,
+    "id": "s2-L2-check-57-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.4083,
+    "before_existed_by_s": 0.5917,
+    "id": "s2-L2-check-57-true"
+   },
+   {
+    "after_not_before_s": 1.3763,
+    "before_existed_by_s": 0.6237,
+    "id": "s2-L2-check-60-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.3763,
+    "before_existed_by_s": 0.6237,
+    "id": "s2-L2-check-60-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.4045,
+    "before_existed_by_s": 0.5955,
+    "id": "s2-L2-check-60-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.4143,
+    "before_existed_by_s": 0.5857,
+    "id": "s2-L2-check-60-true"
+   },
+   {
+    "after_not_before_s": 1.4222,
+    "before_existed_by_s": 0.5778,
+    "id": "s2-L2-check-63-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.4152,
+    "before_existed_by_s": 0.5848,
+    "id": "s2-L2-check-63-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.4154,
+    "before_existed_by_s": 0.5846,
+    "id": "s2-L2-check-63-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.4392,
+    "before_existed_by_s": 0.5608,
+    "id": "s2-L2-check-63-true"
+   },
+   {
+    "after_not_before_s": 1.4172,
+    "before_existed_by_s": 0.5828,
+    "id": "s2-L3-check-57-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.4082,
+    "before_existed_by_s": 0.5918,
+    "id": "s2-L3-check-57-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.4174,
+    "before_existed_by_s": 0.5826,
+    "id": "s2-L3-check-57-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.4082,
+    "before_existed_by_s": 0.5918,
+    "id": "s2-L3-check-57-true"
+   },
+   {
+    "after_not_before_s": 1.4132,
+    "before_existed_by_s": 0.5868,
+    "id": "s2-L3-check-60-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.4032,
+    "before_existed_by_s": 0.5968,
+    "id": "s2-L3-check-60-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.4134,
+    "before_existed_by_s": 0.5866,
+    "id": "s2-L3-check-60-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.4132,
+    "before_existed_by_s": 0.5868,
+    "id": "s2-L3-check-60-true"
+   },
+   {
+    "after_not_before_s": 1.4712,
+    "before_existed_by_s": 0.5288,
+    "id": "s2-L1-check-75-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.4612,
+    "before_existed_by_s": 0.5388,
+    "id": "s2-L1-check-75-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.4714,
+    "before_existed_by_s": 0.5286,
+    "id": "s2-L1-check-75-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.4612,
+    "before_existed_by_s": 0.5388,
+    "id": "s2-L1-check-75-true"
+   },
+   {
+    "after_not_before_s": 1.4992,
+    "before_existed_by_s": 0.5008,
+    "id": "s2-L3-check-63-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.4092,
+    "before_existed_by_s": 0.5908,
+    "id": "s2-L3-check-63-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.4874,
+    "before_existed_by_s": 0.5126,
+    "id": "s2-L3-check-63-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.4092,
+    "before_existed_by_s": 0.5908,
+    "id": "s2-L3-check-63-true"
+   },
+   {
+    "after_not_before_s": 1.4402,
+    "before_existed_by_s": 0.5598,
+    "id": "s2-L4-check-57-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.4402,
+    "before_existed_by_s": 0.5598,
+    "id": "s2-L4-check-57-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.4404,
+    "before_existed_by_s": 0.5596,
+    "id": "s2-L4-check-57-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.4402,
+    "before_existed_by_s": 0.5598,
+    "id": "s2-L4-check-57-true"
+   },
+   {
+    "after_not_before_s": 1.4471,
+    "before_existed_by_s": 0.5529,
+    "id": "s2-L4-check-60-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.4471,
+    "before_existed_by_s": 0.5529,
+    "id": "s2-L4-check-60-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.4474,
+    "before_existed_by_s": 0.5526,
+    "id": "s2-L4-check-60-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.4471,
+    "before_existed_by_s": 0.5529,
+    "id": "s2-L4-check-60-true"
+   },
+   {
+    "after_not_before_s": 1.4171,
+    "before_existed_by_s": 0.5829,
+    "id": "s2-L2-check-75-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.4171,
+    "before_existed_by_s": 0.5829,
+    "id": "s2-L2-check-75-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.4143,
+    "before_existed_by_s": 0.5857,
+    "id": "s2-L2-check-75-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.4171,
+    "before_existed_by_s": 0.5829,
+    "id": "s2-L2-check-75-true"
+   },
+   {
+    "after_not_before_s": 1.4161,
+    "before_existed_by_s": 0.5839,
+    "id": "s2-L4-check-63-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.4161,
+    "before_existed_by_s": 0.5839,
+    "id": "s2-L4-check-63-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.4163,
+    "before_existed_by_s": 0.5837,
+    "id": "s2-L4-check-63-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.4161,
+    "before_existed_by_s": 0.5839,
+    "id": "s2-L4-check-63-true"
+   },
+   {
+    "after_not_before_s": 1.3881,
+    "before_existed_by_s": 0.6119,
+    "id": "s2-L3-check-75-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.4081,
+    "before_existed_by_s": 0.5919,
+    "id": "s2-L3-check-75-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.4063,
+    "before_existed_by_s": 0.5937,
+    "id": "s2-L3-check-75-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.3881,
+    "before_existed_by_s": 0.6119,
+    "id": "s2-L3-check-75-true"
+   },
+   {
+    "after_not_before_s": 1.429,
+    "before_existed_by_s": 0.571,
+    "id": "s2-L4-check-75-ahead-2h"
+   },
+   {
+    "after_not_before_s": 1.43,
+    "before_existed_by_s": 0.57,
+    "id": "s2-L4-check-75-behind-7m"
+   },
+   {
+    "after_not_before_s": 1.4292,
+    "before_existed_by_s": 0.5708,
+    "id": "s2-L4-check-75-set-back-june"
+   },
+   {
+    "after_not_before_s": 1.429,
+    "before_existed_by_s": 0.571,
+    "id": "s2-L4-check-75-true"
+   }
+  ],
+  "made": 84,
+  "one_server_only": 0,
+  "payload_match": 84,
+  "read_text_minus_read_wall_abs_max_s": 0.0009849071502685547,
+  "reader_estimate_abs_error_s_stamps_under_2s": {
+   "max": 0.18078351020812988,
+   "median": 0.17952895164489746,
+   "min": 0.17543411254882812,
+   "n": 84
+  },
+  "reader_estimate_of_author_clock_error_minus_true_error_s": {
+   "max": 0.18078351020812988,
+   "median": 0.17952895164489746,
+   "min": 0.17543411254882812,
+   "n": 84
+  },
+  "roughtime_se_beacon_and_seal_in_different_seconds": 0,
+  "seal_over_2s_after_beacon": 0,
+  "slow_details": [],
+  "slow_over_2s": 0,
+  "stamp_seconds": {
+   "max": 0.60677170753479,
+   "median": 0.47322118282318115,
+   "min": 0.37776923179626465,
+   "n": 84
+  },
+  "stamps": 84,
+  "true_commit_inside_window": 84,
+  "true_commit_inside_window_with_1s": 84,
+  "two_servers": 84,
+  "valid": 84,
+  "width_counts": {
+   "2": 84
+  },
+  "width_s": {
+   "max": 2,
+   "median": 2.0,
+   "min": 2,
+   "n": 84
+  },
+  "with_true_commit": 84
+ }
+}

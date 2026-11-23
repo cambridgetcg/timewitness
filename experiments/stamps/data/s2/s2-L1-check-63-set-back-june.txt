@@ -1,0 +1,1 @@
+Lease check: agent set-back-june asks whether lease L1, claimed by agent true, has expired. My clock reads 2026-06-17T11:01:26.210Z.

@@ -1,0 +1,82 @@
+{
+ "built_utc": "2026-11-23T13:08:36Z",
+ "router_models_date_header": "Mon, 23 Nov 2026 13:08:36 GMT",
+ "base_date": "2026-11-23",
+ "router_tz": "Europe/London",
+ "max_tokens": 8000,
+ "temperature": 0.7,
+ "models": {
+  "meta-llama/Llama-3.1-8B-Instruct": {
+   "provider": "deepinfra",
+   "served": true,
+   "priced_as": "meta-llama/Llama-3.1-8B-Instruct",
+   "pricing": {
+    "input": 0.02,
+    "output": 0.04
+   }
+  },
+  "google/gemma-4-31B-it": {
+   "provider": "deepinfra",
+   "served": true,
+   "priced_as": "google/gemma-4-31B-it",
+   "pricing": {
+    "input": 0.2,
+    "output": 0.4
+   }
+  },
+  "Qwen/Qwen2.5-72B-Instruct": {
+   "provider": "deepinfra",
+   "served": true,
+   "priced_as": "Qwen/Qwen2.5-72B-Instruct",
+   "pricing": {
+    "input": 0.36,
+    "output": 0.4
+   }
+  },
+  "openai/gpt-oss-120b": {
+   "provider": "deepinfra",
+   "served": true,
+   "priced_as": "openai/gpt-oss-120b",
+   "pricing": {
+    "input": 0.037,
+    "output": 0.17
+   }
+  },
+  "deepseek-ai/DeepSeek-V4.1-Flash-1017": {
+   "provider": "deepinfra",
+   "served": true,
+   "priced_as": "deepseek-ai/DeepSeek-V4.1-Flash-1017",
+   "pricing": {
+    "input": 0.098,
+    "output": 0.294
+   }
+  },
+  "zai-org/GLM-5.3": {
+   "provider": "deepinfra",
+   "served": true,
+   "priced_as": "zai-org/GLM-5.3",
+   "pricing": {
+    "input": 0.5625,
+    "output": 2.5
+   }
+  },
+  "moonshotai/Kimi-K2.5": {
+   "provider": "deepinfra",
+   "served": true,
+   "priced_as": "moonshotai/Kimi-K2.6",
+   "pricing": {
+    "input": 0.75,
+    "output": 3.5
+   }
+  },
+  "thinkingmachines/Inkling-2-Small": {
+   "provider": "deepinfra",
+   "served": true,
+   "priced_as": "thinkingmachines/Inkling-2-Small",
+   "pricing": {
+    "input": 0.285,
+    "output": 0.95
+   }
+  }
+ }
+}

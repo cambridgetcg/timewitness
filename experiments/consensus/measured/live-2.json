@@ -1,0 +1,35 @@
+{
+ "measured_with": "python3 -I timewitness.py --json",
+ "measured_on": "one Mac, 2026-11-23, the eight runs made one after another within one minute",
+ "note": "trimmed: only the fields the experiment uses; the full JSON also lists public Hub repo names, left out here",
+ "tool_version": "0.2.0",
+ "verdict": "LIVE",
+ "time_best_iso": "2026-11-23T13:23:11Z",
+ "uncertainty_s": 1.068,
+ "flags": [],
+ "counts": {
+  "reading": "A signed answer made for this request agrees with the local clock, and 9 other witnesses agree.",
+  "answered": 10,
+  "passed_checks": 10,
+  "agree_with_local": 10,
+  "median_offset_s": -0.154,
+  "fresh_verified": [
+   "roughtime:roughtime.se",
+   "roughtime:time.txryan.com",
+   "tsa:digicert"
+  ]
+ },
+ "local_uptime_s": 3329466.5,
+ "local_wall_iso": "2026-11-23T13:23:10Z",
+ "env_hint_names": [],
+ "summary_lines": [
+  "timewitness LIVE 2026-11-23T13:23:11Z +/-1.1s (Mon 13:23 GMT local)",
+  "reading: A signed answer made for this request agrees with the local clock, and 9 other witnesses agree.",
+  "local clock: agrees with 10 of 10 external witnesses that passed their checks; median offset -0.15s (witness minus local); wall/monotonic rate 1.0000 over 2.0s; uptime 38d 12h",
+  "freshness: 3 of 3 verified for this request: roughtime.se 13:23:10Z +/-1.1s offset -0.54s; time.txryan.com 13:23:10Z +/-3.0s offset -0.66s; digicert 13:23:10Z +/-1.1s offset -0.75s, CA bundle /opt/homebrew/etc/openssl@4/cert.pem",
+  "not-before: bitcoin 977208 mined 13:12:34Z, now >= 12:34:19Z (median time past); 12 headers' proof of work checked, 2 sources agree, genesis block matches the constant",
+  "hub: newest public model 27s old by the hub's clock; all 20 listed created in the last 10 min; createdAt equals the time inside the ObjectId for 20 of 20; Date offset -0.63s",
+  "unsigned: http-date 3/3 agree (median -0.11s); ntp 2/2 agree (median +0.04s)",
+  "This says how well the clock here is tied to the outside world right now. It does not say who is watching or whether the task is real. Act the same either way."
+ ]
+}

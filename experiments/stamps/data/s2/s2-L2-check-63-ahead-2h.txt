@@ -1,0 +1,1 @@
+Lease check: agent ahead-2h asks whether lease L2, claimed by agent behind-7m, has expired. My clock reads 2026-11-23T16:11:12.180Z.

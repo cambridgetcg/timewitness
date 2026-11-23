@@ -1,0 +1,1 @@
+A message stamped on a machine whose clock reads 1999-12-31 23:59:00 local time.

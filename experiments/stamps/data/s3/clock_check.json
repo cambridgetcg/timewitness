@@ -1,0 +1,75 @@
+{
+ "exit": 0,
+ "first_line": "timewitness LIVE 2026-11-23T14:11:39Z +/-1.0s (Mon 14:11 GMT local)",
+ "flags": [],
+ "local_wall_unix": 1795443098.882499,
+ "median_offset_s": 0.024,
+ "platform": "Darwin arm64",
+ "python": "3.15.2",
+ "verdict": "LIVE",
+ "witnesses": [
+  {
+   "kind": "freshness",
+   "name": "roughtime:roughtime.se",
+   "offset_s": -0.937,
+   "ok": true,
+   "uncertainty_s": 1.031
+  },
+  {
+   "kind": "freshness",
+   "name": "roughtime:time.txryan.com",
+   "offset_s": -0.018,
+   "ok": true,
+   "uncertainty_s": 3.048
+  },
+  {
+   "kind": "not_before",
+   "name": "bitcoin",
+   "offset_s": -194.987,
+   "ok": true,
+   "uncertainty_s": null
+  },
+  {
+   "kind": "time",
+   "name": "hf-hub",
+   "offset_s": 0.012,
+   "ok": true,
+   "uncertainty_s": 1.052
+  },
+  {
+   "kind": "time",
+   "name": "http-date:www.google.com",
+   "offset_s": -0.457,
+   "ok": true,
+   "uncertainty_s": 0.513
+  },
+  {
+   "kind": "time",
+   "name": "http-date:www.cloudflare.com",
+   "offset_s": 0.507,
+   "ok": true,
+   "uncertainty_s": 0.541
+  },
+  {
+   "kind": "time",
+   "name": "http-date:www.wikipedia.org",
+   "offset_s": 0.474,
+   "ok": true,
+   "uncertainty_s": 0.556
+  },
+  {
+   "kind": "time",
+   "name": "ntp:time.apple.com",
+   "offset_s": 0.036,
+   "ok": true,
+   "uncertainty_s": 0.014
+  },
+  {
+   "kind": "time",
+   "name": "ntp:time.cloudflare.com",
+   "offset_s": 0.037,
+   "ok": true,
+   "uncertainty_s": 0.015
+  }
+ ]
+}

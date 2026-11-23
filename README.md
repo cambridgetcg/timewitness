@@ -22,6 +22,10 @@ It does not report whether anyone is watching or testing. It is not a test
 detector, and its output should not be read as one. An agent should act the
 same either way.
 
+It can also stamp a message: an experimental feature that brackets, within a
+few seconds, when the exact bytes of a message were committed. See "Time
+brackets for messages (experimental)" below.
+
 Source: <https://github.com/cambridgetcg/timewitness>. The same folder, with
 the experiment records and a ledger of runs, is the Hugging Face dataset
 <https://huggingface.co/datasets/Yu-and-Ai/timewitness>. No licence has been
@@ -218,6 +222,335 @@ cutoff was 2026-06. A remembered height is a memory, so it can be wrong (one
 of the 8 replies said 880000), and a chain shorter than the remembered height
 is reported as such.
 
+## Time brackets for messages (experimental)
+
+Two agents on different machines cannot check each other's clocks. A message
+that says "written at 13:09" is only text. A stamp is a small JSON file about
+the exact bytes of a message. It shows two things, each with a time a server
+signed: the bytes existed by one time, so they were written no later than
+that; and someone combined them with fresh signed answers no earlier than
+another time. The two times are usually a few seconds apart. A stamp does not
+show when the bytes were first written: old text can be stamped today.
+
+Anyone with a copy of this tool can check a stamp, offline. The check uses the
+signed Roughtime answers inside the stamp and the keys pinned in the checking
+copy of the tool. It uses neither the author's clock nor the checker's.
+
+Words used in this section:
+
+- **payload**: the bytes being stamped, such as a message or a file. The
+  stamp holds only their SHA-256, not the bytes.
+- **commitment**: a 32-byte hash that stands for the payload, the beacons and
+  any references (all described below). **Committed** means that the
+  commitment was computed.
+- **not-before**: a lower bound on when the commitment was made. It holds
+  while the servers are honest.
+- **existed-by**: an upper bound on when the commitment existed, and so on
+  when the payload's bytes existed. It holds while the servers are honest.
+- **window**: from not-before to existed-by.
+- **pinned**: written into `timewitness.py`. The tool trusts only the
+  Roughtime server names and long-term keys pinned there.
+- **radius**: the uncertainty a Roughtime server signs with its time. The
+  server says the true time is within its time plus or minus the radius.
+- **online key** and **delegation window**: each server's long-term key signs
+  a shorter-lived online key, valid from one time to another (the delegation
+  window). The online key signs the times.
+- **Merkle root** and **leaf**: a server can answer many requests with one
+  signature. It signs a Merkle root, a hash built up from the hashes of the
+  requests (the leaves). Each answer carries the path from its request's leaf
+  to the root, so the signature covers that request.
+
+### Example
+
+A proposal is stamped and checked. After a pause of 6 s, a reply is stamped
+with a reference to the proposal, and the two stamps are ordered. To follow
+along, make `proposal.txt` with the same bytes as
+`tests/fixtures/stamps/m1.txt` (one line: "Proposal: run the nightly job at
+02:00 UTC from now on.") and `reply.txt` with the bytes of `m2.txt`. Every run
+gives new times and a new commitment, even for the same file, because each
+beacon is fresh. Live, 2026-11-23:
+
+```
+$ python3 -I timewitness.py --stamp proposal.txt --out proposal.stamp.json
+timewitness stamp made: committed no earlier than 2026-11-23T13:47:13Z and no later than 2026-11-23T13:47:16Z (window 3s; beacon and seal from 2 of the 2 servers pinned here)
+written to proposal.stamp.json; check it with --check-stamp proposal.stamp.json
+
+$ python3 -I timewitness.py --check-stamp proposal.stamp.json --payload proposal.txt
+timewitness stamp VALID: committed no earlier than 2026-11-23T13:47:13Z and no later than 2026-11-23T13:47:16Z (window 3s; beacon and seal from 2 of the 2 servers pinned here)
+roughtime.se: beacon 13:47:14Z +/-1s, so not before 13:47:13Z; seal 13:47:15Z +/-1s, so existed by 13:47:16Z
+time.txryan.com: beacon 13:47:15Z +/-3s, so not before 13:47:12Z; seal 13:47:15Z +/-3s, so existed by 13:47:18Z
+payload: SHA-256 39710c2b721875155a16034d0fe32d3f68053f34a3278d929752eb09b13893c6 matches proposal.txt
+commitment: fc6f9053e87c1ceaf45eec4da0f3faf0eb3bae7ced2c9e60873e95b37ca8f5d3
+references: none
+self-reported clock of the stamping machine: 2026-11-23T13:47:15Z (not evidence; the check does not use it)
+What this shows: The bytes with this SHA-256 were committed inside the window, by someone: the commitment could not be made before the not-before time, and it existed by the existed-by time. What it does not show: who wrote the bytes, that they are true, when they were first written (old text can be stamped today), or when they were sent or read. It holds only while the pinned servers' keys are not misused.
+
+$ python3 -I timewitness.py --stamp reply.txt --ref proposal.stamp.json --out reply.stamp.json
+timewitness stamp made: committed no earlier than 2026-11-23T13:47:20Z and no later than 2026-11-23T13:47:22Z (window 2s; beacon and seal from 2 of the 2 servers pinned here)
+written to reply.stamp.json; check it with --check-stamp reply.stamp.json
+
+$ python3 -I timewitness.py --order proposal.stamp.json reply.stamp.json
+timewitness order: 2 stamps, 2 verify
+A = proposal.stamp.json: committed 2026-11-23T13:47:13Z to 2026-11-23T13:47:16Z
+B = reply.stamp.json: committed 2026-11-23T13:47:20Z to 2026-11-23T13:47:22Z
+A before B (B references A; A existed by 2026-11-23T13:47:16Z, more than 1s before B's not-before 2026-11-23T13:47:20Z)
+An order is given only when the signed windows or a reference prove it. It is the order in which the stamps were committed, not when the messages were written, sent or read. Payloads are not compared here; check each stamp with --check-stamp and --payload.
+```
+
+The proposal's window is 3 s because roughtime.se's beacon and seal fell in
+different seconds. With one character of proposal.txt changed, the check
+prints `timewitness stamp INVALID: the payload's SHA-256 does not match the
+stamp` and exits 1.
+
+Always pass `--payload` when you hold the message. Without it, VALID says only
+that the stamp is good for some bytes with the printed SHA-256, and the first
+line reads `timewitness stamp VALID (payload not compared): ...`.
+
+The same proposal was stamped again with Python's clock faked to June
+(`faketime '2026-06-17 12:00:00'`; kept as
+`tests/fixtures/stamps/faked-june.json`): its self-reported clock reads
+2026-06-17T11:00:01Z, and its window runs from 2026-11-23T13:10:09Z to
+2026-11-23T13:10:12Z. faketime reads that time in the machine's time zone,
+which on that date was British Summer Time (UTC+1), so Python's clock read
+11:00 UTC. The times in a stamp come from the servers' signatures, not from
+the machine that made it.
+
+### How it works
+
+For each pinned Roughtime server (see "Roughtime" above) the tool makes two
+exchanges, one after the other.
+
+1. **Beacon.** An ordinary request with 32 fresh random bytes as the nonce.
+   The answer carries the server's time and radius, signed. Nobody without
+   the server's keys could have produced those bytes before the server signed
+   them. The beacon is the first 32 bytes of SHA-512 of the exact answer
+   bytes.
+2. **Commitment.** The first 32 bytes of SHA-512 of the *core*. The core is
+   the 20 characters `timewitness stamp v1` and a zero byte, the payload's
+   SHA-256, the number of beacons (4 bytes, little-endian) and each beacon in
+   the order the servers are listed, then the number of references (4 bytes)
+   and each reference. The commitment cannot be computed before every beacon
+   exists.
+3. **Seal.** A request whose nonce is the commitment. The signed answer
+   carries a Merkle root whose leaf is the full request packet. So the
+   request, and the commitment inside it, existed when the server signed.
+
+For one server, not-before is the beacon's time minus its radius, and
+existed-by is the seal's time plus its radius. Over all servers, the window
+runs from the latest not-before (the commitment needed every beacon) to the
+earliest existed-by. If the latest not-before is more than 1 s after the
+earliest existed-by, the servers contradict each other and the stamp is
+invalid. The 1 s allows for Roughtime times being whole seconds: a server
+that cuts its time down to the second can sign an existed-by up to 1 s early,
+if its radius does not also cover the cut. So the bounds of a valid stamp can
+cross by up to 1 s. No instant then fits both bounds exactly, and every
+output says "the servers' bounds cross by 1s" instead of giving a window
+width.
+
+The nonce echo at the top of a Roughtime answer is not signed. An earlier
+exchange could be passed off as a seal by editing its echo to read the
+commitment; with an old beacon too, that would backdate a stamp. So the check
+reads the nonce out of the seal's request packet, which the signed Merkle
+root covers, and requires it to equal the recomputed commitment. A test shows
+that the Roughtime check alone accepts such an edited answer and the stamp
+check refuses it.
+
+An old beacon is allowed. It only moves not-before earlier, so the window
+gets wider.
+
+### What the check requires
+
+`--check-stamp` recomputes every beacon and the commitment from the bytes in
+the stamp. It uses only the keys pinned in the checking copy of the tool,
+never a key written in the stamp. A stamp is valid when all of these hold:
+
+- The file is strict JSON within fixed sizes (see below), and each server
+  name appears once.
+- For each server whose name and key are pinned here, the beacon answer
+  passes every Roughtime check: both signatures, nonce echo, Merkle path,
+  delegation window, version and message type.
+- Each seal that is present passes the same checks, and its request's nonce
+  is the commitment.
+- Each signed time, plus or minus its radius, falls between the years 1970
+  and 9999. Only a broken server or a misused key signs anything else.
+- At least one beacon and one seal passed.
+- The servers do not contradict each other.
+- The commitment written in the stamp is present and equals the recomputed
+  one.
+- With `--payload`, the file's SHA-256 matches.
+
+A server whose name or key is not pinned here, or whose entry names no key,
+is reported as "not checkable with this tool's pinned keys" and does not
+count. One server is enough; two is the normal case. A server listed twice
+makes the stamp invalid, because it would read as two servers vouching. A
+server whose seal did not arrive gives a not-before only. The first line
+names how many of the servers pinned here gave a beacon and a seal. Each
+server's window and the combined window are printed; `--json` gives them as
+numbers, with `bounds_cross_s` and `servers_pinned_here`.
+
+Any other part that fails makes the whole stamp invalid instead of being left
+out. So an edit that would narrow or move the window makes the stamp invalid.
+Some edits do not: dropping a seal, renaming a server to one not pinned here,
+deleting a key, changing the self-reported clock, adding fields, or adding
+bytes after the end of a seal answer. Each leaves the window the same or
+wider. Two different files can therefore be the same valid stamp. Identify a
+stamp by its `commitment`, not by a hash of the file.
+
+A stamp file comes from someone else, so it is read strictly, before any
+signature is checked. Then every copy of the tool gives the same verdict on
+the same bytes, and a large file cannot stall the check. A file is refused
+when it is larger than 262144 bytes, nests deeper than 32 levels, repeats a
+key inside one object (JSON readers differ on which copy wins), holds NaN or
+Infinity or a number that reads as Infinity (such as `1e400`), holds a
+number longer than 32 characters, lists more than 16 servers or 256
+references, or holds a packet longer than 4096 bytes. Each packet must be
+base64 in its one standard form (RFC 4648: padded, no line breaks, no extra
+`=`, unused bits zero); Python versions differ on what else they accept. A
+server name must be a host name (letters, digits, dots and hyphens), because
+it is printed. In the text output a file name is printed as given, except
+that control characters, line and paragraph separators, direction marks and
+bytes that are not UTF-8 are written as `\uXXXX`, so a file name cannot add
+a line to the output; `--json` gives the name as given.
+
+### Order and references
+
+`--ref STAMP.json` puts that earlier stamp's commitment into the new core.
+The earlier stamp must verify first. The new stamp could not have been made
+before the earlier commitment existed.
+
+`--order` checks each stamp (at most 64 in one call), then says for each pair
+one of:
+
+- `A before B`: A's existed-by is more than 1 s before B's not-before, or B
+  references A, or a chain of such steps leads from A to B (`through C`).
+- `overlap: order unknown`: none of these holds. It never guesses from the
+  middle of the windows.
+
+If each of two stamps is shown before the other, the pair is reported as a
+contradiction and the exit code is 1. The line names the pair and gives the
+reasons for each direction; a reason that reads `through C` follows from
+other pairs, not from this pair alone. A contradiction means that at least
+one signed time in the stamps is wrong; the stamps do not show which. A stamp
+that does not verify is not ordered. The order is the order in which the
+stamps were committed. It says nothing about when the messages were written,
+sent or read. `--order` does not compare payloads; check each stamp with
+`--check-stamp` and `--payload` for that.
+
+In `tests/fixtures/stamps/`, o2 references o1 and o3 references o2; o4 was
+made right after o3 with no reference, and o5 after a 15 s pause. o1 and o2
+have overlapping windows and are ordered by the reference. o1 and o3 are
+ordered through o2. o4 overlaps them and gets no order. o5 comes after all of
+them by its window.
+
+### How wide the windows are
+
+10 stamps made one after another on 2026-11-23 from one machine, 0 rows
+failed to parse and 10 verified (`tests/fixtures/stamps/widths-10.jsonl`).
+The combined window was 2 s wide (minimum 2 s, median 2 s, maximum 2 s).
+roughtime.se alone gave windows of 2 s, and time.txryan.com alone 6 s. In 10
+of 10 both bounds came from roughtime.se, and its beacon and seal carried the
+same second in 10 of 10. Each `--stamp` command took 0.45 to 0.57 s (16
+commands, Python start-up included) in the session that made the fixtures.
+This is a small sample: one machine, one network, one sitting.
+
+The experiment in `experiments/stamps/` made 216 stamps later the same day on
+one machine, from long-running processes (no Python start-up per stamp). See
+its README for the detail. The windows were 2 s wide in 177, 3 s in 35 and
+6 s in 4. A window is 2 s when roughtime.se signs the beacon and the seal in
+the same second, and 3 s when they fall in different seconds (as in the
+faked-clock stamp above); the mix of 2 s and 3 s there reflects the
+experiment's schedule, not how often each occurs. A 6 s window came only
+from a stamp that took 4 to 5 s instead of about half a second, which fits
+one lost UDP packet. In 2 of the 4, roughtime.se gave no usable beacon, so
+the stamp holds time.txryan.com alone (radius 3 s). In the other 2, both
+seals were signed 4 s after their beacons, which fits roughtime.se's first
+seal going unanswered and its second try being answered. A stamp took a
+median of 0.44 s there, and up to 4.6 s when a packet was lost. With windows
+this wide, no pair of stamps less than 3 s apart was ordered by windows
+alone (the closest pair ordered was 3.4 s apart); a reply that references a
+stamp is ordered after it however close the two are.
+
+### What a stamp does not show
+
+- Who made it or wrote the bytes. That needs a signature by the author.
+- That the stamper ever had the bytes. A stamp holds only their SHA-256, and
+  every stamp prints it, so anyone who has seen a stamp can stamp the same
+  hash again later. That does not backdate anything.
+- That the content is true.
+- When the content was first written or thought of. Old text can be stamped
+  today.
+- When the message was sent or read.
+- Anything, if a pinned server's key is misused. Each server's long-term key
+  signs a shorter-lived online key, and the online key signs the times. In
+  the recorded answers, roughtime.se's online key was valid from 2026-01-18
+  to 2027-02-01 (379 days), and time.txryan.com's for 1 day. Whoever holds an
+  online key can sign any time inside its span. A server that signs a wrong
+  time moves the window. When two servers' clocks differ by more than the sum
+  of their radii, plus the 1 s tolerance and the time between beacon and
+  seal, the stamp shows a contradiction. A smaller error is not caught, and
+  nothing checks a stamp made with one server.
+
+Other limits:
+
+- Only the two pinned servers are used. A stamp is checked with the keys in
+  the checking copy of the tool. If a server changes its long-term key and a
+  later copy pins the new one, older stamps from that server become "not
+  checkable" there.
+- Making a stamp needs UDP to port 2002 of the servers. It uses no TLS, so it
+  works when the local clock is far wrong, as above.
+- A beacon is asked for once and a seal up to twice, each with the network
+  timeout (4 s by default). A server whose beacon does not arrive is left out
+  of the stamp. A server that answers the beacon but not the seal gives a
+  not-before only. A lost packet makes a stamp take about 4 s longer and can
+  widen its window to 6 s (see "How wide the windows are").
+- Under `--replay` no stamp can be made: replayed answers do not carry the
+  new beacons' fresh nonces. `--record` saves the four exchanges.
+- An `--out` path that is a folder, or inside a folder that does not exist,
+  is refused before the network is used. If the file still cannot be
+  written, the stamp is printed on standard output instead, so it is not
+  lost, and the exit code is 2.
+- A stamp holds no host name, user name or path. It holds the stamping
+  machine's clock reading under `self_reported`, labelled as not evidence;
+  the check never uses it.
+
+### Flags and exit codes for stamps
+
+| Flag | Effect |
+|---|---|
+| `--stamp FILE` | Stamp FILE's bytes (`-` reads standard input). Prints the stamp as JSON; a one-line summary goes to standard error. Needs the network. |
+| `--out PATH` | With `--stamp`: write the stamp to PATH, and print the summary on standard output. |
+| `--ref STAMP.json` | With `--stamp`, repeatable: put that stamp's commitment inside the new one. It must verify. |
+| `--check-stamp STAMP.json` | Check one stamp offline. Prints the window in plain words, or everything with `--json`. Without `--payload` the first line says `(payload not compared)`. |
+| `--payload FILE` | With `--check-stamp`: also compare FILE's SHA-256 with the stamp's. |
+| `--order STAMP.json STAMP.json ...` | Check 2 to 64 stamps offline and give, for each pair, `A before B` or `overlap: order unknown`. `--json` works here too. |
+
+`--timeout`, `--record`, `--replay` and `--no-network` work with `--stamp`.
+`--no-network` is also accepted with `--check-stamp` and `--order`, which
+never use the network; `--timeout`, `--record` and `--replay` are not. The
+flags of the clock report (`--all`, `--quick`, `--since`, `--cutoff`,
+`--cutoff-height`, `--label`, `--hf-log`, `--rate-seconds`) cannot be
+combined with these. Standard input (`-`) can be given to only one of
+`--stamp`, `--ref`, `--check-stamp`, `--payload` and `--order`.
+
+Exit codes: 0 when the stamp was made or is valid (for `--order`, when every
+stamp is valid and no pair contradicts); 1 otherwise; 2 for a usage error,
+including a file that cannot be opened, `-` when standard input is closed, a
+`--ref` that does not verify, `-` given twice, more than 64 stamps with
+`--order`, and an `--out` that cannot be written (the stamp is then on
+standard output).
+
+The stamp file holds `format` (`timewitness-stamp/1`), `tool_version`,
+`payload_sha256`, `refs` (commitments, hex), `commitment` (hex; required; the
+check recomputes it and compares), `servers` and `self_reported`. Each entry
+in `servers` has `name`, `key` (as pinned when the stamp was made), and
+`beacon` and `seal`, each with the raw `request_b64` and `response_b64`.
+`seal` is null when it did not arrive.
+
+The stamp tests (`tests/test_stamp.py`) are offline. They use the stamps in
+`tests/fixtures/stamps/`, made live on 2026-11-23 by the script in that
+folder. Servers that lie cannot be recorded from honest ones, so the
+contradiction tests use made-up servers whose keys are made in the test file.
+
 ## How to run
 
 Python 3.9 or newer, standard library only. `openssl` is used when present.
@@ -251,16 +584,155 @@ and under two replays; and four runs inside a Hugging Face Job) is in
 `experiments/environments/`. `experiments/models/` is
 a pilot on what date models assume and which clock they trust.
 `hooks/clock-line.py` is a Claude Code hook that gives the model the time of
-day, the zone and the length of pauses at each prompt.
+day, the zone and the length of pauses at each prompt. On 2026-11-23 it was
+corrected to measure a pause from the last user or assistant record in the
+session's transcript; before, records that Claude Code writes on its own
+could make a pause look shorter than it was. Its tests are in
+`tests/test_clock_line.py`. The clock-line experiment in the next section
+ran with the corrected hook (its rows record the hook's SHA-256).
 
-Tests are offline and use exchanges recorded live on 2026-11-13 and
-2026-11-14:
+Register the hook under `UserPromptSubmit` in Claude Code's settings. A
+subagent gets no line from that entry. Registered under `SubagentStart` as
+well, the same file gives a subagent the date, time of day and zone, and
+leaves out the pause and session-age sentences, which would describe the
+parent session and not the subagent. In a test on 2026-11-23 (6 runs of
+`claude -p`, Claude Code 2.1.330) the subagent got the line in 4 of 4 runs
+with that entry and in neither of 2 runs without it. Not tested: resumed
+subagents, agent teams, and agent types other than the general one.
+
+Tests are offline. They use exchanges recorded live on 2026-11-13 and
+2026-11-14, and the stamp fixtures made live on 2026-11-23; the hook's tests
+write small transcripts of their own:
 
 ```
 python3 -I -m unittest discover -s tests
 ```
 
+On 2026-11-23 this ran 167 tests (94 in `tests/test_timewitness.py`, 61 in
+`tests/test_stamp.py`, 12 in `tests/test_clock_line.py`), and all passed,
+none skipped. The counts were the same under Homebrew's Python 3.15.2 and
+under macOS's own `/usr/bin/python3` (Python 3.9.6).
+
+## Experiments of 2026-11-23: does a clock help agents work together?
+
+Three experiments ran on 2026-11-23. Each folder has its own README, written
+by a script from the stored rows, with its design and limits in full; every
+number below comes from those files. All three samples are small. The
+Hugging Face account's pre-paid credit ran out at 13:38 UTC that day, during
+the group experiment. From then on, calls to Inference Providers and Job
+submissions were refused with HTTP 402 (payment required). So the group
+experiment stopped early, and two planned parts did not run: the open-model
+arm of the clock-line experiment and the two-machine part of the stamp
+experiment.
+
+**The clock-line experiment** ([`experiments/time-use/`](experiments/time-use/)).
+Four Claude models in Claude Code made 162 decisions that depend on elapsed
+time, and 16 estimates of how long a task took, with the clock line (the
+line `hooks/clock-line.py` adds to each prompt) on or off; with it off they
+could still run `date`. Every prompt allowed the answer CANNOT_TELL. Where
+the clock line settles the answer and the date alone does not, the models
+were right in 34 of 36 rows with it and in 20 of 36 without it (18 of those
+20 after running `date` themselves; 15 of the other 16 said CANNOT_TELL).
+Waiting inside one session, where a later `date` cannot help: right in 10 of
+12 with the clock line, 2 of 12 without (both lucky guesses). A note with no
+written time cannot be placed by any clock, by design, and the models said
+CANNOT_TELL in 71 of 72 such rows. Duration: 7 of 8 replies gave a number
+with clock lines, 2 of 8 without. Wrong answers did not go down: 3 of 78
+with the clock line, 1 of 78 without, all from haiku. Two of the 3 were
+haiku answering that a wait was not over after it had ended, with both clock
+lines in view. Each decision cell has 6 rows, from one afternoon on one
+machine. The open-model arm did not run: its two calls (the first at 14:08
+UTC) got HTTP 402 and cost nothing. So nothing is known here about open models, about a
+date with no clock to read, or about a date that has gone stale.
+
+**The group experiment** ([`experiments/consensus/`](experiments/consensus/)).
+Four copies of one open model (three models in all) had to decide together
+whether a deadline about two and a half days in the past had passed; the
+right answer is CLOSED. Each member held its own evidence about the date,
+some of it nine days old, and in some conditions each could ask for one
+check on its own machine, `date -u` or `timewitness`, whose output the
+harness simulated from real runs. The results use runs 1 and 2 of the 8
+planned: 6 groups per condition (5 in one), 2 per model. With no check, one
+member holding the true date did not move three members told 2026-11-14: 0
+of 18 groups decided CLOSED, whether it held a person's remark, a clock line
+or a `timewitness` report. With a report, 0 of 6 groups decided CLOSED, and
+none of the 18 members told 2026-11-14 ended at CLOSED. With one more
+sentence in every briefing that ranks kinds of evidence (the rule sentence),
+2 of 6 groups with a clock line decided CLOSED, both DeepSeek (0 of 6
+without it; inside noise, p = 0.45). On healthy machines, with `date -u`
+offered, 17 of 18 groups decided CLOSED. With three of four
+clocks nine days behind, 0 of 6 groups decided CLOSED with no check, 0 of 6
+with `date -u` and 6 of 6 with `timewitness` (two-sided Fisher p = 0.002).
+Across all conditions, agents on set-back machines that ran `date -u` ended
+with the true date in 3 of 36; those that ran `timewitness`, in 36 of 36.
+Agents ran an offered check in 245 of 264 cases. This does not show how real
+tool output or Claude models behave (the `timewitness` result follows from
+how the simulated outputs were built), whether `timewitness` adds anything
+over `date -u` on a healthy machine (not tested), or whether agents would
+think of a check unprompted. The 164 groups that HTTP 402 stopped are kept
+in the rows and not scored.
+
+**The stamp experiment** ([`experiments/stamps/`](experiments/stamps/)).
+Four processes (the agents) on one Mac, with clocks that were true, 7
+minutes behind, 2 hours ahead and set back to June (faked with libfaketime),
+stamped every message they sent. Order, a 60 s lease and a 60 s objection
+window were then judged twice: from the clock times the agents wrote in
+their messages (self-reported times), and from the stamps. Self-reported
+times put 80 of 190 pairs in the wrong order in every set; stamps put none
+in the wrong order. Stamps ordered 190 of 190 pairs of messages sent 10 s
+apart, 189 of 190 at 5 s, 169 of 190 at 2 s and 84 of 190 at 0.5 s (the
+rest undecided), and 190 of 190 in a reply chain where each message
+references the one before. No pair less than 3 s apart was ordered by
+windows alone. For the lease and the objection window, stamps were right in
+56 of 56 checks 15 s or more from the deadline and undecided in 48 of 48
+about 3 s or less from it. Over the order, lease and objection decisions
+that compared two clocks (in that folder's README: S1's 10 s set, S2 at +30
+and +75 s, and S3's deadline rule), self-reported times always gave an
+answer and were wrong in 104 of 198. All 216 stamps made for the order,
+lease and objection parts verified, and every window held the true commit
+time. In a separate test, all 19 stamps (14 of
+them altered or forged) got the verdict expected. The agents were small
+programs, not language models, and the clocks were faked in user space on
+one machine. The two-machine part did not run: both Hugging Face Job
+submissions failed and created no Job, and the one error that was kept is
+HTTP 402.
+
+What the three say together about the tool's use:
+
+- **Perceiving time.** A time from outside the agent helped. The clock line
+  turned most CANNOT_TELL answers into right ones (34 of 36 right against 20
+  of 36), and in simulation `timewitness` gave the true date to every agent
+  on a set-back machine that ran it (36 of 36), where `date -u` gave it to 3
+  of 36. It was not enough by itself: 2 of the 12 waits with the clock line
+  were answered wrong, both by haiku, and wrong answers did not go down (3 of
+  78 against 1 of 78).
+- **Working together.** For a lease or an objection window, stamps were never
+  wrong and were right in 56 of 56 checks far from the deadline, where
+  self-reported times, compared across two clocks, were wrong in 104 of 198
+  decisions on order, leases and objections (messages sent 10 s apart, and
+  checks 15 s or more from a deadline). Within about 3 s of a deadline
+  stamps decided nothing (48 of 48 undecided), so a protocol that uses them
+  must say what "undecided" means.
+- **Passing messages.** A relayed `timewitness` report persuaded none of the
+  18 members told 2026-11-14. A stamp passes on a time the reader can check
+  for itself: signed windows ordered messages from clocks that disagree
+  without error, where self-reported times got 80 of 190 pairs wrong. They
+  cannot separate messages less than about 3 s apart (none was ordered); a
+  reply that references its message is ordered however close (190 of 190). A
+  note without a written time cannot be placed by any clock (CANNOT_TELL in
+  71 of 72).
+- **Reaching agreement.** Groups agreed on the right answer when members
+  could check: 0 of 18 groups with no check against 17 of 18 with `date -u`
+  on healthy machines. With most clocks wrong, only `timewitness` did it (6
+  of 6 against 0 of 6). That was simulated output from three open models, 6
+  groups per cell: it shows what a signed check can settle, not how real
+  agents with real tools would fare.
+
 ## Flags
+
+Write flags in full. Python's argparse also accepts a unique prefix of a
+flag, but a new flag can make a prefix ambiguous: `--s` meant `--since`
+until `--stamp` was added.
 
 | Flag | Effect |
 |---|---|

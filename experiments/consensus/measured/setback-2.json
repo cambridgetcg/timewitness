@@ -1,0 +1,43 @@
+{
+ "measured_with": "faketime -f '-9d' python3 -I timewitness.py --json",
+ "measured_on": "one Mac, 2026-11-23, the eight runs made one after another within one minute",
+ "note": "trimmed: only the fields the experiment uses; the full JSON also lists public Hub repo names, left out here",
+ "tool_version": "0.2.0",
+ "verdict": "ADRIFT",
+ "time_best_iso": "2026-11-23T13:23:10Z",
+ "uncertainty_s": 1.031,
+ "flags": [
+  "faketime_env",
+  "other_process_disagrees",
+  "filesystem_disagrees"
+ ],
+ "counts": {
+  "reading": "A signed answer made for this request says 2026-11-23T13:23:10Z (roughtime.se, digicert, time.txryan.com); the local clock is 8d 23h behind it. The other external witnesses agree with it to within 30 s plus their uncertainty.",
+  "answered": 9,
+  "passed_checks": 9,
+  "agree_with_local": 0,
+  "median_offset_s": 777599.9965,
+  "fresh_verified": [
+   "roughtime:roughtime.se",
+   "roughtime:time.txryan.com",
+   "tsa:digicert"
+  ]
+ },
+ "local_uptime_s": 3329460.9,
+ "local_wall_iso": "2026-11-14T13:23:04Z",
+ "env_hint_names": [
+  "DYLD_INSERT_LIBRARIES",
+  "FAKETIME"
+ ],
+ "summary_lines": [
+  "timewitness ADRIFT 2026-11-23T13:23:10Z +/-1.0s (Mon 13:23 GMT local)",
+  "reading: A signed answer made for this request says 2026-11-23T13:23:10Z (roughtime.se, digicert, time.txryan.com); the local clock is 8d 23h behind it. The other external witnesses agree with it to within 30 s plus their uncertainty.",
+  "local clock: agrees with 0 of 9 external witnesses that passed their checks; median offset +8d 23h (witness minus local); wall/monotonic rate 1.0000 over 2.0s; uptime 38d 12h",
+  "freshness: 3 of 3 verified for this request: roughtime.se 13:23:06Z +/-1.0s offset +8d 23h; time.txryan.com 13:23:07Z +/-3.0s offset +8d 23h; digicert 13:23:07Z +/-1.1s offset +8d 23h, CA bundle /opt/homebrew/etc/openssl@4/cert.pem",
+  "not-before: bitcoin 977208 mined 13:12:34Z, now >= 12:34:19Z (median time past); 12 headers' proof of work checked, 2 sources agree, genesis block matches the constant",
+  "hub: newest public model 26s old by the hub's clock; all 20 listed created in the last 10 min; createdAt equals the time inside the ObjectId for 20 of 20; Date offset +8d 23h",
+  "unsigned: http-date 0/3 agree (median +9d 0h); ntp 0/2 agree (median +9d 0h)",
+  "flags: faketime_env, other_process_disagrees (date in a child process reads +8d 23h), filesystem_disagrees (a new file's mtime reads +9d 0h)",
+  "This says how well the clock here is tied to the outside world right now. It does not say who is watching or whether the task is real. Act the same either way."
+ ]
+}
